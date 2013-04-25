@@ -1,11 +1,12 @@
 require 'date'
+require 'json'
 
 def debug(line)
   return if true
   p "********* #{line}"
 end
 
-class Author
+class AuthorStruct
   attr_accessor :name, :email, :date_commits
 
   def initialize(name, email)
@@ -30,14 +31,6 @@ class Author
       debug("#{added}:#{deleted} - #{file_type}")
     end
     @date_commits[date_str] = commit
-  end
-end
-
-class CommitDate
-  attr_accessor :author
-
-  def initialize(author)
-    @author = author
   end
 end
 
@@ -81,6 +74,17 @@ class Commit
   def to_str
     "rb - #{rb_added}:#{rb_deleted}\nhtml - #{html_added}:#{html_deleted}\njs - #{js_added}:#{js_deleted}\ncss - #{css_added}:#{css_deleted}\n"
   end
+
+  def to_json
+    {:rb_added => @rb_added,
+      :rb_deleted => @rb_deleted,
+      :html_added => @html_added,
+      :html_deleted => @html_deleted,
+      :css_added => @css_added,
+      :css_deleted => @css_deleted,
+      :js_added => @js_added,
+      :js_deleted => @js_deleted}.to_json
+  end
 end
 
 gitlog = `cat sample_git.txt`#`git log --numstat`
@@ -95,7 +99,7 @@ gitlog.split(/\n/).each do |line|
     if !regex
       raise "Author regex /Author\:\s*([^<]*)<([^>]*)>/ doesn't match #{line}"
     end
-    author = Author.new(regex[1].strip, regex[2])
+    author = AuthorStruct.new(regex[1].strip, regex[2])
     # store author if they don't already exist
     if author_hash[author.name]
       # get the last stored author
@@ -125,4 +129,4 @@ gitlog.split(/\n/).each do |line|
   end
 end
 
-author_hash["Tony"].date_commits.each {|k,v| p "*** #{v.to_str}"}
+author_hash["Tony"].date_commits.each {|k,v| debug(v.to_str)}
