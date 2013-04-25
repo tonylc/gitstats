@@ -1,0 +1,4889 @@
+commit 23988274ea298abd541db0c05ea48e4eab408113
+Merge: be6ede5 814128b
+Author: Tony <tonylc@gmail.com>
+Date:   Tue Apr 2 21:08:27 2013 -0700
+
+    Merge branch 'master' into staging
+
+commit 814128bb03109602d5542dbcbd2754fa5b9d4bcb
+Author: Tony <tonylc@gmail.com>
+Date:   Tue Apr 2 21:07:46 2013 -0700
+
+    update copy on player registration and order pages
+
+1	1	app/views/orders/new.html.haml
+1	1	app/views/players/new.html.haml
+
+commit 89ecc7bffb4394c8557bebac49c97888ec08541c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Apr 2 18:59:41 2013 -0400
+
+    make the deployment roles uniform
+
+1	1	config/deploy/production.rb
+
+commit be6ede5113c29230006821a654f4d55a0a51eef7
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Apr 2 18:59:41 2013 -0400
+
+    make the deployment roles uniform
+
+1	1	config/deploy/production.rb
+
+commit 7641f80cd2c15bef4d9fdb5fee5a97171d5e934e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 17:04:31 2013 -0400
+
+    production branch is master
+
+1	1	config/deploy/production.rb
+
+commit b64c9e59d1ed1dfbf69a5f2c827c759c3ada460e
+Merge: 24eb967 307c959
+Author: Tony <tonylc@gmail.com>
+Date:   Tue Apr 2 14:34:55 2013 -0700
+
+    Merge branch 'staging'
+
+commit 307c959abcfa8f074beb02a8b38a19415368e777
+Author: Tony <tonylc@gmail.com>
+Date:   Mon Apr 1 22:44:02 2013 -0700
+
+    add auth code to the order receipt template
+
+1	1	app/mailers/user_mailer.rb
+5	0	app/models/transaction.rb
+10	2	test/unit/transaction_test.rb
+
+commit 9738fe92ff0f3eb0d4cfc5add2359557bb674466
+Author: Tony <tonylc@gmail.com>
+Date:   Mon Apr 1 21:32:55 2013 -0700
+
+    always show player card overlay
+
+1	1	app/views/players/_player.html.haml
+
+commit b2f12a7e987dc3ac3c5b2656f265c2100af1b462
+Author: Tony <tonylc@gmail.com>
+Date:   Sun Mar 31 22:38:10 2013 -0700
+
+    client side validation for accepting tos
+
+14	0	app/views/players/_form.html.haml
+
+commit fff5c4d8ac1a49fee52b93145929cfe5ca56411a
+Author: Tony <tonylc@gmail.com>
+Date:   Sun Mar 31 22:29:29 2013 -0700
+
+    auto format phone number like at&t
+
+6	3	app/views/players/_form.html.haml
+
+commit ee2808f4e6edf7e0b8787fabd3490bbef9cb8286
+Author: Tony <tonylc@gmail.com>
+Date:   Sun Mar 31 01:21:57 2013 -0700
+
+    remove rspec
+
+0	2	Gemfile
+0	17	Gemfile.lock
+0	8	spec/controllers/static_controller_spec.rb
+-	-	vendor/cache/rspec-2.13.0.gem
+-	-	vendor/cache/rspec-core-2.13.1.gem
+-	-	vendor/cache/rspec-expectations-2.13.0.gem
+-	-	vendor/cache/rspec-mocks-2.13.0.gem
+-	-	vendor/cache/rspec-rails-2.13.0.gem
+
+commit 3d63919c80f976956e9c4bf138f403f49ad2d4ea
+Author: Tony <tonylc@gmail.com>
+Date:   Sun Mar 31 00:52:08 2013 -0700
+
+    delete a bunch of empty tests
+
+0	7	test/functional/admin_controller_test.rb
+0	5	test/functional/pages_controller_test.rb
+0	4	test/unit/helpers/accounts_helper_test.rb
+0	4	test/unit/helpers/admin/base_helper_test.rb
+0	4	test/unit/helpers/admin/players_helper_test.rb
+0	4	test/unit/helpers/admin/users_helper_test.rb
+0	17	test/unit/helpers/application_helper_test.rb
+0	4	test/unit/helpers/contact_form_helper_test.rb
+0	4	test/unit/helpers/pages_helper_test.rb
+0	4	test/unit/helpers/players_helper_test.rb
+0	4	test/unit/helpers/sessions_helper_test.rb
+
+commit bea016176f7916362ce44de2ffb479033b9caa93
+Author: Tony <tonylc@gmail.com>
+Date:   Sun Mar 31 00:42:42 2013 -0700
+
+    convert model spec to test unit, fix unit tests
+
+1	1	app/models/transaction.rb
+0	7	spec/models/player_spec.rb
+4	0	test/unit/player_test.rb
+
+commit c6eac85c14afba1f787b112217a0faa196a18fb8
+Author: Tony <tonylc@gmail.com>
+Date:   Sun Mar 31 00:09:06 2013 -0700
+
+    add tos acceptance to play registration
+
+3	0	app/controllers/players_controller.rb
+3	0	app/controllers/static_controller.rb
+5	1	app/models/player.rb
+44	0	app/views/players/_form.html.haml
+2	1	db/schema.rb
+37	1	test/functional/players_controller_test.rb
+
+commit 7e7ea20de3d19726fdd5d9a5d1b762d8afddc086
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 23:18:48 2013 -0700
+
+    add rspec to vendor/cache
+
+-	-	vendor/cache/rspec-2.13.0.gem
+-	-	vendor/cache/rspec-core-2.13.1.gem
+-	-	vendor/cache/rspec-expectations-2.13.0.gem
+-	-	vendor/cache/rspec-mocks-2.13.0.gem
+-	-	vendor/cache/rspec-rails-2.13.0.gem
+
+commit 24eb967fb203f1d988a3ec4bf8f8a29fac454570
+Merge: 22c40e7 191065b
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 23:16:53 2013 -0700
+
+    Merge branch 'master' of github.com:RSportz/njb
+
+commit 22c40e73de4ba94c0b1cbf5e41b996b2225e431f
+Merge: dc5e6db c867a37
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 18:45:15 2013 -0700
+
+    merge with head
+
+commit dc5e6db0c3ce04c5db91026e68eb732ac2e33f9d
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 18:41:05 2013 -0700
+
+    add phone decoration on blur to player registration page
+
+1	0	app/views/layouts/application.haml
+11	1	app/views/players/_form.html.haml
+
+commit 9fec26a680ed2d3f9c38f4291fadbfac58ee504c
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 18:40:11 2013 -0700
+
+    delete obsolete attributes
+
+2	1	app/models/transaction.rb
+
+commit 5b90de405a7812e65f49e7033c1a9f119c75803e
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 18:23:57 2013 -0700
+
+    get rid of links overlay on player card when paid
+
+3	0	app/assets/stylesheets/players/card.css.scss
+1	1	app/views/players/_player.html.haml
+
+commit 08f830e08a75fa43c2f926851dd3b34c83eb0a7a
+Author: Tony <tonylc@gmail.com>
+Date:   Sat Mar 30 16:06:53 2013 -0700
+
+    add cvv image
+
+-	-	app/assets/images/cvv-image.png
+11	3	app/views/orders/new.html.haml
+
+commit 1c5d8bc06749906d62ca8792d25f61e4172dd0f9
+Author: Tony <tonylc@gmail.com>
+Date:   Fri Mar 29 00:20:25 2013 -0700
+
+    update expiration date for payment confirmation
+
+1	1	app/views/orders/create.html.haml
+
+commit 8ebc0acf23ea7e9f25f750fb6a2672c71f16d023
+Author: Tony <tonylc@gmail.com>
+Date:   Fri Mar 29 00:13:51 2013 -0700
+
+    fix view for id card
+
+3	3	app/views/players/_player.html.haml
+
+commit 191065bb1a5859c90f2922dd580c5f355c4e1885
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 17:04:31 2013 -0400
+
+    production branch is master
+
+1	1	config/deploy/production.rb
+
+commit c867a3785127b5f4e818ccdb8c6f6c75f3d2656e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 15:44:33 2013 -0400
+
+    fix formatted_form calls
+
+2	2	app/views/players/_form.html.haml
+
+commit a25d1fcc2f27217365e11859328d5e286e17ae7e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 15:34:15 2013 -0400
+
+    move style from inline to css
+
+8	0	app/assets/stylesheets/users/_base.css.scss
+1	1	app/views/users/dashboard.html.haml
+
+commit a9272bd693c57acd059b6aad90d01956b3d7098b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 15:28:12 2013 -0400
+
+    final next year grade -> grade
+
+1	1	app/views/players/_player.html.haml
+
+commit 4548d817c10d60845ef75751077713f0fdd12f4d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 15:25:12 2013 -0400
+
+    fix param ordering in select call
+
+1	1	app/views/players/_form.html.haml
+
+commit 211c102ef74762a434750a53dff135ceae2bed93
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 14:44:01 2013 -0400
+
+    Rsportz -> NJB
+
+1	1	app/views/users/new.html.haml
+
+commit 65d883f79e9fb0d38e40cf56e3dac419955bd771
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 14:43:14 2013 -0400
+
+    Next Year Grade -> Grade
+
+1	1	app/views/admin/players/_player.html.haml
+5	5	app/views/players/_player.pdf.haml
+
+commit 330e878c8f5a09e23f3ba3d6c726b8911f91bc6a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 14:37:16 2013 -0400
+
+    Expiry -> expires
+
+1	1	app/views/admin/players/_player.html.haml
+1	1	app/views/players/_player.html.haml
+
+commit 56e70950dacee057710bd9ce59788d315f6df6b0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 14:35:45 2013 -0400
+
+    update capistrano configs so migrations work
+
+0	1	config/deploy.rb
+1	0	config/deploy/production.rb
+2	1	config/deploy/staging.rb
+
+commit 4d8f3be02fd2166d035fbd05e69f0189521c18be
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 14:35:06 2013 -0400
+
+    add optional tag to uniform size and number
+
+2	2	app/views/players/_form.html.haml
+
+commit 33085dfe356ea8ef51ee30e83793ddfa124f03b3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 14:06:09 2013 -0400
+
+    re-hack the protocol hack. note - this is not ideal
+
+6	1	config/initializers/settings.rb
+
+commit 76d61bbb17cde73681f4578115730658697c8894
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 13:53:45 2013 -0400
+
+    add unicorn config
+
+26	0	config/unicorn.rb
+
+commit 7e90c62d05be0795af98f83a9b14693f46cc1a73
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 28 13:45:21 2013 -0400
+
+    update cache and binstubs
+
+1	0	Gemfile
+7	0	Gemfile.lock
+16	0	bin/unicorn
+16	0	bin/unicorn_rails
+2	4	config/deploy.rb
+-	-	vendor/cache/actionmailer-3.2.13.gem
+-	-	vendor/cache/actionpack-3.2.13.gem
+-	-	vendor/cache/active_utils-1.0.5.gem
+-	-	vendor/cache/activemerchant-1.29.3.gem
+-	-	vendor/cache/activemodel-3.2.13.gem
+-	-	vendor/cache/activerecord-3.2.13.gem
+-	-	vendor/cache/activeresource-3.2.13.gem
+-	-	vendor/cache/activesupport-3.2.13.gem
+-	-	vendor/cache/addressable-2.3.3.gem
+-	-	vendor/cache/airbrake-3.1.6.gem
+-	-	vendor/cache/arel-3.0.2.gem
+-	-	vendor/cache/auto_increment-0.2.gem
+-	-	vendor/cache/awesome_print-1.1.0.gem
+-	-	vendor/cache/aws-sdk-1.3.9.gem
+-	-	vendor/cache/bcrypt-ruby-3.0.0.gem
+-	-	vendor/cache/better_errors-0.7.2.gem
+-	-	vendor/cache/bootstrap-sass-2.3.0.1.gem
+-	-	vendor/cache/bourbon-3.0.1.gem
+-	-	vendor/cache/builder-3.0.4.gem
+-	-	vendor/cache/capistrano-2.13.5.gem
+-	-	vendor/cache/capybara-2.0.2.gem
+-	-	vendor/cache/carmen-1.0.0.beta2.gem
+-	-	vendor/cache/carmen-rails-1.0.0.beta3.gem
+-	-	vendor/cache/childprocess-0.3.9.gem
+-	-	vendor/cache/climate_control-0.0.3.gem
+-	-	vendor/cache/cocaine-0.5.1.gem
+-	-	vendor/cache/coderay-1.0.9.gem
+-	-	vendor/cache/coffee-rails-3.2.1.gem
+-	-	vendor/cache/coffee-script-2.2.0.gem
+-	-	vendor/cache/coffee-script-source-1.6.1.gem
+-	-	vendor/cache/connection_pool-1.0.0.gem
+-	-	vendor/cache/countries-0.9.2.gem
+-	-	vendor/cache/cucumber-1.2.3.gem
+-	-	vendor/cache/currencies-0.4.0.gem
+-	-	vendor/cache/diff-lcs-1.2.1.gem
+-	-	vendor/cache/erubis-2.7.0.gem
+-	-	vendor/cache/execjs-1.4.0.gem
+-	-	vendor/cache/faraday-0.8.6.gem
+-	-	vendor/cache/ffi-1.4.0.gem
+-	-	vendor/cache/formatted_form-2.0.0.gem
+-	-	vendor/cache/gherkin-2.11.6.gem
+-	-	vendor/cache/girl_friday-0.11.2.gem
+-	-	vendor/cache/guard-1.6.2.gem
+-	-	vendor/cache/guard-test-0.7.0.gem
+-	-	vendor/cache/haml-3.1.7.gem
+-	-	vendor/cache/hashie-1.2.0.gem
+-	-	vendor/cache/highline-1.6.16.gem
+-	-	vendor/cache/hike-1.2.1.gem
+-	-	vendor/cache/httparty-0.10.2.gem
+-	-	vendor/cache/httpauth-0.2.0.gem
+-	-	vendor/cache/i18n-0.6.1.gem
+-	-	vendor/cache/journey-1.0.4.gem
+-	-	vendor/cache/jquery-rails-2.1.4.gem
+-	-	vendor/cache/json-1.7.7.gem
+-	-	vendor/cache/jwt-0.1.8.gem
+-	-	vendor/cache/kaminari-0.14.1.gem
+-	-	vendor/cache/kaminari-bootstrap-0.1.3.gem
+-	-	vendor/cache/kgio-2.8.0.gem
+-	-	vendor/cache/konf-0.0.2.gem
+-	-	vendor/cache/launchy-2.2.0.gem
+-	-	vendor/cache/listen-0.7.3.gem
+-	-	vendor/cache/lumberjack-1.0.2.gem
+-	-	vendor/cache/mail-2.5.3.gem
+-	-	vendor/cache/mail_view-1.0.3.gem
+-	-	vendor/cache/method_source-0.8.1.gem
+-	-	vendor/cache/mime-types-1.21.gem
+-	-	vendor/cache/money-5.1.1.gem
+-	-	vendor/cache/multi_json-1.7.1.gem
+-	-	vendor/cache/multi_xml-0.5.3.gem
+-	-	vendor/cache/multipart-post-1.2.0.gem
+-	-	vendor/cache/net-scp-1.1.0.gem
+-	-	vendor/cache/net-sftp-2.1.1.gem
+-	-	vendor/cache/net-ssh-2.6.6.gem
+-	-	vendor/cache/net-ssh-gateway-1.2.0.gem
+-	-	vendor/cache/nokogiri-1.5.7.gem
+-	-	vendor/cache/oauth-0.4.7.gem
+-	-	vendor/cache/oauth2-0.8.1.gem
+-	-	vendor/cache/omniauth-1.1.1.gem
+-	-	vendor/cache/omniauth-facebook-1.4.1.gem
+-	-	vendor/cache/omniauth-oauth2-1.1.1.gem
+-	-	vendor/cache/paperclip-3.4.1.gem
+-	-	vendor/cache/pg-0.14.1.gem
+-	-	vendor/cache/phony-1.9.0.gem
+-	-	vendor/cache/phony_rails-0.2.0.gem
+-	-	vendor/cache/polyamorous-0.5.0.gem
+-	-	vendor/cache/polyglot-0.3.3.gem
+-	-	vendor/cache/postageapp-1.0.16.gem
+-	-	vendor/cache/pry-0.9.12.gem
+-	-	vendor/cache/pry-rails-0.2.2.gem
+-	-	vendor/cache/quiet_assets-1.0.2.gem
+-	-	vendor/cache/rack-1.4.5.gem
+-	-	vendor/cache/rack-cache-1.2.gem
+-	-	vendor/cache/rack-ssl-1.3.3.gem
+-	-	vendor/cache/rack-test-0.6.2.gem
+-	-	vendor/cache/rails-3.2.13.gem
+-	-	vendor/cache/railties-3.2.13.gem
+-	-	vendor/cache/raindrops-0.10.0.gem
+-	-	vendor/cache/rake-10.0.3.gem
+-	-	vendor/cache/ransack-0.7.2.gem
+-	-	vendor/cache/rb-fsevent-0.9.3.gem
+-	-	vendor/cache/rdoc-3.12.2.gem
+-	-	vendor/cache/rubinius-actor-0.0.2.gem
+-	-	vendor/cache/rubinius-core-api-0.0.1.gem
+-	-	vendor/cache/ruby-prof-0.13.0.gem
+-	-	vendor/cache/rubyzip-0.9.9.gem
+-	-	vendor/cache/sass-3.2.7.gem
+-	-	vendor/cache/sass-rails-3.2.3.gem
+-	-	vendor/cache/selenium-webdriver-2.31.0.gem
+-	-	vendor/cache/simplecov-0.7.1.gem
+-	-	vendor/cache/simplecov-html-0.7.1.gem
+-	-	vendor/cache/slop-3.4.4.gem
+-	-	vendor/cache/sorcery-0.8.0.gem
+-	-	vendor/cache/sprockets-2.2.2.gem
+-	-	vendor/cache/sqlite3-1.3.7.gem
+-	-	vendor/cache/terminal-table-1.4.5.gem
+-	-	vendor/cache/test-unit-2.5.4.gem
+-	-	vendor/cache/thor-0.17.0.gem
+-	-	vendor/cache/tilt-1.3.6.gem
+-	-	vendor/cache/timecop-0.6.1.gem
+-	-	vendor/cache/timeliness-0.3.7.gem
+-	-	vendor/cache/treetop-1.4.12.gem
+-	-	vendor/cache/tzinfo-0.3.37.gem
+-	-	vendor/cache/uglifier-1.0.3.gem
+-	-	vendor/cache/unicorn-4.6.2.gem
+-	-	vendor/cache/uuidtools-2.1.3.gem
+-	-	vendor/cache/validates_timeliness-3.0.14.gem
+-	-	vendor/cache/websocket-1.0.7.gem
+-	-	vendor/cache/wicked_pdf-0.9.4.gem
+-	-	vendor/cache/wkhtmltopdf-binary-0.9.9.1.gem
+-	-	vendor/cache/xpath-1.0.0.gem
+
+commit ede93f398cd2ace04799e05fd2b67e7482b3d7bb
+Author: Tony <tonylc@gmail.com>
+Date:   Thu Mar 28 00:02:57 2013 -0700
+
+    Photo is required on registration form, Avatar => Player Photo
+
+3	1	app/models/player.rb
+1	1	app/views/players/_form.html.haml
+
+commit c8037f6202bc0abbef47c171631f47feb1879eba
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 23:15:51 2013 -0700
+
+    always show overlaid buttons on registration card
+
+2	7	app/assets/stylesheets/players/card.css.scss
+
+commit 7b397a535a1f7d39578ae3974834e7f7aac4df4f
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 23:06:34 2013 -0700
+
+    ignore tmtags
+
+1	0	.gitignore
+
+commit 17ba51485379515723d36c986d6f06ea14d7d8f1
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 23:06:07 2013 -0700
+
+    adding terms and conditions page
+
+4	0	app/controllers/static_controller.rb
+52	0	app/views/static/terms_and_conditions.html.haml
+1	0	config/routes.rb
+
+commit 85e215b9e0267e128e17dc09ee9cd3b0a67ac88b
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 22:46:44 2013 -0700
+
+    adding optional fields and placeholder text on registration page
+
+18	3	app/views/players/_form.html.haml
+
+commit 8099719e37465da808a95a56a1881a10bcf8a6b6
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 22:46:08 2013 -0700
+
+    add njb logos to header sections of player registration
+
+1	0	app/views/layouts/_head.haml
+17	3	app/views/players/_form.html.haml
+
+commit c758903eef852ac1e285a0992293c4d081022ddc
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 22:18:59 2013 -0700
+
+    remove dead javascript code
+
+0	3	app/assets/javascripts/admin/base.js.coffee
+0	3	app/assets/javascripts/admin/users.js.coffee
+0	1	app/assets/javascripts/application.js
+0	0	app/assets/javascripts/contact_form.js
+
+commit 8d6fd5a3fba7598c3174cdd37330362bc2107ecf
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 22:11:15 2013 -0700
+
+    add tracking code
+
+11	0	app/views/layouts/application.haml
+5	0	config/initializers/google_analytics.rb
+
+commit b276157b0981b96b41be2b3361760b5ff842221d
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 21:42:12 2013 -0700
+
+    Next Year Grade => Grade
+
+1	1	app/views/players/_player.html.haml
+1	1	app/views/players/_player.pdf.haml
+
+commit ad7d9a66519d9e7f9a260f2a4f5c2f071ac1c817
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 21:35:22 2013 -0700
+
+    "Expiry" => "Expires", set expiration to 6/30/14
+
+1	5	app/models/player.rb
+3	3	app/views/players/_player.html.haml
+7	0	spec/models/player_spec.rb
+
+commit 3461a1a3bf803fcb82b01f800101a8e777732c17
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 21:34:40 2013 -0700
+
+    add rspec
+
+1	0	.rspec
+2	0	Gemfile
+17	0	Gemfile.lock
+29	0	spec/spec_helper.rb
+
+commit a6bcdd79198ebf84d78e6992d5f2327640018efc
+Author: Tony <tonylc@gmail.com>
+Date:   Wed Mar 27 21:07:10 2013 -0700
+
+    move fb signup down, RSportz => NJB
+
+15	17	app/views/users/new.html.haml
+
+commit 51f5ec664ab9b76b58872e631bdeb2dc51a44fe6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 27 10:58:49 2013 -0400
+
+    add binstubs, vendor/ruby to gitignore
+
+2	2	.gitignore
+16	0	bin/airbrake
+16	0	bin/bourbon
+16	0	bin/cap
+16	0	bin/capify
+16	0	bin/coderay
+16	0	bin/cucumber
+16	0	bin/erubis
+16	0	bin/guard
+16	0	bin/haml
+16	0	bin/html2haml
+16	0	bin/htmldiff
+16	0	bin/httparty
+16	0	bin/launchy
+16	0	bin/ldiff
+16	0	bin/nokogiri
+16	0	bin/oauth
+16	0	bin/pry
+16	0	bin/rackup
+16	0	bin/rails
+16	0	bin/rake
+16	0	bin/rake2thor
+16	0	bin/rdoc
+16	0	bin/ri
+16	0	bin/ruby-prof
+16	0	bin/sass
+16	0	bin/sass-convert
+16	0	bin/scss
+16	0	bin/sprockets
+16	0	bin/thor
+16	0	bin/tilt
+16	0	bin/tt
+16	0	bin/wkhtmltopdf
+
+commit 32116dc0d274da7a7a0a52fd8f71094358a5b34d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 27 10:46:27 2013 -0400
+
+    convert to standard deploy configuration
+
+33	20	config/deploy.rb
+
+commit 27090243aff298cb864ec2ca2ecf37e5e4223f3c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 27 10:30:10 2013 -0400
+
+    add stages to deploy script
+
+3	1	config/deploy.rb
+
+commit 7aaaa7429046117f3c3b305e43af6fc9a15ea70a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 27 10:27:26 2013 -0400
+
+    keep old version of deploy
+
+0	2	config/deploy-old.rb
+0	1	config/deploy.rb
+
+commit ba6308c4077f9e6712aa40a948315f558db9580f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 27 10:19:18 2013 -0400
+
+    add old (apache) deploy script
+
+61	0	config/deploy-old.rb
+
+commit e964671bab45aa98f83d336aa544ec861b72b0ff
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 27 10:16:02 2013 -0400
+
+    add production and staging deploys
+
+4	4	config/deploy.rb
+3	0	config/deploy/production.rb
+3	0	config/deploy/staging.rb
+
+commit 961aee38289f7ee9943f440c0e93dc8c75d6d4ff
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 14:46:40 2013 -0400
+
+    update weight validation
+
+8	2	app/models/player.rb
+1	3	app/views/players/_form.html.haml
+
+commit d9d1881c5318ae42d4f8da98848a51d902d84019
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 14:36:31 2013 -0400
+
+    add phony for later, and validate phone numbers
+
+1	2	Gemfile
+9	3	Gemfile.lock
+15	0	app/models/player.rb
+
+commit fd5e7b7510001b7ccdb966530cf14430cbc212ac
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 14:10:26 2013 -0400
+
+    add validation for date of birth
+
+2	0	app/models/player.rb
+
+commit 4a454c1a0077007c2cafa917845ffb09a792a497
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 13:21:11 2013 -0400
+
+    round the corners
+
+2	0	app/assets/stylesheets/players/pdf.css.scss
+
+commit 3f7cede8009d741426af4a3541cc218064fa90e7
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 13:08:52 2013 -0400
+
+    remove required html5 from form
+
+13	13	app/views/players/_form.html.haml
+
+commit b29e98c51631ae24592c6a8a62999621f7cdd43a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 12:58:20 2013 -0400
+
+    add njb-specific values to contact subject dropdown
+
+1	7	app/views/contact_forms/show.haml
+
+commit 55e5118dd253c606d4a58d417eb968e7e3b3edba
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 12:44:56 2013 -0400
+
+    more style tweaks to the player cards
+
+12	0	app/assets/stylesheets/admin/players.css.scss
+4	0	app/assets/stylesheets/players/card.css.scss
+1	0	app/assets/stylesheets/players/pdf.css.scss
+5	5	app/views/admin/players/_player.html.haml
+2	1	app/views/admin/players/index.html.haml
+5	5	app/views/players/_player.html.haml
+
+commit 3fb0578bbfa608d84a67f4a1b2b5cdb6b546e023
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 12:13:42 2013 -0400
+
+    reformat the printable card
+
+22	22	app/assets/stylesheets/players/pdf.css.scss
+3	3	app/views/admin/players/_player.html.haml
+1	1	app/views/players/_player.html.haml
+1	1	app/views/players/_player.pdf.haml
+
+commit c3f57be0f6cf55eec3491734b0bdd601efb68094
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 11:37:43 2013 -0400
+
+    get rid of extra airbrake config
+
+0	3	config/initializers/airbrake.rb
+
+commit f476745a00f859747a0bb1d204f9fcf8280ff9dc
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 20 11:25:59 2013 -0400
+
+    tweak the card styling
+
+-	-	app/assets/images/avatars/missing_125x125_avatar.png
+7	11	app/assets/stylesheets/players/card.css.scss
+0	3	app/assets/stylesheets/players/player.css.scss
+5	5	app/views/players/_player.html.haml
+1	0	app/views/players/_player.pdf.haml
+
+commit a94ac0e61a973e8680895f2bdeb603685f9432e3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 22:36:15 2013 -0400
+
+    100x100 -> 125x125
+
+1	0	app/models/player.rb
+1	1	app/views/admin/players/_player.html.haml
+1	1	app/views/admin/players/index.html.haml
+1	1	app/views/players/_form.html.haml
+1	1	app/views/players/_player.html.haml
+1	1	app/views/players/_player.pdf.haml
+
+commit e3a3d3404ad50f8a7d0f202ab01fe78cbbe15379
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 22:30:55 2013 -0400
+
+    get rid of class required
+
+5	5	app/views/admin/players/_form.html.haml
+6	6	app/views/contact_forms/show.haml
+1	1	app/views/players/_form.html.haml
+
+commit 57ae58aa9f2e8b61ee1c0c98e8294a7c2527c7da
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 22:26:34 2013 -0400
+
+    ages are now between 5 and 23
+
+1	1	app/views/admin/players/_form.html.haml
+1	1	app/views/players/_form.html.haml
+
+commit 21a262181a9648049e4d699b0811caa6c5b8c4ad
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 22:13:46 2013 -0400
+
+    go to njb store button and link added
+
+1	1	app/views/pages/logout_successful.html.haml
+
+commit 050c1e2dacc860de4760ed74a9a02fa27ef1e13d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 22:10:05 2013 -0400
+
+    finely tuned match of admin player with normal view
+
+4	2	app/views/admin/players/_player.html.haml
+
+commit 5ee967540dc550a802042ed0f78cfaf3f7eca75b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 22:07:56 2013 -0400
+
+    match admin player with normal player
+
+6	3	app/views/admin/players/_player.html.haml
+
+commit 638b2368214caa2fd18b55da98d932c2df19b695
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 21:39:56 2013 -0400
+
+    add copy to underside of header on registration page
+
+1	0	app/views/players/new.html.haml
+
+commit 027db75f7b7e2da46f4024a74300e9981811bf81
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 17:23:31 2013 -0400
+
+    add grade to card
+
+3	0	app/views/players/_player.html.haml
+
+commit cd2ca944585d462fcd5ae8e2311260887fcca95e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 17:20:49 2013 -0400
+
+    add next year grade to card
+
+3	0	app/views/players/_player.pdf.haml
+
+commit 4478845d43ad876e3c1c041f8dac46432c70edd3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Mar 19 11:15:10 2013 -0400
+
+    update rails for vulnerabilities
+
+1	1	Gemfile
+57	57	Gemfile.lock
+
+commit 2935d8f3dcc32410ca3ba7f61582343d5d693bd1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 16:29:52 2013 -0400
+
+    update styling on forms
+
+0	14	app/assets/stylesheets/players/player.css.scss
+11	6	app/views/players/_form.html.haml
+2	2	app/views/users/dashboard.html.haml
+
+commit 8120238145419014b97cdcc22ef6a348eab8755d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 14:10:57 2013 -0400
+
+    fix admin form
+
+6	6	app/views/admin/players/_form.html.haml
+
+commit cd1aaba6144201a972cb0597c0cce1387f7e5620
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 13:38:59 2013 -0400
+
+    fix method name typo
+
+1	1	app/views/admin/players/_form.html.haml
+
+commit 16744b7e7b52a7c72fbd7ebe04918bbaf93bb75e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 12:53:58 2013 -0400
+
+    move state dropdown to application helper
+
+9	0	app/helpers/application_helper.rb
+0	9	app/helpers/orders_helper.rb
+
+commit 3741e53b82d969741941b12c6ebb3e6125e96584
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 12:15:02 2013 -0400
+
+    add correct flash messaging
+
+4	2	app/controllers/players_controller.rb
+
+commit 9955c958541893ee387e274ad5d77668ec2a2ed5
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 12:06:14 2013 -0400
+
+    update capistrano script
+
+2	3	config/deploy.rb
+
+commit c36e01674a10f9695f66df1e08bff366d6277e77
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 12:04:35 2013 -0400
+
+    format the avatar preview
+
+4	3	app/views/players/_form.html.haml
+
+commit 8be3757ae05a7b8b1f133f0015662dde5796dfa3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 11:55:59 2013 -0400
+
+    fix the form validation labels
+
+3	3	app/controllers/players_controller.rb
+28	106	app/views/players/_form.html.haml
+4	2	test/test_helper.rb
+27	3	test/unit/player_test.rb
+
+commit 059fcf1b432bd4a3934fbdf20e3b7f6590fb37f2
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 15 10:51:01 2013 -0400
+
+    add required class to the rest of the fields not pre-set
+
+10	10	app/views/players/_form.html.haml
+
+commit ef728a915913f8102115a822d27b86609212d596
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 14 16:19:26 2013 -0400
+
+    add form filling javascript
+
+25	0	app/assets/javascripts/players.js.coffee
+
+commit 07ad6b76fa2ecd3a8bae4496d6314f07d874112c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 14 16:17:28 2013 -0400
+
+    add fill-in function
+
+25	3	app/assets/javascripts/admin/players.js.coffee
+1	0	app/assets/javascripts/application.js
+2	2	app/assets/javascripts/orders.js
+1	0	app/views/players/_form.html.haml
+
+commit 42d77afa0504b517d2759bd97577c5598ac5147e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Mar 14 15:39:20 2013 -0400
+
+    huge spike to add fields
+
+4	4	app/assets/stylesheets/orders/new.css.scss
+22	10	app/assets/stylesheets/players/_base.css.scss
+19	3	app/models/player.rb
+15	1	app/views/admin/players/_form.html.haml
+0	1	app/views/orders/new.html.haml
+117	80	app/views/players/_form.html.haml
+6	0	db/migrate/20130314155451_add_emergency_name_to_player.rb
+6	4	db/schema.rb
+28	0	test/fixtures/players.yml
+22	8	test/functional/players_controller_test.rb
+20	6	test/unit/player_test.rb
+
+commit 574b74f7b1aec33fc46acefccd7c9acd94db43b2
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 13 18:32:17 2013 -0400
+
+    reformat first part of the player form
+
+63	17	app/views/players/_form.html.haml
+
+commit fc1894fe8f7ca909cf08312001119dbf720c90b9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 13 18:31:58 2013 -0400
+
+    update bootstrap and css
+
+1	1	Gemfile
+2	2	Gemfile.lock
+8	13	app/assets/stylesheets/players/_base.css.scss
+3	2	app/assets/stylesheets/players/player.css.scss
+2	0	app/assets/stylesheets/users/_base.css.scss
+
+commit 8a5cde8681bc8cc121b5cab4bbf5abe1c7e85ac7
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 13 14:20:43 2013 -0400
+
+    stub some fields, add columns
+
+13	1	app/models/player.rb
+16	11	app/views/players/_form.html.haml
+17	0	db/migrate/20130313173649_add_fields_to_player.rb
+14	1	db/schema.rb
+
+commit 761ca777cc1acf20d6ffcf3a9f4d00ab01232f6d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 13 13:29:03 2013 -0400
+
+    update product micetype
+
+1	0	app/views/orders/new.html.haml
+
+commit 4bbece3eb073afc4a799bc94fa82cc3c3d108d5f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 13 13:23:18 2013 -0400
+
+    player registration header changed
+
+1	1	app/views/players/new.html.haml
+
+commit 264ec78ff2cadd0846cc5c55fdcb887b5ee4f7a0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 15:36:22 2013 -0500
+
+    add grade select
+
+13	0	app/helpers/players_helper.rb
+2	1	app/models/player.rb
+2	0	app/views/players/_form.html.haml
+5	0	db/migrate/20130306201846_add_grade_to_players.rb
+2	1	db/schema.rb
+
+commit a1f67e970463dc2cf66a3e9221202c7d6acc50a6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 14:05:31 2013 -0500
+
+    adjust spacing of micetype
+
+1	1	app/views/players/_form.html.haml
+
+commit 55f9509b04ddab64e47d4fa2959078f670bc6c25
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 14:01:05 2013 -0500
+
+    add email message
+
+2	1	app/views/players/_form.html.haml
+
+commit 01634986c2ce42c59dcf4b0afd96e8ef1d9e326a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 13:26:35 2013 -0500
+
+    add register a player copy
+
+4	1	app/views/users/dashboard.html.haml
+
+commit f122da91c24165522ed24a93b7418c7acbc00216
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 13:21:07 2013 -0500
+
+    remove member id for unpaid players
+
+2	1	app/views/players/_player.html.haml
+
+commit 872adfdb878326b95e2660977450561f9cc68958
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 12:59:03 2013 -0500
+
+    make the cancel button work
+
+1	1	app/views/users/dashboard.html.haml
+
+commit 675792777c244712a56e555903f5c9ee05ce5d6f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 12:20:39 2013 -0500
+
+    uppercase the player name on the pdf printout
+
+1	0	app/assets/stylesheets/players/pdf.css.scss
+
+commit 36c15b332b2df7eb9b34f503f5f36dc96cc8e58a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 11:59:35 2013 -0500
+
+    make the unit price completion-ignore-case2 (hardcoded)
+
+1	1	app/mailers/user_mailer.rb
+
+commit 05534cddca152310b49660100c80bda2176571ab
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Mar 6 11:43:57 2013 -0500
+
+    add ruby-version file for rbenv
+
+1	0	.ruby-version
+
+commit 9fee769813eb654d47826a45f11b9fe9fbcce42d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Mar 1 16:05:56 2013 -0500
+
+    updating nav
+
+1	10	app/views/layouts/admin.haml
+
+commit 1c2627937599431285006ae081df4f352ecfe118
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 15:44:14 2013 -0500
+
+    add admin.js
+
+1	1	config/environments/production.rb
+
+commit c235e6c61b9004368ba48366026a51220f7b0e0f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 15:41:39 2013 -0500
+
+    add admin.css to compile list
+
+1	1	config/environments/production.rb
+
+commit 59044b68bb3a460e5491611fe728282592e1954d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Mar 1 15:30:07 2013 -0500
+
+    bumping the price to 12
+
+1	1	app/models/player.rb
+
+commit 7b14325157eb06ce6cfcda71d77fbbbdac09a031
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 15:01:40 2013 -0500
+
+    give up and duplicate player pdf template
+
+1	1	app/controllers/admin/players_controller.rb
+3	0	app/views/admin/players/index.html.haml
+7	0	app/views/admin/players/show.pdf.haml
+1	6	test/functional/admin/players_controller_test.rb
+
+commit eac4031eb1f321bc2ec7341bf4a5cf46e40f9baf
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 12:47:23 2013 -0500
+
+    add guard
+
+2	1	Gemfile
+3	0	Gemfile.lock
+14	0	Guardfile
+
+commit a94433ef636e24fdd5ef81d18797ea7cc8c97796
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 12:31:27 2013 -0500
+
+    add test for showing admin player pdf
+
+11	1	test/functional/admin/players_controller_test.rb
+1	1	test/unit/user_test.rb
+
+commit 3681ee532309349512c250ac0193c3fe4cf39e9a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 12:31:02 2013 -0500
+
+    fix expiry helper
+
+5	1	app/models/player.rb
+
+commit 4874dcc3fe5a421c9526b39945caf1503ddf8fa8
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 12:30:44 2013 -0500
+
+    add respond_to pdf for player show action
+
+5	0	app/controllers/admin/players_controller.rb
+
+commit 1f5f2b6908191f1477e5411e41e9fcdd5e15dcc6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 12:29:50 2013 -0500
+
+    add ruby-prof and guard-test
+
+5	0	Gemfile
+16	0	Gemfile.lock
+
+commit 31a7231c9ed52ef958373bd678097b2ffdd52d73
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Mar 1 11:33:03 2013 -0500
+
+    fixing fixture data
+
+2	2	test/fixtures/orders.yml
+
+commit 93b8a0bc9e19e4c38b2831db11ec1fe1c2cc36cd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Mar 1 11:17:27 2013 -0500
+
+    adding embeded background image
+
+1	0	app/assets/stylesheets/players/pdf.css.scss
+
+commit 35757f37eeb8be205ddbf1f0acaa8c4efe6399f0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Mar 1 10:19:29 2013 -0500
+
+    reinstate the kelly block font
+
+1	2	app/assets/stylesheets/players/card.css.scss
+
+commit 421499a7277b6a66f0a88b49d6742c0b7647390a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 14:09:11 2013 -0500
+
+    stub player deletion
+
+2	0	app/views/admin/players/edit.html.haml
+6	3	test/unit/player_test.rb
+
+commit 6d2a8130cbce1a4f973243e5d940c16623f084f2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 18:01:33 2013 -0500
+
+    fix for life pdf
+
+89	0	app/assets/stylesheets/players/pdf.css.scss
+0	90	app/assets/stylesheets/players/pdf.css.scss.erb
+
+commit 39db9e1df43f1ae8a9ad8769cef10bb3151d4dd4
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 17:45:49 2013 -0500
+
+    readding everything
+
+1	1	app/controllers/players_controller.rb
+1	1	app/views/players/_player.pdf.haml
+
+commit e15996cfbd2d8816fbf2c2d570cfeb64c658889d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 17:38:39 2013 -0500
+
+    quick changes the pdf print out
+
+6	7	app/assets/stylesheets/players/pdf.css.scss.erb
+
+commit 6d4c547177835f4d088f6ef1af72c48041d57f62
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 28 16:53:58 2013 -0500
+
+    comment out a line, html
+
+2	2	app/controllers/players_controller.rb
+1	3	app/views/players/_player.pdf.haml
+
+commit e9fb2d24df338e6f30cad6305bacd678926feafb
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 16:32:18 2013 -0500
+
+    restyle of the player card
+
+-	-	app/assets/images/njb-logo-large.png
+0	5	app/assets/stylesheets/players/pdf.css
+91	0	app/assets/stylesheets/players/pdf.css.scss.erb
+1	1	app/controllers/users_controller.rb
+4	0	app/models/player.rb
+23	35	app/views/players/_player.pdf.haml
+1	1	config/initializers/settings.rb
+0	1	test/functional/users_controller_test.rb
+
+commit 9d3f27a488e5d38fccfb9a46f274ef870c3b486f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 28 15:34:52 2013 -0500
+
+    style the mailer table a bit better
+
+5	4	app/mailers/user_mailer.rb
+
+commit f1464eff3858b28e30e17f82aeff4e0ddef99ea0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 28 15:22:56 2013 -0500
+
+    use the inline styles ... TO THE MAX
+
+5	2	app/mailers/user_mailer.rb
+
+commit 0bab5158d6f27bedb7238ac52a88277be42b3440
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 28 14:58:24 2013 -0500
+
+    update mailer order summary
+
+5	17	app/mailers/user_mailer.rb
+
+commit 491b6c836a4202c7cfdb06c58319e2e4c6cfa58a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 14:21:19 2013 -0500
+
+    removing confirmation for printing the second time 'round
+
+1	1	app/views/players/_player.html.haml
+
+commit ea10c84fd0ed93f8dbe1e0b0a8e0df3e443da656
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 14:08:52 2013 -0500
+
+    adding delete player functionality
+
+10	0	app/assets/stylesheets/components/buttons.scss
+7	0	app/assets/stylesheets/players/player.css.scss
+2	0	app/views/players/_form.html.haml
+
+commit 831feabd105c39aabb65dd19095bc0799fa88b73
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 13:55:59 2013 -0500
+
+    removing unneeded lines
+
+0	3	test/functional/players_controller_test.rb
+
+commit e5552bb0b033af57bb3da38ee2fe1aaeb456c702
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 13:55:08 2013 -0500
+
+    qa updataes
+
+7	1	app/controllers/players_controller.rb
+28	0	test/functional/players_controller_test.rb
+
+commit 3a1173709465815f3479e4717bc3a16ab993aef1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 28 11:29:36 2013 -0500
+
+    add inline styles
+
+7	6	app/mailers/user_mailer.rb
+
+commit 3e6aa9e191a7f25e13bc80a33f276ace6f72ded9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 28 11:26:44 2013 -0500
+
+    add version numbers to gemfile
+
+8	7	Gemfile
+2	2	Gemfile.lock
+
+commit 3ca9ae28e19e818c54e39ec3459af013d3b3d7da
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 11:41:28 2013 -0500
+
+    updating payment success page
+
+1	1	app/views/orders/success.html.haml
+
+commit 9390586679887f24da8a43fc6493fba1d68f1971
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 11:32:55 2013 -0500
+
+    updated gray button styles
+
+13	0	app/assets/stylesheets/components/buttons.scss
+
+commit 91a6a8a0c0ddcd49d74f680bd6abd02d1c16a72b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 10:53:17 2013 -0500
+
+    updating link in header to point to njb
+
+1	1	app/views/layouts/_topnav.haml
+
+commit 4b2e56e1c262e8aebb2af27e69c7de918c3b0dbb
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 28 10:51:52 2013 -0500
+
+    removing flash message for logout
+
+1	1	app/controllers/user_sessions_controller.rb
+0	1	test/functional/user_sessions_controller_test.rb
+
+commit 79f9ef2952b8cd2bf0d63c6111b7fb4cd85b9f0f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 17:44:49 2013 -0500
+
+    updating logo for NJB
+
+-	-	app/assets/images/njb-logo.png
+5	5	app/assets/stylesheets/layouts/topnav.scss
+1	1	app/views/layouts/_topnav.haml
+
+commit 5dac3319c00c772de0ccb8c0926b957049182185
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 17:35:54 2013 -0500
+
+    quick qa updates
+
+1	1	app/assets/stylesheets/players/card.css.scss
+1	1	app/views/social_registrations/unverified_fb.html.haml
+
+commit ae7e37c5edd16444d83841a37cde9b68343522e4
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 17:14:28 2013 -0500
+
+    add cancel button to player form
+
+2	0	app/views/players/_form.html.haml
+
+commit 717b368d77a313ce685bf741b8680c8f80253605
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 17:08:18 2013 -0500
+
+    remove back buttons
+
+2	5	app/views/orders/create.html.haml
+4	5	app/views/orders/new.html.haml
+
+commit a5a4157ef7acf6c338943a1af07f1f2bbc66fb53
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 17:04:07 2013 -0500
+
+    hack the button green
+
+2	1	app/views/users/dashboard.html.haml
+
+commit a566283315f36c147a022826c553fc61553ec4af
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 16:32:13 2013 -0500
+
+    now sending order recipt email
+
+1	1	app/controllers/orders_controller.rb
+5	5	test/functional/orders_controller_test.rb
+
+commit 5347f13af7f548fac360053bfdc779b37a7c4094
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 16:29:00 2013 -0500
+
+    make the player card name sans-serif
+
+1	1	app/assets/stylesheets/players/card.css.scss
+
+commit 3f3df2d67a0dfc09c89e06e0680ceae67da31fcb
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 16:22:54 2013 -0500
+
+    quick style change
+
+1	1	app/mailers/user_mailer.rb
+
+commit 8bc924d13e64268f2914cd52a57713a5b14667e0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 16:16:46 2013 -0500
+
+    add pdf player partial
+
+38	0	app/views/players/_player.pdf.haml
+
+commit 0dc57296d816eec652905d882a412ab7c501402d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 15:48:14 2013 -0500
+
+    fix partial name call
+
+1	1	app/views/players/show.pdf.haml
+
+commit d3325796398b294d39782c96f9d11f99b871e238
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 15:38:48 2013 -0500
+
+    fix mailer and tests
+
+1	0	app/controllers/orders_controller.rb
+2	2	app/mailers/user_mailer.rb
+2	2	test/functional/user_mailer_test.rb
+
+commit 7e11a21779644eeac9416eb38e44ba69c144103e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 15:25:18 2013 -0500
+
+    fixing logo link for logged in users
+
+1	1	app/views/layouts/_topnav.haml
+
+commit 84fac141585fdd149cbec77365b2d0f106177935
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 15:18:50 2013 -0500
+
+    add order_receipt test
+
+11	1	test/functional/user_mailer_test.rb
+
+commit d66a4c7ce3b5b969a38968f4e2a9a157245f8506
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 15:19:30 2013 -0500
+
+    redirecting logged in users
+
+9	4	app/controllers/users_controller.rb
+8	0	test/functional/users_controller_test.rb
+
+commit 7a540dff6cab3061ae0ffc8e5947439ca3bb73ec
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 15:12:56 2013 -0500
+
+    stub the order receipt email
+
+26	3	app/mailers/user_mailer.rb
+7	7	app/models/order.rb
+
+commit ab5fc92eacb485b05dbd9bbc8137fb2a0580365c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 27 14:56:01 2013 -0500
+
+    fixing issue with cardholder name not being set
+
+2	1	app/models/order.rb
+7	3	test/unit/order_test.rb
+
+commit 740c0015e70416ba0eb2b1ea47f133aa7d627e07
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 13:46:35 2013 -0500
+
+    remove kelly slab remote call
+
+0	1	app/views/layouts/admin.haml
+
+commit bc2735fa490af676a5bc555a38eaa3c479417d33
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 27 10:27:08 2013 -0500
+
+    add errbit hubot notification
+
+6	0	config/initializers/errbit.rb
+
+commit 2339603b526829804931c92a5ab5773cb30d03c2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 18:11:01 2013 -0500
+
+    fixing language on register/update button
+
+1	1	app/views/players/_form.html.haml
+
+commit 98eb08ad3307a708024e2dd98f83ee0a2c75d333
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 18:09:11 2013 -0500
+
+    restricting print access in the controllers
+
+1	1	app/controllers/players_controller.rb
+7	7	app/views/users/new.html.haml
+1	0	test/functional/players_controller_test.rb
+
+commit 9d1cd0d0a441d9898c3364399693125b13e813b9
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 18:02:07 2013 -0500
+
+    quick fix on the registration form, as well as some altered logic on the edit and print buttons
+
+1	1	app/assets/stylesheets/users/_base.css.scss
+1	0	app/controllers/players_controller.rb
+4	0	app/models/player.rb
+4	4	app/views/players/_player.html.haml
+
+commit 568a2594ca04d00e8347f7f7abc6620a746862fd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 17:45:39 2013 -0500
+
+    moar test coverage please
+
+7	2	app/controllers/players_controller.rb
+22	0	test/functional/players_controller_test.rb
+9	0	test/unit/player_test.rb
+
+commit af79dd5d047cb065df94a68c09a8a91ec5bd8532
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 17:36:31 2013 -0500
+
+    fixing sticky footer
+
+17	1	app/assets/stylesheets/layouts/footer.scss
+8	7	app/views/layouts/application.haml
+
+commit bf05c29bfe168027a8cca5bc91347280cd87e492
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 17:15:01 2013 -0500
+
+    adding print flag on the db
+
+1	0	app/controllers/players_controller.rb
+5	0	db/migrate/20130226213253_add_printed_to_players.rb
+2	1	db/schema.rb
+10	0	test/functional/players_controller_test.rb
+1	1	test/functional/user_sessions_controller_test.rb
+
+commit bc98eca5cd33ebc4b3d98a6385a35561911337b9
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 16:27:00 2013 -0500
+
+    print confirm javascript now in place
+
+1	0	app/assets/javascripts/application.js
+23	0	app/assets/javascripts/dashboard.js
+1	1	app/views/players/_player.html.haml
+12	0	app/views/users/dashboard.html.haml
+
+commit 7dc4ff2fbeee9430b9df9b29df593e71088f653a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 17:12:33 2013 -0500
+
+    remove the kelly slab from the card
+
+2	1	app/assets/stylesheets/players/card.css.scss
+
+commit 7b852d17a5f640e3dd4b00644cbc3cdc78795dc8
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 17:05:39 2013 -0500
+
+    comment out the kelly slab remote grab
+
+1	1	app/views/layouts/_head.haml
+
+commit a08c3a8b73f8ced7a6072e5c5f5483a49d3ad6c6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 16:23:20 2013 -0500
+
+    add fonts to the asset pipeline, Kelly Slab to the repo
+
+7	0	app/assets/stylesheets/components/typography.css.scss
+3	1	config/environments/production.rb
+
+commit dc5e31dc6b7ed4577100d9cdfa27485ac345e555
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 16:14:53 2013 -0500
+
+    add kellyslab to the asset pipeline
+
+-	-	app/assets/fonts/KellySlab-Regular.ttf
+
+commit 7e970b5733a1f56c8384e6714ebfe301b0b9961f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 15:50:29 2013 -0500
+
+    adding logout success page
+
+1	0	app/assets/stylesheets/application.scss
+18	0	app/assets/stylesheets/pages/logout_success.css.scss
+3	0	app/controllers/pages_controller.rb
+1	2	app/controllers/user_sessions_controller.rb
+3	0	app/views/pages/logout_successful.html.haml
+4	3	config/routes.rb
+1	1	test/functional/user_sessions_controller_test.rb
+
+commit 2b12d789032fd415f0e08938ee4cdcbe5e428a79
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 15:25:34 2013 -0500
+
+    add wkhtmltopdf-binary to gemfile
+
+1	0	Gemfile
+2	0	Gemfile.lock
+
+commit 8200992d8de586fdddd77ff1dcd0b81b5863d1f7
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 15:08:10 2013 -0500
+
+    add player pdf file to production build
+
+1	1	config/environments/production.rb
+
+commit 38f7e53e90a606ad1284916df5c22f91bd4282eb
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 15:06:22 2013 -0500
+
+    point to correct stylesheet
+
+1	1	app/views/players/show.pdf.haml
+
+commit 819605bb324e4e677d0164ec6ee033f8fe4229fe
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 15:00:23 2013 -0500
+
+    use a different pdf approach
+
+5	0	app/assets/stylesheets/players/pdf.css
+1	1	app/views/players/show.pdf.haml
+1	1	config/environments/production.rb
+
+commit 829432f3cbdad676bb1a304532b95ffd42791971
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 14:54:12 2013 -0500
+
+    point to njp.rsportz.com
+
+1	1	config/deploy.rb
+
+commit eac644437f871e978a9edeff79bb8975c2e83d87
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 14:52:29 2013 -0500
+
+    fix names of stylesheets
+
+1	1	app/views/players/show.pdf.haml
+1	1	config/environments/production.rb
+
+commit c65472fafd505b18dd5d7b1730b5be046f10e28b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 14:38:04 2013 -0500
+
+    now using https for s3 links
+
+1	0	config/initializers/settings.rb
+
+commit 9db65ae83668e956c4458f79686749a4841d3d3b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 14:01:44 2013 -0500
+
+    setting billing to testmode for production
+
+7	5	config/initializers/activemerchant.rb
+
+commit 1df48932307477829b983eeb5e420152d8bbf154
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 13:53:51 2013 -0500
+
+    removing debug info from view
+
+0	2	app/views/orders/create.html.haml
+
+commit d79dcd14e35def1c21745b0e3b37af275f81a453
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 13:35:49 2013 -0500
+
+    add typography and player_card css to precompile list
+
+1	1	config/environments/production.rb
+
+commit 6f8ef54a94dfa7501c7985378bb07630c8f601cc
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 13:35:45 2013 -0500
+
+    removing message from error page
+
+1	1	app/views/orders/failure.html.haml
+
+commit 6321c7f279fc39c848c09efbb55c637d78cc5ef7
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 13:23:53 2013 -0500
+
+    Updating some logic around unpaid vs paid players. Adding debug information for gateway
+
+1	1	app/controllers/orders_controller.rb
+5	2	app/views/orders/failure.html.haml
+3	0	app/views/orders/success.html.haml
+1	1	app/views/users/dashboard.html.haml
+
+commit 68ea0972ab7ebe304a795c402de38b87f694facb
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 11:46:47 2013 -0500
+
+    readme changes
+
+139	133	README.md
+
+commit fd6e5983f25051cb28f04fcec7ccbecdf051a0a4
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 26 11:18:26 2013 -0500
+
+    make the readme markdown
+
+161	0	README.md
+0	161	README.rdoc
+
+commit 0e93a87d2e6d523849b0dcfd066204b4311fb85b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 12:51:58 2013 -0500
+
+    updating postage app credentials
+
+1	1	config/initializers/postageapp.rb
+
+commit 25088411475c9d04555163a4b828be4faf67dc72
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 11:55:07 2013 -0500
+
+    SSL for production yall
+
+1	1	config/environments/production.rb
+
+commit 3bf485097909c4301301d3ee8ee3b69a0af2488e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 11:48:26 2013 -0500
+
+    removing unneeded files
+
+0	10	config/environments/staging/database.yml
+0	12	config/environments/staging/rsportz.twg.ca.conf
+0	7	config/environments/staging/settings.yml
+
+commit a8375a75e79eea3d0f63ddebf7211a5c4935c6b2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 11:46:16 2013 -0500
+
+    updating settings file
+
+3	3	config/settings.example.yml
+
+commit 84feb3a1383f440d1ef3388c2fd18cf43914e752
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 11:45:48 2013 -0500
+
+    updating example settings file
+
+31	28	config/settings.example.yml
+
+commit cdbd658a2c8966eace2ecd90b5455521b923cd3b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 26 11:43:31 2013 -0500
+
+    fixing the settings
+
+-	-	app/assets/images/.DS_Store
+1	0	app/controllers/players_controller.rb
+1	1	app/helpers/application_helper.rb
+6	4	app/mailers/contact_form_mailer.rb
+2	3	app/mailers/user_mailer.rb
+3	3	app/models/order.rb
+2	2	app/views/contact_form_mailer/contact_form_message.html.erb
+1	1	app/views/layouts/_head.haml
+1	1	app/views/players/_player.html.haml
+0	6	config/application.rb
+0	10	config/environments/production.rb
+1	1	config/initializers/omniauth.rb
+71	0	config/initializers/settings.rb
+
+commit 8a4203341e4c62d31466929570a9a6af042901e4
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 17:44:28 2013 -0500
+
+    updating some gems
+
+2	2	Gemfile
+9	6	Gemfile.lock
+0	3	app/controllers/pages_controller.rb
+0	6	test/functional/pages_controller_test.rb
+1	1	test/functional/players_controller_test.rb
+
+commit 3b8a327343e769579cacb2f665c96d32969e86f9
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 17:10:12 2013 -0500
+
+    updating the app
+
+-	-	app/assets/images/.DS_Store
+-	-	app/assets/images/avatars/missing_60x60_avatar.png
+69	0	app/assets/stylesheets/orders/new.css.scss
+5	2	app/assets/stylesheets/players/card.css.scss
+6	2	app/models/player.rb
+31	12	app/views/orders/new.html.haml
+1	1	config/routes.rb
+
+commit ccdc85b7df7136da16a289fe9de414bdc8d4451a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 16:12:05 2013 -0500
+
+    add ie7 to the precompile list
+
+1	1	config/environments/production.rb
+
+commit 066ce7273c20ff897d74e52c0b861d8afca2c67b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 16:04:40 2013 -0500
+
+    strings
+
+2	2	config/environments/production.rb
+
+commit 61f4c75d998e5fa795f4854ac38786e2632685d8
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 15:57:23 2013 -0500
+
+    fix uppercase
+
+1	1	config/environments/production.rb
+
+commit 29100fd259ad5178c0ef3e4e2454835ecc0838fa
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 15:55:56 2013 -0500
+
+    rearrange capfile
+
+1	1	Capfile
+
+commit aea99cfd59061879efde638c8a7e164a512c484a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 15:50:19 2013 -0500
+
+    fix typo
+
+1	1	config/environments/production.rb
+
+commit dc51ffe66f519a93f020019052ecfc137e43c6db
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 15:49:21 2013 -0500
+
+    use raw yaml
+
+4	2	config/environments/production.rb
+
+commit 26b35d8c34754ec26a7cf13a527f0eb5ac9655f2
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 15:33:55 2013 -0500
+
+    fix cap file
+
+2	3	Capfile
+1	1	config/application.rb
+2	2	config/settings.example.yml
+
+commit 834a4bb32270286e40cdca9fc165a8254ac60d78
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 15:25:30 2013 -0500
+
+    removing unneeded css files from admin
+
+1	6	app/assets/stylesheets/admin.css.scss
+
+commit 9502235f4dc5844c4126c2e07f3c84368bf78a3d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 15:23:56 2013 -0500
+
+    reworking the css includes
+
+9	11	app/assets/stylesheets/admin.css.scss
+12	14	app/assets/stylesheets/application.scss
+13	0	app/assets/stylesheets/components/typography.css.scss
+0	96	app/assets/stylesheets/player_card.scss
+0	79	app/assets/stylesheets/players.css.scss
+96	0	app/assets/stylesheets/players/card.css.scss
+77	0	app/assets/stylesheets/players/player.css.scss
+0	13	app/assets/stylesheets/typography.scss
+
+commit 47f24ae14970ca61a9302878825fdf231ad88e93
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 14:58:30 2013 -0500
+
+    register a player page fixed
+
+3	0	app/assets/stylesheets/application.scss
+50	0	app/assets/stylesheets/players/_base.css.scss
+15	42	app/assets/stylesheets/users/_base.css.scss
+1	1	app/views/players/_form.html.haml
+5	3	app/views/players/new.html.haml
+5	3	app/views/users/new.html.haml
+
+commit b7579bbb9245493b70df208a066e0d72aec55ea4
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 14:47:50 2013 -0500
+
+    update deploy
+
+3	3	config/deploy.rb
+
+commit 4092b22fb685c65fb5f6a3591dc20756e86807bd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 14:38:23 2013 -0500
+
+    updating the new player form
+
+17	1	app/assets/stylesheets/users/_base.css.scss
+6	4	app/views/players/_form.html.haml
+
+commit 45145b5e9a2681df7f396da83c943df98b0cfea4
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 14:14:26 2013 -0500
+
+    fix the paid badge for pdfs
+
+6	5	app/views/players/_player.html.haml
+
+commit 059db569f622c6a839e08677ccd7e152900dfb4a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 13:53:44 2013 -0500
+
+    some styling and deploy script cleanup
+
+2	3	app/assets/stylesheets/player_card.scss
+6	5	config/deploy.rb
+
+commit c73ce064d5f614051a0ca9c45dca5462dd88cb4c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 12:44:41 2013 -0500
+
+    reconfigure deploy script, add rvm-capistrano
+
+1	0	Gemfile
+3	0	Gemfile.lock
+25	27	config/deploy.rb
+
+commit 49e68f1dce7a674296b2dd1d0073cbadac894c75
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 14:05:51 2013 -0500
+
+    remove paid image in pdf
+
+3	6	app/views/players/_player.html.haml
+
+commit 9c71ee9df6ec0f567cafa74ff7cb6a361368fc2e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 25 10:40:15 2013 -0500
+
+    Starting to fix the registration page
+
+3	2	Gemfile
+11	11	Gemfile.lock
+-	-	app/assets/images/avatars/missing_100x100_avatar.png
+-	-	app/assets/images/avatars/missing_300x300_avatar.png
+-	-	app/assets/images/avatars/missing_80x80_avatar.png
+1	1	app/assets/stylesheets/application.scss
+0	53	app/assets/stylesheets/pages/register.scss
+0	53	app/assets/stylesheets/users.css.scss
+56	0	app/assets/stylesheets/users/_base.css.scss
+2	1	app/models/player.rb
+7	4	app/views/players/_form.html.haml
+9	0	config/environments/production.rb
+5	1	config/settings.example.yml
+
+commit 99c018ac746481a1a7eae3f93d39b57571a31fa3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Mon Feb 25 09:46:36 2013 -0500
+
+    register -> sign up in nav
+
+1	1	app/views/layouts/_topnav.haml
+
+commit 4610c40330edbf4e35487fb2ff09e83caf0c56e3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 16:06:04 2013 -0500
+
+    register -> sign up
+
+1	1	app/views/users/new.html.haml
+
+commit b776ae565cb9f645d0c733300613a26c70ba8623
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 15:03:40 2013 -0500
+
+    move facebook button to the left of copy
+
+1	1	app/views/users/new.html.haml
+
+commit e4402731a621495bed35f5a2c6dd0e9bdb7f1805
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 22 14:58:42 2013 -0500
+
+    adding buttons to cards
+
+-	-	app/assets/images/bg-transparent.png
+22	1	app/assets/stylesheets/player_card.scss
+1	1	app/controllers/players_controller.rb
+4	2	app/views/players/_player.html.haml
+
+commit 36d05ae9958be1e056295fee0ed25961459d1b0f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 15:01:57 2013 -0500
+
+    Register -> Sign Up
+
+3	3	app/views/users/new.html.haml
+
+commit 196753257548a6088b6af25d35cc317a03ebc4ba
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 14:22:51 2013 -0500
+
+    fix readme
+
+9	6	README.rdoc
+
+commit f5d7ecbefa0efe271bb2e095e7d7dbda8cc04266
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 14:19:00 2013 -0500
+
+    shuffle styling in player card
+
+3	7	app/assets/stylesheets/player_card.scss
+0	1	app/assets/stylesheets/typography.scss
+1	2	app/views/players/show.pdf.haml
+
+commit 135964396d4ef05d85e29f440cc835954cb278f1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 14:18:00 2013 -0500
+
+    add font note to readme
+
+8	1	README.rdoc
+
+commit cde24245ff2a304e7f01a8675fe10cf97d5fd6da
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 11:46:35 2013 -0500
+
+    add good enough links into nav
+
+3	1	app/assets/stylesheets/layouts/topnav.scss
+2	2	app/helpers/admin/base_helper.rb
+2	6	app/views/layouts/admin.haml
+
+commit 654aee77be8216c158dd1362dc283701272d454f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 11:34:03 2013 -0500
+
+    remove old base css, update navigation
+
+0	14	app/assets/stylesheets/admin/base.css.scss
+19	12	app/views/layouts/admin.haml
+
+commit 309259c24f17a84325dd70764c17a536d20a55d4
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 11:33:16 2013 -0500
+
+    add footer
+
+2	3	app/views/layouts/_footer.haml
+10	0	app/views/layouts/admin.haml
+
+commit a9fc67a9b5f9740f6aed0cd47f8d3949543d8b22
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 22 13:39:02 2013 -0500
+
+    adding paid/unpaid class to dashboard
+
+3	1	app/views/players/_player.html.haml
+
+commit edcc7d9ea77fa25c100a1b6d13fb4c27c522080e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 08:57:54 2013 -0500
+
+    add cucumber gem ... MU-hahahaha
+
+1	0	Gemfile
+9	0	Gemfile.lock
+
+commit 030a0660f1f76ca135c01c084f40c27fdca0a71b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Fri Feb 22 08:18:20 2013 -0500
+
+    convert to application layout
+
+36	1	app/assets/stylesheets/admin.css.scss
+0	2	app/controllers/admin_controller.rb
+
+commit bc08f5194d7bdfd086c8b7f8dee3b55cc816b928
+Author: Jack Neto <jack@theworkinggroup.ca>
+Date:   Thu Feb 21 20:47:31 2013 -0500
+
+    Added PDF download
+
+1	0	Gemfile
+3	0	Gemfile.lock
+1	0	app/assets/stylesheets/application.scss
+80	0	app/assets/stylesheets/player_card.scss
+0	75	app/assets/stylesheets/players.css.scss
+10	1	app/controllers/players_controller.rb
+12	3	app/views/players/_player.html.haml
+8	0	app/views/players/show.pdf.haml
+
+commit 5b07f07709ba41abf209ab39284aa993238c27a6
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 21 18:02:09 2013 -0500
+
+    better test coverage
+
+31	3	test/unit/transaction_test.rb
+
+commit 67e497ea3f95e80bfa522077c2cae50c6d4287f4
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 21 17:22:33 2013 -0500
+
+    adding more test coverage
+
+22	0	test/functional/admin/players_controller_test.rb
+7	0	test/functional/orders_controller_test.rb
+3	3	test/functional/players_controller_test.rb
+
+commit 14529d3ed40b8cb7e5bb28aa778a54d83a214e6d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 17:08:41 2013 -0500
+
+    add avatar to the player form
+
+3	2	app/views/players/_form.html.haml
+
+commit 2d53c5dad0b6cc27f11da4fdc65b9a3067961a8d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 21 17:07:25 2013 -0500
+
+    fixing a broken test
+
+1	1	test/functional/orders_controller_test.rb
+
+commit 6cb21c51e77ba6b7f1bae49f6dfd6e2477094408
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 17:03:55 2013 -0500
+
+    move common form to form partial
+
+25	0	app/views/players/_form.html.haml
+1	25	app/views/players/edit.html.haml
+1	25	app/views/players/new.html.haml
+
+commit 9c662b44b48d712a92eec1a472d4242cf154231d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 21 17:02:02 2013 -0500
+
+    added state dropdown with some more tests
+
+12	0	app/helpers/orders_helper.rb
+3	3	app/views/orders/new.html.haml
+5	0	test/functional/orders_controller_test.rb
+
+commit d5c6c240f8323b87960c4bd8ab365d341aa44088
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 16:59:13 2013 -0500
+
+    remove incorrect tests
+
+0	15	test/functional/admin/users_controller_test.rb
+
+commit e7a272f82752f2ae6e40c04b6027bda0d81daee2
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 16:52:37 2013 -0500
+
+    fix some player and user controller tests
+
+14	9	app/controllers/admin/players_controller.rb
+0	1	test/functional/admin/players_controller_test.rb
+0	1	test/functional/admin/users_controller_test.rb
+5	5	test/functional/players_controller_test.rb
+
+commit 378b3ea0b8dabd05031157ceeafe1728b14240c7
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 21 16:35:09 2013 -0500
+
+    whoa, this is a big commit
+
+18	1	app/assets/javascripts/orders.js
+16	3	app/controllers/orders_controller.rb
+2	1	app/controllers/users_controller.rb
+14	8	app/models/order.rb
+2	4	app/models/player.rb
+1	1	app/models/transaction.rb
+9	7	app/models/user.rb
+31	0	app/views/orders/create.html.haml
+12	0	app/views/orders/failure.html.haml
+4	3	app/views/orders/new.html.haml
+3	1	config/routes.rb
+5	0	db/migrate/20130221164628_add_order_id_to_players.rb
+5	0	db/migrate/20130221165627_add_price_to_orders.rb
+3	1	db/schema.rb
+25	23	test/fixtures/orders.yml
+2	0	test/fixtures/players.yml
+69	5	test/functional/orders_controller_test.rb
+74	0	test/unit/order_test.rb
+0	5	test/unit/player_test.rb
+12	4	test/unit/user_test.rb
+
+commit 56561711282ddfd8ab49a70dbe6700c138b67b5b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 20 18:10:05 2013 -0500
+
+    billing errors added
+
+4	3	Gemfile
+5	0	Gemfile.lock
+4	0	app/assets/javascripts/orders.js
+9	0	app/assets/stylesheets/orders/new.css.scss
+54	2	app/models/order.rb
+30	2	app/views/orders/new.html.haml
+12	0	db/migrate/20130220213759_add_billing_fields_to_order.rb
+11	3	db/schema.rb
+18	2	test/fixtures/orders.yml
+9	1	test/functional/orders_controller_test.rb
+6	0	test/unit/order_test.rb
+
+commit 8308ce58b7396975f61fb1ae1047924e38b50ecd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 20 15:05:18 2013 -0500
+
+    added transaction model
+
+5	1	app/controllers/orders_controller.rb
+1	1	app/controllers/users_controller.rb
+18	0	app/models/order.rb
+29	0	app/models/transaction.rb
+4	0	app/models/user.rb
+1	1	app/views/orders/new.html.haml
+8	8	app/views/users/edit.html.haml
+15	0	db/migrate/20130220190223_create_transactions.rb
+5	0	db/migrate/20130220194113_add_paid_at_to_orders.rb
+9	0	db/migrate/20130220194909_update_transaction_message_column.rb
+14	1	db/schema.rb
+19	0	test/fixtures/transactions.yml
+13	8	test/functional/orders_controller_test.rb
+1	1	test/functional/users_controller_test.rb
+7	0	test/unit/transaction_test.rb
+7	0	test/unit/user_test.rb
+
+commit 25ab2365ab5b70aa261f7580f8b949a0f5c7c5e3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 16:31:31 2013 -0500
+
+    cheat the button style for maximum awesome
+
+3	2	app/views/users/dashboard.html.haml
+
+commit 4c0f7bd5d8049e3d974b1c338aeba40a357b6d09
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 16:26:09 2013 -0500
+
+    add player partial to dashboard render
+
+0	80	app/assets/stylesheets/admin/players.css.scss
+82	1	app/assets/stylesheets/players.css.scss
+27	0	app/views/players/_player.html.haml
+1	16	app/views/users/dashboard.html.haml
+
+commit fc2dff8d76fc97776ca1211103ed5ce093e3239b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 16:17:19 2013 -0500
+
+    refactor after code review
+
+8	3	app/assets/stylesheets/admin/players.css.scss
+0	3	app/controllers/admin/players_controller.rb
+25	14	app/controllers/admin/users_controller.rb
+0	1	app/controllers/admin_controller.rb
+
+commit 8fb5579ec144d87cb08aa2e0af0cb8a0959d5f7b
+Author: Jack Neto <jack@theworkinggroup.ca>
+Date:   Thu Feb 21 16:02:01 2013 -0500
+
+    Updated example database config
+
+9	36	config/database.example.yml
+
+commit 83b16a82fe06c0d79f298bb8a4c9408a8c43dcd2
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 15:27:50 2013 -0500
+
+    style up the card
+
+-	-	app/assets/images/paid_icon.png
+-	-	app/assets/images/small_njb_logo.png
+57	17	app/assets/stylesheets/admin/players.css.scss
+12	7	app/views/admin/players/_player.html.haml
+
+commit 5ed1d4c52ec349702eacb7cc02731ea63f0c9b31
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 14:25:41 2013 -0500
+
+    add player partial
+
+22	0	app/views/admin/players/_player.html.haml
+
+commit 8bbaabd88e2f2a623326d9ac5784dd736349319b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 14:25:23 2013 -0500
+
+    use simple render for players under user edit
+
+2	9	app/views/admin/users/edit.html.haml
+
+commit 824a18c0ad829db11e6b4a9171307472d25913db
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 14:24:33 2013 -0500
+
+    add membership id method to application helpers
+
+7	1	app/helpers/application_helper.rb
+
+commit 60737a62cd5ff305e4decdcebb586bd0f83a324c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 14:23:47 2013 -0500
+
+    move player styling to player styles
+
+35	0	app/assets/stylesheets/admin/players.css.scss
+0	21	app/assets/stylesheets/admin/users.css.scss
+
+commit b853ad6f9c4bbbc6264bafd04d95dec4a20cbc46
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 13:39:49 2013 -0500
+
+    add player id column, search form
+
+9	0	app/views/admin/players/index.html.haml
+0	1	test/integration/admin_link_test.rb
+
+commit b800029a643ec5044ffc7fa2a1f088db653624e1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 11:28:20 2013 -0500
+
+    add test stub for admin link
+
+19	0	test/integration/admin_link_test.rb
+
+commit d8d29b45146d67b293fe6cd8f98403b040e0452e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 11:18:29 2013 -0500
+
+    remove unused variable
+
+2	2	test/functional/admin/users_controller_test.rb
+
+commit 7ff9f62cac23c76f4f242fb5b50e25a085c780c7
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 10:56:19 2013 -0500
+
+    fix and fill out player update and test
+
+1	1	app/controllers/admin/players_controller.rb
+9	0	test/functional/admin/players_controller_test.rb
+
+commit fe3abe91352bd14926b117b181da5dc21c9aa536
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 10:55:18 2013 -0500
+
+    add search to player index page
+
+3	1	app/controllers/admin/players_controller.rb
+
+commit 10914e9ec62869e281f91f2397d58dfa337560a7
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 10:03:06 2013 -0500
+
+    add download pdf feature
+
+4	0	features/download_pdf.feature
+
+commit 462bca3fcb27da77bef4072d7cced9eb916ba9d6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 09:16:36 2013 -0500
+
+    add player search spec
+
+4	0	features/player_search.feature
+
+commit d1522fafd056df8138fb0bd40fe92659ac129459
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 08:42:24 2013 -0500
+
+    add admin link to main nav
+
+5	0	app/views/layouts/_topnav.haml
+
+commit bcf07d7a66dd75d1efb7075963dd45180272f1a5
+Author: Will Langstroth <will@langstroth.com>
+Date:   Thu Feb 21 08:15:09 2013 -0500
+
+    add user link from player list
+
+3	0	app/views/admin/players/index.html.haml
+
+commit 803ebecf95c454a1d936aae552a193405d9d667b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 17:30:47 2013 -0500
+
+    remove assignment of last user id to cookie
+
+0	1	app/controllers/admin/users_controller.rb
+
+commit c5e95e33a9791cfbc2a375e35c08ce15ea2ba802
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 17:22:58 2013 -0500
+
+    add player form partial
+
+8	0	app/views/admin/players/_form.html.haml
+
+commit 6ce8dbb1730a2543c752cfe5a5e4af760021f1a6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 17:22:37 2013 -0500
+
+    fix redirect on admin users controller
+
+1	1	app/controllers/admin/users_controller.rb
+
+commit ee2e0f9520e3f18b96d4443f0aaaf1ec2f5b99bc
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 16:48:24 2013 -0500
+
+    add check and x marks for paid
+
+3	0	app/assets/stylesheets/admin/players.css.scss
+22	2	app/views/admin/players/index.html.haml
+
+commit df1f7b5bbacfc29b1ce673a5e69f125d74550be2
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 16:47:47 2013 -0500
+
+    hamlize admin player edit view
+
+3	2	app/views/admin/players/edit.html.haml
+
+commit cdbbdc8183c6cedf27f8fcb224ea9df274103479
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:57:06 2013 -0500
+
+    whitespace
+
+9	9	app/models/player.rb
+
+commit d9e2ca8663e3b7b4678466caab30e8ada20b86d0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:53:10 2013 -0500
+
+    fix strange appearance of erb templates from the generator
+
+0	2	app/views/admin/players/edit.html.erb
+2	0	app/views/admin/players/edit.html.haml
+0	2	app/views/admin/players/index.html.erb
+2	0	app/views/admin/players/index.html.haml
+0	2	app/views/admin/players/show.html.erb
+2	0	app/views/admin/players/show.html.haml
+
+commit 57f74e18ce744ab3004f329daf547b4e6cedf578
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:46:51 2013 -0500
+
+    clean up admin players controller and tests
+
+4	2	app/controllers/admin/players_controller.rb
+7	2	test/functional/admin/players_controller_test.rb
+
+commit fc3567799927b34acfd5ff3305c6fa80de3e4fb8
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:25:40 2013 -0500
+
+    switch admin controller, fill out admin players controller
+
+18	1	app/controllers/admin/players_controller.rb
+1	1	app/controllers/admin_controller.rb
+1	0	test/functional/admin/players_controller_test.rb
+
+commit 7b6835fa1c8ae3c594a57e4f47faec0f2217921f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:10:57 2013 -0500
+
+    convert base controller to admin controller
+
+0	16	app/controllers/admin/base_controller.rb
+3	1	app/controllers/admin/players_controller.rb
+1	1	app/controllers/admin/users_controller.rb
+16	0	app/controllers/admin_controller.rb
+1	0	app/views/layouts/admin.haml
+0	7	test/functional/admin/base_controller_test.rb
+7	0	test/functional/admin_controller_test.rb
+
+commit e37eb00c25d8dc20df0df882ca319ac34e0ddc30
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:02:54 2013 -0500
+
+    generate admin players controller
+
+3	0	app/assets/javascripts/admin/players.js.coffee
+3	0	app/assets/stylesheets/admin/players.css.scss
+10	0	app/controllers/admin/players_controller.rb
+2	0	app/helpers/admin/players_helper.rb
+2	0	app/views/admin/players/edit.html.erb
+2	0	app/views/admin/players/index.html.erb
+2	0	app/views/admin/players/show.html.erb
+19	0	test/functional/admin/players_controller_test.rb
+4	0	test/unit/helpers/admin/players_helper_test.rb
+
+commit d4adb26e9bc93ca22b1ac897637d3fdb823317c8
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 14:02:35 2013 -0500
+
+    add admin players resources
+
+2	1	config/routes.rb
+
+commit 0a68e0b73623b4cc08cb0df1b012b5ffae2cad14
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 13:42:25 2013 -0500
+
+    add pagination to admin users view and admin users controller
+
+1	1	app/controllers/admin/users_controller.rb
+4	0	app/views/admin/users/index.html.haml
+
+commit 68902880875318e7ec8afdfebd16884035290dd9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 13:41:42 2013 -0500
+
+    add ransack gem
+
+2	1	Gemfile
+8	1	Gemfile.lock
+
+commit 65c62a73b00458e82a5ae963d56de064309164c9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 12:56:17 2013 -0500
+
+    add base kaminari config
+
+10	0	config/initializers/kaminari_config.rb
+
+commit 869e4b9668e4e49396488a4078a27319cbdc2eef
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 12:47:03 2013 -0500
+
+    add kaminari-bootstrap
+
+4	4	Gemfile
+7	0	Gemfile.lock
+
+commit 2426e28798e1822d97235e007352aac46db0acb3
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 20 13:05:20 2013 -0500
+
+    adding processing click event to order form
+
+1	0	app/assets/javascripts/application.js
+14	0	app/assets/javascripts/orders.js
+7	0	app/helpers/application_helper.rb
+1	1	app/views/layouts/application.haml
+3	1	app/views/orders/new.html.haml
+
+commit 98c6107a04325418c6fd1984e28e1e56b2de0fbd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 20 12:46:18 2013 -0500
+
+    updating test
+
+2	0	test/functional/orders_controller_test.rb
+
+commit 96cfa6c9c9bbd6b60966b53177b6534908231bc8
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 20 12:43:58 2013 -0500
+
+    updating test
+
+7	0	test/functional/orders_controller_test.rb
+
+commit 05c7ea67ffb7a7a8e75cb128bbe310e4bc2d2a5c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 20 12:39:46 2013 -0500
+
+    adding activemerchant validation to credit card form
+
+8	0	app/assets/stylesheets/orders/new.css.scss
+13	4	app/models/order.rb
+20	8	app/views/orders/new.html.haml
+17	3	test/unit/order_test.rb
+
+commit 66c6d68c762b1152d5e1e0ccd8a0f0d7ecd5ac25
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 12:39:41 2013 -0500
+
+    add player details
+
+1	0	app/views/admin/users/edit.html.haml
+3	3	app/views/admin/users/index.html.haml
+0	1	app/views/layouts/admin.haml
+
+commit 1b9d07c61fec750a5b7df1413051bca1e5bc8f8a
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 12:38:53 2013 -0500
+
+    add styling for user list table
+
+6	0	app/assets/stylesheets/admin/users.css.scss
+
+commit 9f5f9143bdc2d4b574e8f8a5098978f13fe61e8d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 12:38:24 2013 -0500
+
+    remove responsive bootstrap
+
+0	1	app/assets/stylesheets/admin.css.scss
+
+commit 4aae0bcc960e55d806343c465c83bd8a87a6816c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 11:23:03 2013 -0500
+
+    spiffy up the player section
+
+5	4	app/assets/stylesheets/admin/users.css.scss
+3	3	app/views/admin/users/edit.html.haml
+1	1	app/views/layouts/admin.haml
+
+commit db477d8c10cfce2699f2e43f8d6e2c7139a3fb4e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 11:06:37 2013 -0500
+
+    point admin root to users#index
+
+1	1	config/routes.rb
+
+commit 5cd0da3ab694ecf7b284d5242ea38e7c39ffdaf3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 11:06:14 2013 -0500
+
+    remove dashboard link from nav
+
+1	2	app/views/layouts/admin.haml
+
+commit 80a1beac8c5a6dfefccafaf790b27f4a1af9aeac
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 11:05:47 2013 -0500
+
+    add player count to users index
+
+2	0	app/views/admin/users/index.html.haml
+
+commit 89465725c6c166a0116d59638280524d525c6ec9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 11:03:35 2013 -0500
+
+    remove dashboard view
+
+0	2	app/views/admin/base/dashboard.html.haml
+
+commit ff12916c4d4f7ce130b9d0b7ee6d96a24776f899
+Author: Will Langstroth <will@langstroth.com>
+Date:   Wed Feb 20 10:59:32 2013 -0500
+
+    style the admin user view
+
+1	1	app/assets/stylesheets/admin.css.scss
+19	0	app/assets/stylesheets/admin/users.css.scss
+8	2	app/views/admin/users/edit.html.haml
+
+commit c920468dded6f013eb7b44a27834dbc8f6701bd1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 21:14:32 2013 -0500
+
+    add the rsportz logo to the admin section
+
+1	0	app/assets/stylesheets/admin.css.scss
+11	0	app/assets/stylesheets/admin/base.css.scss
+6	3	app/views/layouts/admin.haml
+
+commit 491bfcc8ec10406be76cdddab9121ed71fdfef28
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 17:43:17 2013 -0500
+
+    better test coverage
+
+8	1	app/controllers/orders_controller.rb
+3	2	app/mailers/mail_preview.rb
+12	0	app/views/orders/success.html.haml
+2	0	config/routes.rb
+1	1	test/fixtures/orders.yml
+14	0	test/functional/orders_controller_test.rb
+25	0	test/functional/players_controller_test.rb
+8	0	test/unit/order_test.rb
+
+commit 5c0abc54f7529ad79bd4e52e4d63cebed1cb62ad
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 17:13:27 2013 -0500
+
+    adding more settings examples
+
+12	1	config/settings.example.yml
+
+commit d3a88822c0c7aa7980323d2d461ec376693a9757
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 17:11:54 2013 -0500
+
+    adding tests for order
+
+11	0	app/controllers/orders_controller.rb
+35	1	app/models/order.rb
+1	1	config/application.rb
+5	0	config/initializers/activemerchant.rb
+50	3	test/unit/order_test.rb
+
+commit a49726f20fd9553805751537b74979341f98e24c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 17:09:21 2013 -0500
+
+    stub application helper test file
+
+17	0	test/unit/helpers/application_helper_test.rb
+
+commit 9d95c825afe8dd6622ed8e90d1aea37bec4b3de8
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:55:43 2013 -0500
+
+    fix placement of simplecov inclusion
+
+3	2	test/test_helper.rb
+
+commit f53752877c4504cdf71615c23afb77b13b6c4a30
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:53:51 2013 -0500
+
+    add form to admin user edit view
+
+5	0	app/views/admin/users/_form.html.haml
+2	1	app/views/admin/users/edit.html.haml
+
+commit 526226ac8c38383c42c07bc791ef89232e3b7d98
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:40:19 2013 -0500
+
+    reinstate update tests
+
+0	0	app/views/admin/users/new.html.haml
+9	11	test/functional/admin/users_controller_test.rb
+
+commit f192f54301a1ae293b3baac395dabbaa30b8f6fd
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:24:41 2013 -0500
+
+    add required simplecov call, simplify test helper require
+
+6	4	test/test_helper.rb
+1	1	test/unit/user_test.rb
+
+commit 08119c43eeea505602b83eb547edc6663a9fe5f6
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:24:11 2013 -0500
+
+    add admin user testing
+
+1	1	test/fixtures/users.yml
+78	3	test/functional/admin/users_controller_test.rb
+16	16	test/functional/passwords_controller_test.rb
+6	6	test/functional/users_controller_test.rb
+
+commit 3dcba69215fc87585ef4f355ba0d5ce9f3665963
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:23:34 2013 -0500
+
+    fix up admin views
+
+5	1	app/views/admin/users/edit.html.haml
+1	3	app/views/admin/users/index.html.haml
+1	1	app/views/layouts/admin.haml
+
+commit 1abe574e4b4f94062e88e73e4b86c9e8968a6a02
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:22:46 2013 -0500
+
+    fix admin user controller
+
+17	1	app/controllers/admin/users_controller.rb
+
+commit 553d958166de1bf2c700828a336976eb40c4e689
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:22:14 2013 -0500
+
+    fix typo in redirect call on admin base controller
+
+1	1	app/controllers/admin/base_controller.rb
+
+commit a6c67c72e76719fe623315518217b5b7b3da02d9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 16:21:44 2013 -0500
+
+    add simplecov to gemfile, bundle
+
+4	3	Gemfile
+5	0	Gemfile.lock
+
+commit 494bee8160dc9a22c7baf135e9a4aaa931287c38
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:26:45 2013 -0500
+
+    stub user edit view
+
+2	0	app/views/admin/users/edit.html.haml
+
+commit 2104ce6d9365ea57c42897110f9b00a31e777677
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:26:28 2013 -0500
+
+    add dashboard back for extra flexibility
+
+2	0	app/views/admin/base/dashboard.html.haml
+
+commit 54d5fee7a3c381e06a7a65eb9217ef1f15cc2dfe
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:25:26 2013 -0500
+
+    restrict show and destroy in admin users
+
+1	1	config/routes.rb
+
+commit 9e0c5d6cf0224ae3850e8e8308ee56651d0cd8a1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:24:46 2013 -0500
+
+    add table to admin users view
+
+14	1	app/views/admin/users/index.html.haml
+
+commit 21f8e72a173cca8babe3ba8d5d256039906009dc
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:24:15 2013 -0500
+
+    add controller actions to admin users
+
+13	0	app/controllers/admin/users_controller.rb
+
+commit 82f98599f1b758034760da95b6f8f4031231e498
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:10:47 2013 -0500
+
+    add users to admin namespace, set root to dashboard
+
+2	1	config/routes.rb
+
+commit 1d35529f4d51b84245a6e263ee3b34f275ce791f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:10:21 2013 -0500
+
+    add nav links to admin layout
+
+2	2	app/views/layouts/admin.haml
+
+commit 3d45430342cbcf63b9cc6a31ca13c7dc16cf3dc0
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:10:00 2013 -0500
+
+    add users index page
+
+2	2	app/views/admin/users/index.html.haml
+
+commit af9c04282ab41426665c2f0bf4b8647c0690431f
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:09:35 2013 -0500
+
+    add nav_link helper
+
+8	0	app/helpers/admin/base_helper.rb
+
+commit 283da2bc3569959c5ed0592c34d50a43baa947e1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:07:40 2013 -0500
+
+    add index action
+
+5	0	app/controllers/admin/users_controller.rb
+
+commit 4bf5819b50110d717b320d271819032c8bf0c0d9
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:07:02 2013 -0500
+
+    add require_admin check to admin base controller
+
+7	1	app/controllers/admin/base_controller.rb
+
+commit 3b7418dba9b281da1bf4db8c3c3f53851a948b3c
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 14:06:15 2013 -0500
+
+    add formatted_form require
+
+1	0	app/assets/javascripts/admin.js.coffee
+0	2	app/views/admin/base/dashboard.html.haml
+2	0	app/views/admin/users/index.html.haml
+
+commit d1b66a095f08e245ede677ff73bd8caa55a066d1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 13:42:22 2013 -0500
+
+    setup the bootstrap admin section
+
+7	0	app/assets/javascripts/admin.js.coffee
+14	0	app/assets/stylesheets/admin.css.scss
+2	0	app/views/admin/base/dashboard.html.haml
+20	0	app/views/layouts/admin.haml
+
+commit 4e8174fddf3f511d924621bb0162af22a494eed1
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 13:41:59 2013 -0500
+
+    remove redundant html5 shim
+
+1	4	app/views/layouts/_head.haml
+
+commit 6856c16d6491a9ca6bc9584c5d9788b567cce13e
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:52:57 2013 -0500
+
+    add admin layout
+
+18	0	app/views/layouts/admin.haml
+
+commit 472baa37297fd534fdd7d170adc888f6b880fc85
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:52:45 2013 -0500
+
+    whitespace
+
+5	5	test/unit/user_test.rb
+
+commit d9d414c90de02c78ba2c9df68d1413adafe3233b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:51:53 2013 -0500
+
+    add admin users to db/seed
+
+12	7	db/seeds.rb
+
+commit 11a8bb417464bfacab8c40514cea0474b53b0ad3
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:50:59 2013 -0500
+
+    add is_admin to assignable attibutes
+
+13	12	app/models/user.rb
+
+commit 35f364196e87b097516a46e4e07d50823594e375
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:14:00 2013 -0500
+
+    add admin namespace to routes
+
+5	2	config/routes.rb
+
+commit 3703a87d05790456d658fa58ba0de9299c250e25
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:13:44 2013 -0500
+
+    whitespace
+
+2	2	app/views/layouts/application.haml
+
+commit bbd81f6e0ae05a284f7b6369900c0127768acd79
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:13:29 2013 -0500
+
+    have admin users controller inherit from admin base controller
+
+2	1	app/controllers/admin/users_controller.rb
+
+commit 6206e42a0d82eb0377c8b355d0ee020ff53a4005
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 12:12:48 2013 -0500
+
+    set up base admin controller
+
+8	0	app/controllers/admin/base_controller.rb
+
+commit e729e7d853d77cfedca9bb6b98308cf87c670797
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 11:23:24 2013 -0500
+
+    add users controller
+
+3	0	app/assets/javascripts/admin/users.js.coffee
+3	0	app/assets/stylesheets/admin/users.css.scss
+2	0	app/controllers/admin/users_controller.rb
+2	0	app/helpers/admin/users_helper.rb
+7	0	test/functional/admin/users_controller_test.rb
+4	0	test/unit/helpers/admin/users_helper_test.rb
+
+commit 300a200e0cdfbc75a010291c7949db6e3153cb6d
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 11:22:44 2013 -0500
+
+    add admin base controller
+
+3	0	app/assets/javascripts/admin/base.js.coffee
+3	0	app/assets/stylesheets/admin/base.css.scss
+2	0	app/controllers/admin/base_controller.rb
+2	0	app/helpers/admin/base_helper.rb
+7	0	test/functional/admin/base_controller_test.rb
+4	0	test/unit/helpers/admin/base_helper_test.rb
+
+commit 9046645c8101331706d4c28240cde9b6a506a10b
+Author: Will Langstroth <will@langstroth.com>
+Date:   Tue Feb 19 11:08:16 2013 -0500
+
+    fix gemfile permission
+
+0	0	Gemfile
+
+commit b15ef98dec4ce504262f8d782aa8c439c2136270
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 13:56:47 2013 -0500
+
+    adding tests for new order action
+
+1	0	app/views/orders/new.html.haml
+1	1	app/views/users/dashboard.html.haml
+13	0	test/functional/orders_controller_test.rb
+
+commit 57245834edbfaae384926fa6be66b1342468e1a3
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 13:44:52 2013 -0500
+
+    credit card form and order model added
+
+1	0	app/assets/stylesheets/application.scss
+1	0	app/assets/stylesheets/orders/_base.css.scss
+8	0	app/assets/stylesheets/orders/new.css.scss
+7	0	app/controllers/orders_controller.rb
+0	7	app/controllers/payments_controller.rb
+18	0	app/models/order.rb
+1	0	app/models/user.rb
+38	0	app/views/orders/new.html.haml
+0	12	app/views/payments/new.html.haml
+1	1	app/views/users/dashboard.html.haml
+1	1	config/routes.rb
+15	0	db/migrate/20130219175934_create_orders.rb
+13	1	db/schema.rb
+19	0	test/fixtures/orders.yml
+7	0	test/unit/order_test.rb
+
+commit f15802db144bed9e03c3ab102cca6cc4101eb365
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 11:45:51 2013 -0500
+
+    updating method name to be more accurate
+
+1	1	app/models/user.rb
+4	0	app/views/payments/new.html.haml
+3	3	test/unit/user_test.rb
+
+commit 041b69f095f439d7b04259168a0f5ea0fe3bead0
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 11:42:17 2013 -0500
+
+    building out the models
+
+5	1	app/models/player.rb
+8	0	app/models/user.rb
+8	0	db/migrate/20130219161403_add_default_false_to_players_paid.rb
+4	4	db/schema.rb
+9	0	test/unit/player_test.rb
+13	0	test/unit/user_test.rb
+
+commit 41db3fc1a29e045116b4c14c753bfb7a19b1d4fc
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Feb 19 10:21:16 2013 -0500
+
+    commiting for William
+
+7	0	app/controllers/payments_controller.rb
+2	0	app/models/player.rb
+8	0	app/views/payments/new.html.haml
+5	2	app/views/users/dashboard.html.haml
+1	0	config/routes.rb
+
+commit c6fb03e78556e568b8cd7a3858610d28ea827fd0
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 15 15:49:52 2013 -0500
+
+    validations for players are now in place
+
+20	0	app/models/player.rb
+11	5	test/fixtures/players.yml
+13	6	test/functional/players_controller_test.rb
+14	3	test/unit/player_test.rb
+
+commit 8bb5747a00537df6487bcddcca33582e7e2554c6
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 15 14:47:16 2013 -0500
+
+    added ability to upload files
+
+3	2	Gemfile
+2	2	Gemfile.lock
+-	-	app/assets/images/avatars/missing_100x100_avatar.png
+-	-	app/assets/images/avatars/missing_300x300_avatar.png
+5	0	app/assets/stylesheets/players.css.scss
+7	1	app/models/player.rb
+5	1	app/views/players/edit.html.haml
+5	1	app/views/players/new.html.haml
+1	0	app/views/users/dashboard.html.haml
+9	0	db/migrate/20130215171417_add_avatar_to_players.rb
+7	3	db/schema.rb
+2	2	test/functional/users_controller_test.rb
+
+commit 159b953ce15e3ebf1f211591a9676edde88f1a27
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 15 12:09:20 2013 -0500
+
+    fixing broken test
+
+1	1	test/functional/players_controller_test.rb
+
+commit 2a8c7efd01252b7059643f9b0128e04da443f4e1
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 15 12:05:09 2013 -0500
+
+    now able to update and edit players
+
+1	0	app/assets/javascripts/application.js
+1	0	app/assets/stylesheets/application.scss
+9	0	app/assets/stylesheets/components/alerts.css.scss
+15	0	app/assets/stylesheets/players.css.scss
+18	1	app/controllers/players_controller.rb
+2	2	app/controllers/users_controller.rb
+11	0	app/helpers/application_helper.rb
+4	0	app/views/layouts/application.haml
+28	0	app/views/players/edit.html.haml
+1	7	app/views/players/new.html.haml
+22	9	app/views/users/dashboard.html.haml
+2	2	test/fixtures/players.yml
+30	0	test/functional/players_controller_test.rb
+
+commit 6d56d0fb9c389b2a16e2cfe5c1d5da30e608cb2f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Feb 15 10:20:36 2013 -0500
+
+    a user is now able to create players
+
+1	0	app/assets/stylesheets/application.scss
+4	4	app/assets/stylesheets/pages/register.scss
+53	0	app/assets/stylesheets/players.css.scss
+53	0	app/assets/stylesheets/users.css.scss
+19	0	app/controllers/players_controller.rb
+34	0	app/views/players/new.html.haml
+3	1	app/views/users/dashboard.html.haml
+14	15	app/views/users/new.html.haml
+1	1	config/routes.rb
+29	3	test/functional/players_controller_test.rb
+
+commit e67978d5a018778c9c3e2f75119dd65f8b6c747f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 14 17:21:52 2013 -0500
+
+    adding players
+
+1	0	Gemfile
+2	0	Gemfile.lock
+2	0	app/controllers/players_controller.rb
+2	2	app/controllers/users_controller.rb
+2	0	app/helpers/players_helper.rb
+31	0	app/models/player.rb
+3	0	app/models/user.rb
+3	0	config/routes.rb
+17	0	db/migrate/20130214205514_create_players.rb
+15	1	db/schema.rb
+23	0	test/fixtures/players.yml
+7	0	test/functional/players_controller_test.rb
+3	3	test/functional/social_registrations_controller_test.rb
+4	0	test/unit/helpers/players_helper_test.rb
+29	0	test/unit/player_test.rb
+
+commit ea2e3a1a5e3e80b6352ba1a945b178bab1cdca9d
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 14 15:32:30 2013 -0500
+
+    user is now able to update account
+
+1	0	app/assets/stylesheets/application.scss
+5	0	app/assets/stylesheets/pages/dashboard.css.scss
+3	0	app/controllers/passwords_controller.rb
+1	0	app/controllers/social_registrations_controller.rb
+17	2	app/controllers/users_controller.rb
+4	0	app/views/layouts/_topnav.haml
+6	3	app/views/users/dashboard.html.haml
+17	0	app/views/users/edit.html.haml
+39	2	test/functional/social_registrations_controller_test.rb
+50	0	test/functional/users_controller_test.rb
+
+commit a5d1b5b8cf6c57b8cc65a4c1dfe82ef550a7f212
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 14 12:05:07 2013 -0500
+
+    removing old fields from user model
+
+7	2	Gemfile
+12	0	Gemfile.lock
+7	0	app/controllers/social_registrations_controller.rb
+1	0	app/controllers/users_controller.rb
+9	18	app/models/user.rb
+0	13	app/views/users/new.html.haml
+21	0	db/migrate/20130214163344_remove_user_fields.rb
+1	9	db/schema.rb
+0	5	test/fixtures/users.yml
+34	0	test/functional/social_registrations_controller_test.rb
+0	4	test/functional/user_mailer_test.rb
+3	15	test/functional/users_controller_test.rb
+9	12	test/unit/user_test.rb
+
+commit b8d2ed1833f30c059afb4fd8c2f13712ee2385a5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 14 10:22:19 2013 -0500
+
+    adding system folder to ignore file
+
+1	0	.gitignore
+
+commit be64f90cc041201eafa9b084e810a2b3f19772da
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Feb 14 10:21:52 2013 -0500
+
+    removing test uploads folder
+
+-	-	public/system/users/photos/593/363/171/130x130/rails.png
+-	-	public/system/users/photos/593/363/171/260x260/rails.png
+-	-	public/system/users/photos/593/363/171/80x80/rails.png
+-	-	public/system/users/photos/593/363/171/original/rails.png
+-	-	public/system/users/photos/593/363/172/130x130/rails.png
+-	-	public/system/users/photos/593/363/172/260x260/rails.png
+-	-	public/system/users/photos/593/363/172/80x80/rails.png
+-	-	public/system/users/photos/593/363/172/original/rails.png
+
+commit 8b28a90cfb527cbba5391f0be03606f56638097a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 13 18:20:14 2013 -0500
+
+    getting rid of older unused files
+
+0	34	app/assets/javascripts/accounts.js
+0	3	app/assets/stylesheets/contact_form.css.scss
+0	3	app/assets/stylesheets/sessions.css.scss
+0	26	app/controllers/accounts_controller.rb
+0	59	app/controllers/sessions_controller.rb
+0	2	app/helpers/accounts_helper.rb
+0	15	app/mailers/account_mailer.rb
+0	117	app/models/account.rb
+0	20	app/models/contact.rb
+0	17	app/models/medical_info.rb
+0	49	app/models/person.rb
+0	35	app/models/system_value.rb
+0	127	app/views/account_mailer/email_verification.html.erb
+0	7	app/views/account_mailer/email_verification.text.erb
+0	11	app/views/accounts/incomplete_fb.haml
+0	44	app/views/accounts/new.haml
+0	11	app/views/accounts/registration_instructions.haml
+0	11	app/views/accounts/unverified_fb.haml
+0	2	app/views/sessions/callback.html.erb
+0	0	app/views/sessions/create.haml
+0	25	db/migrate/20121203204730_create_accounts.rb
+0	30	db/migrate/20121204181426_create_people.rb
+0	31	db/migrate/20121204181647_create_contacts.rb
+0	19	db/migrate/20121204181812_create_medical_infos.rb
+0	14	db/migrate/20130202232929_add_system_value_table.rb
+0	39	lib/session_patch.rb
+0	12	test/fixtures/accounts.yml
+0	7	test/fixtures/people.yml
+0	7	test/functional/account_mailer_test.rb
+0	43	test/functional/accounts_controller_test.rb
+0	9	test/functional/sessions_controller_test.rb
+0	135	test/unit/account_test.rb
+0	7	test/unit/contact_test.rb
+0	7	test/unit/medical_info_test.rb
+0	87	test/unit/person_test.rb
+0	13	test/unit/system_value_test.rb
+
+commit 0aaab8d78f9bfccbdceb2686a3dfe67f2c8fcf21
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Feb 13 18:20:01 2013 -0500
+
+    big refactor of the account model
+
+9	4	Gemfile
+52	10	Gemfile.lock
+-	-	app/assets/images/sprite-house-18x18.png
+1	1	app/assets/javascripts/application.js
+34	0	app/assets/javascripts/users.js
+2	0	app/assets/stylesheets/application.scss
+4	1	app/assets/stylesheets/layouts/topnav.scss
+3	3	app/assets/stylesheets/pages/register.scss
+8	0	app/assets/stylesheets/user_sessions/new.scss
+9	0	app/controllers/application_controller.rb
+1	0	app/controllers/contact_forms_controller.rb
+2	0	app/controllers/pages_controller.rb
+42	0	app/controllers/passwords_controller.rb
+46	0	app/controllers/social_registrations_controller.rb
+27	0	app/controllers/user_sessions_controller.rb
+53	0	app/controllers/users_controller.rb
+2	0	app/helpers/users_helper.rb
+6	6	app/mailers/mail_preview.rb
+21	0	app/mailers/user_mailer.rb
+43	0	app/models/user.rb
+23	28	app/views/layouts/_topnav.haml
+1	1	app/views/pages/home.haml
+11	0	app/views/passwords/edit.html.haml
+9	0	app/views/passwords/new.html.haml
+11	0	app/views/social_registrations/incomplete_fb.html.haml
+11	0	app/views/social_registrations/unverified_fb.html.haml
+15	0	app/views/user_sessions/_form.html.haml
+0	0	app/views/user_sessions/create.haml
+13	0	app/views/user_sessions/new.html.haml
+8	0	app/views/users/dashboard.html.haml
+43	0	app/views/users/new.html.haml
+11	0	app/views/users/registration_instructions.html.haml
+0	5	config/application.rb
+2	6	config/initializers/session_store.rb
+417	0	config/initializers/sorcery.rb
+15	7	config/routes.rb
+34	0	db/migrate/20121203204730_create_users.rb
+5	0	db/migrate/20130212210226_add_date_of_birth_to_users.rb
+5	0	db/migrate/20130212210527_add_gender_to_users.rb
+11	0	db/migrate/20130213224829_change_facebook_id_and_access_token_to_users.rb
+31	93	db/schema.rb
+-	-	public/system/users/photos/593/363/171/130x130/rails.png
+-	-	public/system/users/photos/593/363/171/260x260/rails.png
+-	-	public/system/users/photos/593/363/171/80x80/rails.png
+-	-	public/system/users/photos/593/363/171/original/rails.png
+-	-	public/system/users/photos/593/363/172/130x130/rails.png
+-	-	public/system/users/photos/593/363/172/260x260/rails.png
+-	-	public/system/users/photos/593/363/172/80x80/rails.png
+-	-	public/system/users/photos/593/363/172/original/rails.png
+-	-	test/fixtures/files/rails.png
+16	0	test/fixtures/users.yml
+79	0	test/functional/passwords_controller_test.rb
+36	0	test/functional/user_mailer_test.rb
+47	0	test/functional/user_sessions_controller_test.rb
+121	0	test/functional/users_controller_test.rb
+16	22	test/integration/facebook_registration_test.rb
+23	6	test/test_helper.rb
+56	0	test/unit/user_test.rb
+
+commit 3f04e518f19980c8278ebdff91b427266c79d2ee
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 11 15:50:04 2013 -0500
+
+    bumping version of rails to apply security patch
+
+1	1	Gemfile
+48	51	Gemfile.lock
+
+commit d3eccc1e64d2fbf389d60532f5e8ccb9675f2598
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 11 15:46:10 2013 -0500
+
+    locking gem versions
+
+3	4	Gemfile
+3	3	Gemfile.lock
+
+commit 102df0caae629fc187f1a11d6c9f5fcd6828f34e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Feb 11 11:25:42 2013 -0500
+
+    Updating style to match the rest of the app
+
+6	5	app/models/person.rb
+15	3	app/models/system_value.rb
+
+commit 7b399c0650523143011749612066e7f61a8e9cda
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Sun Feb 3 21:33:11 2013 -0800
+
+    Fix for Broken address book after adding new member (http://redmine.rsportz.com/issues/show/2195)
+
+7	14	app/models/person.rb
+3	9	app/models/system_value.rb
+29	0	test/unit/account_test.rb
+28	6	test/unit/person_test.rb
+13	0	test/unit/system_value_test.rb
+
+commit 84b21585c155e7840d91627ab2fc2143f252df04
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Sat Feb 2 16:00:25 2013 -0800
+
+    WIP: Making person have a unique system_ident value from system_value table
+
+2	1	.gitignore
+1	0	Gemfile
+2	0	Gemfile.lock
+18	2	app/models/person.rb
+29	0	app/models/system_value.rb
+24	0	config/database.example.yml
+14	0	db/migrate/20130202232929_add_system_value_table.rb
+9	1	db/schema.rb
+2	1	test/fixtures/accounts.yml
+1	0	test/fixtures/people.yml
+5	0	test/unit/person_test.rb
+
+commit 34093b12dece881bad866a5393af5b260652b5b9
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Thu Jan 31 20:57:04 2013 -0800
+
+    Added session patch to be able to share session with Rails 2.
+
+2	1	.gitignore
+6	0	config/application.rb
+39	0	lib/session_patch.rb
+
+commit a946f942776007dfcc577b365c6ea89117324d30
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Mon Jan 28 16:02:18 2013 -0800
+
+    Use Rails 2 app secret for cookie
+
+5	1	config/initializers/secret_token.rb
+
+commit b1d907b2b8f2635a63d91d9ad0e592c94c1b1d61
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Mon Jan 28 15:36:59 2013 -0800
+
+    Changed cookie to share session with Rails 2 app
+
+5	1	config/initializers/session_store.rb
+
+commit c3a48cf5763e44dd9f062503ad8bf821ae39badb
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Mon Jan 28 15:30:49 2013 -0800
+
+    Fixed site URL
+
+1	1	app/views/layouts/_head.haml
+
+commit fdaf5862b68977e284fb04101d5ee4c3f24df0e4
+Author: Allan Schougaard <allanschougaard@yahoo.com>
+Date:   Mon Jan 28 14:26:38 2013 -0800
+
+    Changed to redirec to destination to inside of R2 app.
+
+2	2	app/controllers/sessions_controller.rb
+
+commit bd14c0dfbf14154bc3b413e7e092d893b30c929e
+Merge: 1bd6540 63957a5
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 15:32:05 2013 -0500
+
+    Merged
+
+commit 1bd6540026f8e9aa415e76a31afaef56334f2e95
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 15:29:37 2013 -0500
+
+    Merged
+
+17	15	app/controllers/sessions_controller.rb
+
+commit 63957a50392301e3540981b2712d5d828145d7a5
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 15:29:37 2013 -0500
+
+    Could use a little more cleanup, really.
+
+17	15	app/controllers/sessions_controller.rb
+
+commit a30e59c55245756ea2882f50b7a6a629f217bb2f
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 15:00:44 2013 -0500
+
+    Removed simplecov.
+
+0	1	Gemfile
+0	5	Gemfile.lock
+0	3	test/test_helper.rb
+
+commit 779636c6711f700cac41a95f16e7bdbeb920ab9c
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 14:59:45 2013 -0500
+
+    Cleaned up models/tests/etc. Fixed layout for FB well.
+
+6	0	app/assets/stylesheets/pages/register.scss
+9	1	app/controllers/sessions_controller.rb
+4	2	app/models/account.rb
+1	1	test/integration/facebook_registration_test.rb
+19	0	test/unit/account_test.rb
+
+commit 5c3d7988b9f7c33233f8a4036465fe30c17cf270
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 13:28:22 2013 -0500
+
+    Testing done, I think.
+
+2	1	.gitignore
+1	0	Gemfile
+5	0	Gemfile.lock
+49	0	test/integration/facebook_registration_test.rb
+3	0	test/test_helper.rb
+
+commit 6e4eced632f97a299943b8145787023ce21e8013
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 12:00:28 2013 -0500
+
+    Added quick check for incomplete profile.
+
+2	2	app/controllers/sessions_controller.rb
+11	0	app/views/accounts/incomplete_fb.haml
+
+commit 276a838bdcc0b57e78642252383424bdeee12565
+Author: Brian Gilham <me@briangilham.com>
+Date:   Fri Jan 25 11:43:57 2013 -0500
+
+    Cleaning up.
+
+2	2	app/views/accounts/unverified_fb.haml
+
+commit ce1c3078663f96496f687f2912c982618c0c9618
+Author: Brian Gilham <me@briangilham.com>
+Date:   Thu Jan 24 16:36:12 2013 -0500
+
+    Basic flow seemingly finished.
+
+33	21	app/controllers/sessions_controller.rb
+16	3	app/models/account.rb
+11	0	app/views/accounts/unverified_fb.haml
+
+commit ad4b37deca54330cef63981a4b6a8d53a1d65e7e
+Author: Brian Gilham <me@briangilham.com>
+Date:   Thu Jan 24 12:25:53 2013 -0500
+
+    Working out how to login/register a Facebook user.
+
+9	12	app/controllers/sessions_controller.rb
+
+commit e39a1e5b5d096cb2a67d9f0092a782d39825aedc
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Jan 11 11:47:30 2013 -0500
+
+    Fixing an issue Person object not properly saving foreign keys durign callbacks
+
+1	0	.gitignore
+3	3	Gemfile.lock
+2	0	app/models/account.rb
+1	2	app/models/contact.rb
+1	1	test/functional/accounts_controller_test.rb
+5	1	test/unit/account_test.rb
+
+commit 2e10b01eede3153bfb0e593a5d764e17e58d6ca2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Jan 10 13:54:02 2013 -0500
+
+    bumping rails and adding settings.example.yml
+
+1	1	Gemfile
+37	36	Gemfile.lock
+18	0	config/settings.example.yml
+
+commit ed9328748221ba140eb89749acb5168b992aabfd
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Fri Jan 4 15:20:17 2013 -0800
+
+    Fixing the forgot password link
+    
+    The jQuery selector was targeting all links in the login dropdown, so I
+    added a class to the login anchor and told the selector to target only
+    that class.
+
+1	1	app/assets/javascripts/application.js
+1	1	app/views/layouts/_topnav.haml
+
+commit 8af171dafebbe29c1b7d770521fb75b77869e62b
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Fri Jan 4 14:55:07 2013 -0800
+
+    Updating the footer links
+
+3	3	app/views/layouts/_footer.haml
+
+commit 20cde021849f00f4ec1e4d49dadcc9bfddf00d67
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Fri Jan 4 14:52:37 2013 -0800
+
+    Updating the forgot password link
+
+1	1	app/views/layouts/_topnav.haml
+
+commit 1c4791ad79957aeb89f4d216c8f50a4dfc639909
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Fri Jan 4 14:32:40 2013 -0800
+
+    Ignoring Aptana's .project file
+
+2	1	.gitignore
+
+commit 61d21fef7e489d6319ff0017abadffaa95883c87
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Fri Jan 4 14:30:26 2013 -0800
+
+    Adding the login post URL
+
+1	1	app/views/layouts/_topnav.haml
+
+commit ccd15a7971d02c418dc9170a34ddbddf223ae5f4
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Sun Dec 30 14:51:40 2012 -0800
+
+    Changing the leader marketing text
+    
+    From ATHLETES SAY HELLO TO YOUR FANBASE to SEE YOUR STATS.  Based on
+    almost unanimous negative feedback.
+
+3	3	app/assets/stylesheets/components/slideshow.scss
+1	1	app/views/pages/home.haml
+
+commit 119b4a9ade60d0bdc26959eb48f70258d09538a3
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Wed Dec 26 11:46:15 2012 -0800
+
+    Updating Gemfile
+
+4	0	Gemfile
+14	7	Gemfile.lock
+
+commit e8d753fe92ebeda5f53d6229c6f9d0f9fda59df2
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Wed Dec 26 11:36:42 2012 -0800
+
+    Fixing login-dropdown issues
+    
+    .slideshow.container and .login-dropdown both had a z-index of 1000,
+    which was making the login-dropdown show up below the main h3 on mobile
+    view;  also changed border-radius on login-dropdown to have a more
+    seamless look (90 degree on the top left corner)
+
+2	2	app/assets/stylesheets/layouts/topnav.scss
+
+commit ee9c448e689ced0a7d9c1703d015aa6b5eb01b50
+Author: Sean Connelly <sean@seanconnelly.me>
+Date:   Wed Dec 26 11:16:08 2012 -0800
+
+    Updated the share-container in the footer
+    
+    Changed the Facebook like button from iFrame to HTML5; stacked the
+    buttons; related style adjustments
+
+14	4	app/assets/stylesheets/layouts/footer.scss
+4	1	app/views/layouts/_footer.haml
+
+commit 0b5b3f8ee880545e55d81f3ff18dbae7daac40d5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 20:36:47 2012 -0500
+
+    fixing order of slides
+
+-	-	app/assets/images/slide-1.jpg
+-	-	app/assets/images/slide-3.jpg
+
+commit 0644a2138238bd7c637b1018caf77d9743b2c094
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 20:35:52 2012 -0500
+
+    removing previous placeholder image
+
+1	1	app/assets/stylesheets/components/slideshow.scss
+
+commit 843bb92f54c1c0efc298ce7804dc54ee75dd7731
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 20:34:17 2012 -0500
+
+    adding slideshow
+
+-	-	app/assets/images/slide-1.jpg
+-	-	app/assets/images/slide-2.jpg
+-	-	app/assets/images/slide-3.jpg
+60	0	app/assets/javascripts/homepage.js
+30	0	app/assets/stylesheets/components/slideshow.scss
+6	0	app/views/pages/home.haml
+
+commit 47314e8ad2a8a586fe783142a3d0506bea420ebe
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 18:41:04 2012 -0500
+
+    cleaning up the javascript
+
+34	0	app/assets/javascripts/accounts.js
+0	6	app/assets/javascripts/accounts.js.coffee
+50	147	app/assets/javascripts/application.js
+0	0	app/assets/javascripts/contact_form.js
+0	3	app/assets/javascripts/contact_form.js.coffee
+66	0	app/assets/javascripts/homepage.js
+0	3	app/assets/javascripts/pages.js.coffee
+31	0	app/assets/javascripts/placeholders.js
+0	3	app/assets/javascripts/sessions.js.coffee
+39	0	app/assets/javascripts/validations.js
+7	0	app/assets/stylesheets/layouts/topnav.scss
+
+commit 62f971b947509bbe9f27625056e4409ee19379c3
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 17:49:15 2012 -0500
+
+    Cleaning up the sessions_controller
+
+11	4	app/controllers/sessions_controller.rb
+2	2	app/views/accounts/new.haml
+2	2	app/views/accounts/registration_instructions.haml
+1	1	config/routes.rb
+
+commit e1bad341178aa2322a3af09748a756ccd342ad79
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 17:35:24 2012 -0500
+
+    trying to fix twitter and facebook button
+
+4	2	app/assets/stylesheets/layouts/footer.scss
+2	2	app/views/layouts/_footer.haml
+
+commit 2784fcf5a3ab4c6d80d08613696be8517b80ff60
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 16:40:27 2012 -0500
+
+    footer share links now visible on mobile
+
+10	0	app/assets/stylesheets/layouts/footer.scss
+13	9	app/views/layouts/_footer.haml
+
+commit 5327649f49c472eacbbfd855a551e27b37344950
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 21 16:33:32 2012 -0500
+
+    Adding thank you page for successful contact submit
+
+4	1	app/controllers/contact_forms_controller.rb
+11	0	app/views/contact_forms/thankyou.haml
+2	1	config/routes.rb
+0	7	test/functional/contact_form_test.rb
+1	1	test/functional/contact_forms_controller_test.rb
+
+commit b26199d8d3c2cf7aaefa47cb163a9fe9f3b34869
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 18:30:59 2012 -0500
+
+    adding page title and meta description
+
+4	0	app/helpers/application_helper.rb
+10	0	app/views/layouts/_head.haml
+
+commit 553b034faed79a968e76c13034fdf9dd2ee2e3e9
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 18:22:06 2012 -0500
+
+    another fix
+
+3	1	app/views/layouts/_head.haml
+
+commit eafd1dcd20cd2c3e4d14ccfd7343cab3aaa0f084
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 18:20:08 2012 -0500
+
+    opps - syntax fix
+
+1	1	app/views/layouts/_head.haml
+
+commit 17ad366fece8da1578adb36ec1dcbc676f130855
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 18:19:04 2012 -0500
+
+    adding html5 shiv
+
+3	0	app/views/layouts/_head.haml
+
+commit b97683ba1dd899949c2b8a4d1823b4810fdad8c2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 18:14:45 2012 -0500
+
+    changing the height of the facebook share button
+
+1	1	app/views/layouts/_footer.haml
+
+commit 1c534b841b535ba7ef3ce1d11e9b88c2009e5427
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 18:09:03 2012 -0500
+
+    adding facebook and twitter icons
+
+20	0	app/assets/stylesheets/layouts/footer.scss
+9	2	app/views/layouts/_footer.haml
+8	1	app/views/layouts/_head.haml
+
+commit dee57898dc2f061c989d83ed32b89493c076e0f6
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 16:59:44 2012 -0500
+
+    fixing email template path for staging
+
+1	1	config/environments/staging/settings.yml
+
+commit ab304fd29dd91185750f1a5e270bf4ebf7043fc5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 16:55:14 2012 -0500
+
+    adding footer to email templates
+
+11	0	app/views/account_mailer/email_verification.html.erb
+11	0	app/views/contact_form_mailer/contact_form_message.html.erb
+
+commit 0cb0cc25821737e481e3e0155910fac732ed5590
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 16:43:10 2012 -0500
+
+    updating email templates
+
+1	1	Gemfile
+3	0	Gemfile.lock
+-	-	app/assets/images/email-footer.jpg
+-	-	app/assets/images/email-header.jpg
+-	-	app/assets/images/email-manage-icon.png
+-	-	app/assets/images/email-people-icon.png
+2	0	app/mailers/account_mailer.rb
+2	0	app/mailers/contact_form_mailer.rb
+28	0	app/mailers/mail_preview.rb
+0	5	app/views/account_mailer/email_verification.haml
+116	0	app/views/account_mailer/email_verification.html.erb
+4	2	app/views/account_mailer/email_verification.text.erb
+67	8	app/views/contact_form_mailer/contact_form_message.html.erb
+8	1	config/routes.rb
+0	4	test/unit/contact_form_test.rb
+
+commit f40773d0596b2401e7bebe852beb76392877834e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 14:17:32 2012 -0500
+
+    Updating copy and icon
+
+-	-	app/assets/images/sprite-customer-service-70x55.png
+6	5	app/assets/stylesheets/components/slideshow.scss
+1	1	app/assets/stylesheets/pages/home.scss
+5	3	app/views/layouts/_footer.haml
+1	1	app/views/layouts/_topnav.haml
+27	27	app/views/pages/home.haml
+
+commit 7195fba756c7c9bbd4231672d31e279ddbf853b1
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 13:47:53 2012 -0500
+
+    Facebook interaction is now tested
+
+4	0	app/controllers/sessions_controller.rb
+64	0	test/integration/facebook_registration_test.rb
+
+commit d82a05903bf6d8d0b98cad7df98d636713700dfc
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 20 11:16:49 2012 -0500
+
+    fixing date_of_birth and gender parsing for facebook signup
+
+12	26	app/controllers/sessions_controller.rb
+2	2	app/views/accounts/new.haml
+17	0	config/initializers/core_extentions.rb
+
+commit e4ff247c7ca66921c02790fd68808762d95d2577
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 19 12:05:24 2012 -0500
+
+    updating session store
+
+1	1	config/environments/staging/settings.yml
+1	1	config/initializers/secret_token.rb
+1	1	config/initializers/session_store.rb
+12	0	db/migrate/20121219165859_add_sessions_table.rb
+11	1	db/schema.rb
+
+commit 878677e93077c91c2afad07413beb7a3b1cb56f9
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 18 10:51:32 2012 -0500
+
+    updating facebook api key and font-stack
+
+1	1	app/assets/stylesheets/typography.scss
+2	2	config/environments/staging/settings.yml
+
+commit fbfcb9ef3042fa17b6a2383758ba1c61099ec8ec
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 17:52:40 2012 -0500
+
+    adding login dropdown
+
+40	0	app/assets/javascripts/application.js
+1	0	app/assets/stylesheets/components/buttons.scss
+87	1	app/assets/stylesheets/layouts/topnav.scss
+24	0	app/assets/stylesheets/mixins/css3.scss
+16	0	app/views/layouts/_topnav.haml
+2	2	config/environments/staging/settings.yml
+
+commit d8b651aef0cd7f34068e950a0fba43116c97fd2c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 16:06:06 2012 -0500
+
+    adding dropshadow to homepage paragraph
+
+1	0	app/assets/stylesheets/components/slideshow.scss
+
+commit ad0d991863cd0d14646ec03311c940234f287a1c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 15:57:06 2012 -0500
+
+    fixing feature details issues
+
+-	-	app/assets/images/sprite-sports-management-70x55.png
+8	9	app/assets/javascripts/application.js
+3	0	app/assets/stylesheets/mixins/responsive.scss
+11	0	app/assets/stylesheets/pages/home.scss
+
+commit 6b76488da1c6e675c6938dbdb656d51cf654d08a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 15:12:30 2012 -0500
+
+    now validating first_name and last_name
+
+12	0	app/assets/javascripts/application.js
+
+commit 5e6ac6b6ccc9a06fd09868e34900c7939d185454
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 14:53:39 2012 -0500
+
+    now validating first_name and last_name
+
+3	1	app/models/person.rb
+11	0	test/unit/person_test.rb
+
+commit 48d0fc08a6abec074f97d922f2090857ed960158
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 14:41:02 2012 -0500
+
+    now validating date of birth properly
+
+3	0	app/assets/javascripts/accounts.js.coffee
+41	1	app/assets/javascripts/application.js
+3	2	app/assets/stylesheets/application.scss
+12	0	test/unit/person_test.rb
+506	0	vendor/assets/javascripts/moment.js
+
+commit 6fd065e1be0745e3899f6a9ed4a165d58823aa0b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 11:05:22 2012 -0500
+
+    adding 90 years to birthday dropdown
+
+2	1	Gemfile
+5	1	Gemfile.lock
+1	1	app/models/account.rb
+4	0	app/models/person.rb
+1	1	app/views/accounts/new.haml
+1	1	test/functional/accounts_controller_test.rb
+
+commit fa01716a561e62bf4f09e634fe6524ee3d0cdb45
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 10:47:29 2012 -0500
+
+    updating facebook key
+
+2	2	config/environments/staging/settings.yml
+
+commit 829f890e39a9374d2ab8cbdf7f3b85762e300da3
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 17 10:44:07 2012 -0500
+
+    adding more fonts as fallbacks
+
+1	1	app/assets/stylesheets/components/buttons.scss
+0	1	app/assets/stylesheets/components/slideshow.scss
+1	2	app/assets/stylesheets/layouts/topnav.scss
+0	1	app/assets/stylesheets/pages/home.scss
+7	2	app/assets/stylesheets/typography.scss
+
+commit 65ee329d3034390a555424e288bcf5292c34344f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 13:51:07 2012 -0500
+
+    updating footer links
+
+3	3	app/views/layouts/_footer.haml
+1	1	app/views/layouts/_topnav.haml
+
+commit a7f4627fe732b0acd2a018ac205e3cb62d445fb5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 12:08:54 2012 -0500
+
+    postage app update
+
+1	1	app/mailers/account_mailer.rb
+1	1	app/mailers/contact_form_mailer.rb
+
+commit fb9bf8d99a2e47736303747b2600b6a4fafac291
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 12:07:52 2012 -0500
+
+    adding postage app
+
+1	0	Gemfile
+3	0	Gemfile.lock
+3	0	config/initializers/postageapp.rb
+85	0	lib/tasks/postageapp_tasks.rake
+
+commit 95d7afa91c0812a655d675794fd9686b7a0cba84
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:56:36 2012 -0500
+
+    removing airbrake stuff from deploy
+
+0	2	config/deploy.rb
+
+commit 19499bff05d8041e64c5168cc065cae668c53360
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:55:58 2012 -0500
+
+    updating configs
+
+1	1	config/deploy.rb
+2	1	config/environments/staging/rsportz.twg.ca.conf
+
+commit 3b42038ff94eafead2fd113bb2f2e8899b3280b4
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:43:22 2012 -0500
+
+    opps, another file rename
+
+0	11	config/environments/staging/rportz.twg.ca.conf
+11	0	config/environments/staging/rsportz.twg.ca.conf
+
+commit 2bd832d5f7c5b53ba373180380d66fa08d25798a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:39:50 2012 -0500
+
+    renaming conf file
+
+11	0	config/environments/staging/rportz.twg.ca.conf
+0	11	config/environments/staging/rportz.twg.com.conf
+
+commit 0f164ab3ee9c43a0700bdc1af760d7ebc1a107aa
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:38:16 2012 -0500
+
+    adding apache conf file
+
+11	0	config/environments/staging/rportz.twg.com.conf
+
+commit 7501624839cf5b93bd1cb02c8cb0b38bcc86dd4b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:15:46 2012 -0500
+
+    updating database file
+
+7	0	config/deploy.rb
+
+commit 67fd05e4acafc8769c280a5d0feee5e78aff9f29
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 11:08:11 2012 -0500
+
+    updating database credentials for staging
+
+8	0	README.rdoc
+2	2	config/environments/staging/database.yml
+
+commit 05cbe6c33dafb5409b3002652857f37589e2a9e9
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 10:41:21 2012 -0500
+
+    adding staging specific configs
+
+10	0	config/environments/staging/database.yml
+7	0	config/environments/staging/settings.yml
+
+commit e232accc20ef83d94018947636009ddf1ae19b7e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 10:36:36 2012 -0500
+
+    adding airbrake settings
+
+3	1	config/deploy.rb
+3	0	config/initializers/airbrake.rb
+
+commit fc45acb6770e8197ed46e8b96000fc653d00bcc6
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 10:29:07 2012 -0500
+
+    updating gems
+
+1	1	Gemfile.lock
+
+commit 0c2d499c44c19fe101472f04694e701f42c7aca3
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 10:20:29 2012 -0500
+
+    Story 8587: Deployment to staging
+
+4	0	Capfile
+2	0	Gemfile
+11	0	Gemfile.lock
+56	0	config/deploy.rb
+
+commit 7607520ea4a9b47b49406c4471cf0eec072c0377
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 01:56:22 2012 -0500
+
+    placeholder facebook integration complete
+
+34	11	app/controllers/sessions_controller.rb
+7	6	app/views/accounts/new.haml
+1	1	app/views/layouts/_topnav.haml
+0	0	app/views/sessions/create.haml
+
+commit d0d6c510721717bd8648bbbf38f7cde47772d174
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 01:17:27 2012 -0500
+
+    updating mobile
+
+9	0	app/assets/stylesheets/pages/register.scss
+
+commit d4d88dfa798ac6208238a94119ebb05f25912a33
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 01:12:06 2012 -0500
+
+    adding facebook button on registration page
+
+-	-	app/assets/images/bg-component-well.png
+1	0	app/assets/stylesheets/application.scss
+1	1	app/assets/stylesheets/components/forms.scss
+7	0	app/assets/stylesheets/components/wells.scss
+14	0	app/assets/stylesheets/pages/register.scss
+4	1	app/views/accounts/new.haml
+2	2	app/views/pages/home.haml
+
+commit 1f3e44994e7ccd84e04acf2ca4c61d23268dd907
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 00:55:21 2012 -0500
+
+    adding red arrow to layout
+
+-	-	app/assets/images/sprite-red-arrow-76x22.png
+12	1	app/assets/stylesheets/layouts/footer.scss
+35	9	app/assets/stylesheets/pages/home.scss
+5	0	app/views/layouts/_flash_messages.haml
+1	0	app/views/layouts/_footer.haml
+3	1	app/views/pages/home.haml
+
+commit 5a9cf7c571ed185dcd0ecf336cbd3c845cfa88dd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 14 00:32:12 2012 -0500
+
+    adding inline validation
+
+13	0	app/assets/javascripts/application.js
+13	0	app/assets/stylesheets/components/forms.scss
+7	7	app/views/accounts/new.haml
+3	3	app/views/contact_forms/show.haml
+1217	0	vendor/assets/javascripts/jquery.validate.js
+
+commit 96278dce5346f12c668adf507b41db76426e3616
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 13 23:45:35 2012 -0500
+
+    contact form update
+
+1	1	app/views/contact_forms/show.haml
+
+commit bff699e373942a7e66ee8c225dd1f9269bb13631
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 13 18:01:57 2012 -0500
+
+    Story 8544: Contact Page
+
+7	6	app/controllers/contact_forms_controller.rb
+2	6	app/mailers/account_mailer.rb
+12	0	app/mailers/contact_form_mailer.rb
+1	1	app/models/account.rb
+2	6	app/models/contact_form.rb
+0	0	app/views/account_mailer/contact_form_message.text.erb
+10	0	app/views/contact_form_mailer/contact_form_message.html.erb
+10	0	app/views/contact_form_mailer/contact_form_message.text.erb
+0	1	test/functional/accounts_controller_test.rb
+7	0	test/functional/contact_form_test.rb
+7	7	test/functional/contact_forms_controller_test.rb
+2	0	test/test_helper.rb
+
+commit 5c0ffe2ef566ff12bc1637df5d2fd2067cd568f6
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 13 17:20:21 2012 -0500
+
+    Story 8544: Contact page with email integration
+
+10	10	Gemfile
+3	0	app/assets/javascripts/contact_form.js.coffee
+1	0	app/assets/stylesheets/application.scss
+3	0	app/assets/stylesheets/contact_form.css.scss
+3	0	app/assets/stylesheets/pages/contact.scss
+23	0	app/controllers/contact_forms_controller.rb
+2	0	app/controllers/pages_controller.rb
+2	0	app/helpers/contact_form_helper.rb
+29	0	app/models/contact_form.rb
+0	0	app/views/account_mailer/contact_form_message.text.erb
+33	0	app/views/contact_forms/show.haml
+1	1	app/views/layouts/_footer.haml
+1	1	app/views/pages/home.haml
+8	2	config/routes.rb
+37	0	test/functional/contact_forms_controller_test.rb
+1	1	test/functional/pages_controller_test.rb
+24	0	test/unit/contact_form_test.rb
+4	0	test/unit/helpers/contact_form_helper_test.rb
+
+commit f9ccddc96da227dd059c7b57ded3b0abadcd626f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 13 14:26:39 2012 -0500
+
+    adding button icons
+
+-	-	app/assets/images/sprite-btn-facebook-18x18.png
+-	-	app/assets/images/sprite-btn-registration-18x18.png
+17	0	app/assets/stylesheets/components/buttons.scss
+4	0	app/assets/stylesheets/layouts/body.scss
+4	1	app/controllers/accounts_controller.rb
+16	1	app/controllers/sessions_controller.rb
+4	0	app/helpers/application_helper.rb
+4	0	app/views/accounts/new.haml
+11	0	app/views/accounts/registration_instructions.haml
+2	1	app/views/layouts/application.haml
+2	2	app/views/pages/home.haml
+1	1	config/initializers/omniauth.rb
+6	1	config/routes.rb
+1	2	test/functional/accounts_controller_test.rb
+
+commit a530d5b61a1746a9acef2394dbf23137f50d4ff2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 14:30:45 2012 -0500
+
+    adjusting routes and permissions
+
+2	1	app/controllers/sessions_controller.rb
+2	2	config/initializers/omniauth.rb
+1	1	config/routes.rb
+
+commit 0357c5679c39bf8393d8d5dec2410f22b9e8d4fe
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 14:24:26 2012 -0500
+
+    adding sesseions controller
+
+3	0	app/assets/javascripts/sessions.js.coffee
+3	0	app/assets/stylesheets/sessions.css.scss
+4	0	app/controllers/sessions_controller.rb
+2	0	app/helpers/sessions_helper.rb
+2	0	app/views/sessions/callback.html.erb
+9	0	test/functional/sessions_controller_test.rb
+4	0	test/unit/helpers/sessions_helper_test.rb
+
+commit 9aaa526156acd35e91c862ea09b5e6470863f30b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 14:24:19 2012 -0500
+
+    adding sesseions controller
+
+0	19	config/initializers/settings.rb
+2	0	config/routes.rb
+
+commit 9102b83a2d029c376d6ed075278e931e95f76579
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 14:21:28 2012 -0500
+
+    adding omniauth settings
+
+1	1	app/helpers/application_helper.rb
+7	0	config/application.rb
+4	0	config/initializers/omniauth.rb
+1	0	config/routes.rb
+
+commit 72d735a802c9c4feb896ef486877e6b397b0f3bb
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 12:31:31 2012 -0500
+
+    changing timeing
+
+2	2	app/assets/javascripts/application.js
+
+commit 2410e37a43ebfc2d507b96e180e78e4e0ee548c0
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 12:30:41 2012 -0500
+
+    quick css refator
+
+27	28	app/assets/stylesheets/pages/home.scss
+1	1	app/views/pages/home.haml
+
+commit f01490c4ec2f09fe8e610c53cd004fd905d2408a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 11 12:23:12 2012 -0500
+
+    adding twitter feed to homepage
+
+2	0	Gemfile
+28	0	Gemfile.lock
+-	-	app/assets/images/layout-bg-twitter-icon.png
+39	6	app/assets/javascripts/application.js
+37	0	app/assets/stylesheets/pages/home.scss
+7	1	app/views/pages/home.haml
+264	0	vendor/assets/javascripts/jquery.tweet.js
+
+commit e2811773ebb6aab2f2d3b949a67bd1cd8b64716f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 18:25:18 2012 -0500
+
+    finished adding settings, now pointing account activation to legacy server
+
+1	1	Gemfile.lock
+5	0	app/helpers/application_helper.rb
+1	0	app/mailers/account_mailer.rb
+1	1	app/views/account_mailer/email_verification.haml
+1	1	app/views/account_mailer/email_verification.text.erb
+6	0	config/initializers/settings.rb
+0	1	config/routes.rb
+1	0	test/functional/accounts_controller_test.rb
+
+commit 0a5b5accae7293f97c11c107ef5928e97a853a12
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 18:13:17 2012 -0500
+
+    adding settings.yml file
+
+11	10	Gemfile
+2	0	Gemfile.lock
+13	0	config/initializers/settings.rb
+
+commit 7da7669a52892eea2f06fbc2970957a295b6c3c5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 16:10:52 2012 -0500
+
+    adding verification email and associated testing
+
+2	1	app/controllers/accounts_controller.rb
+16	0	app/mailers/account_mailer.rb
+4	0	app/models/account.rb
+5	0	app/views/account_mailer/email_verification.haml
+5	0	app/views/account_mailer/email_verification.text.erb
+1	0	config/routes.rb
+7	0	test/functional/account_mailer_test.rb
+8	1	test/functional/accounts_controller_test.rb
+
+commit e8e3cba80561cbf2365db3c5343cf78daf611423
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 15:06:07 2012 -0500
+
+    now creating associated accounts
+
+8	2	app/models/account.rb
+19	0	app/models/contact.rb
+15	0	app/models/medical_info.rb
+7	3	app/models/person.rb
+12	6	test/unit/person_test.rb
+
+commit ec021cede5dfe8dcc87651487dd9e1dd6c5a065c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 14:03:07 2012 -0500
+
+    test create updates
+
+1	1	test/unit/person_test.rb
+
+commit 60d2082204e628e48e8ece686b5e822238a1f024
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 14:03:01 2012 -0500
+
+    test create updates
+
+8	7	test/unit/person_test.rb
+
+commit ec82ab206bc0ffe310328ddee1bbcd5c5b1eec55
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 14:00:56 2012 -0500
+
+    adding more tests for person
+
+9	0	test/unit/account_test.rb
+19	0	test/unit/person_test.rb
+
+commit 0eda94a7c59e370b9996340af5c506db5db54991
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 11:56:38 2012 -0500
+
+    adding date_of_birth and gender requirements. Updated tests
+
+1	5	app/models/account.rb
+3	0	app/models/person.rb
+3	1	test/fixtures/people.yml
+3	1	test/functional/accounts_controller_test.rb
+44	45	test/unit/account_test.rb
+
+commit 8d134afcfa513a37637ea81a48990fb19505f123
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 10 10:59:08 2012 -0500
+
+    adding sample data to readme
+
+133	1	README.rdoc
+
+commit 347a78668b52510b01d3aabda46a0c113bb4b6df
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 7 14:45:10 2012 -0500
+
+    registration form style almost complete
+
+0	3	app/assets/stylesheets/accounts.css.scss
+1	0	app/assets/stylesheets/application.scss
+41	0	app/assets/stylesheets/components/forms.scss
+111	0	app/assets/stylesheets/pages/home.scss
+24	0	app/assets/stylesheets/pages/register.scss
+4	4	app/views/accounts/new.haml
+229	0	vendor/assets/javascripts/jquery.jc-selectreplace.js
+144	0	vendor/assets/stylesheets/jc-selectreplace.css
+
+commit 345af7ae536404f8461070d10c583f5374bc17ef
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 7 14:14:04 2012 -0500
+
+    basic registration form layout complete
+
+3	0	app/assets/javascripts/application.js
+5	1	app/assets/stylesheets/application.scss
+12	0	app/assets/stylesheets/layouts/body.scss
+0	126	app/assets/stylesheets/pages.scss
+5	0	app/assets/stylesheets/typography.scss
+2	2	app/models/person.rb
+36	10	app/views/accounts/new.haml
+
+commit d5fddf3a582a82c7afa6b999aca93a4b583ede0c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 7 12:59:02 2012 -0500
+
+    person form now rendering properly
+
+9	2	app/controllers/accounts_controller.rb
+8	0	app/views/accounts/new.haml
+
+commit b484117bd82752334fc9ad105764547ad7ce859f
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 7 11:53:01 2012 -0500
+
+    updating tests to account for nested attributes
+
+2	0	app/models/account.rb
+2	0	app/views/accounts/new.haml
+0	2	app/views/accounts/new.html.erb
+3	2	test/functional/accounts_controller_test.rb
+19	8	test/unit/account_test.rb
+
+commit 15a28f8f9f166b7a7e4224c7a49690c7ab4aac28
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Fri Dec 7 11:28:42 2012 -0500
+
+    more testing, starting to render views
+
+3	0	app/assets/javascripts/accounts.js.coffee
+3	0	app/assets/stylesheets/accounts.css.scss
+15	0	app/controllers/accounts_controller.rb
+2	0	app/helpers/accounts_helper.rb
+3	2	app/models/account.rb
+3	0	app/models/person.rb
+2	0	app/views/accounts/new.html.erb
+1	1	app/views/layouts/_topnav.haml
+1	0	config/routes.rb
+2	1	test/fixtures/people.yml
+34	0	test/functional/accounts_controller_test.rb
+4	0	test/unit/helpers/accounts_helper_test.rb
+
+commit 71d8d22681343056cf8e11a1b50f0e164415b975
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 6 15:44:56 2012 -0500
+
+    adding initial person tests
+
+20	0	app/models/person.rb
+3	0	test/fixtures/people.yml
+0	1	test/unit/account_test.rb
+7	3	test/unit/person_test.rb
+
+commit 2e5fcd9044c3a541a0fa0bbb255f1c56a12bffc8
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 6 15:18:37 2012 -0500
+
+    basic password encryption setup complete
+
+4	0	Gemfile
+2	5	Gemfile.lock
+78	2	app/models/account.rb
+1	1	app/models/person.rb
+11	0	test/fixtures/accounts.yml
+61	3	test/unit/account_test.rb
+
+commit 6984d003ec3557d555421febf8b7e30e6ed02ccb
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 6 12:02:38 2012 -0500
+
+    Removing wristband
+
+1	1	.gitignore
+0	1	Gemfile
+13	2	app/models/account.rb
+0	1	app/models/contact.rb
+0	1	app/models/medical_info.rb
+
+commit 476ab4ee2c51ef7001d676bb7bd730c678f4669e
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 6 10:53:25 2012 -0500
+
+    gemfile update and adding wristband to model
+
+10	10	Gemfile.lock
+1	0	app/models/account.rb
+
+commit 6f3c26f80cddea2434f4b012a809990f2562f4cd
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Thu Dec 6 10:46:28 2012 -0500
+
+    adding wristband
+
+4	3	Gemfile
+5	0	Gemfile.lock
+
+commit 1a4f304f2431a284aca7852aab42595f2d0a541c
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 5 17:36:04 2012 -0500
+
+    updating callout for mobile
+
+13	3	app/assets/stylesheets/pages.scss
+1	1	app/views/pages/home.haml
+
+commit 73f0090609d9f9f3a05e63e87e50d8f8a7719ad5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 5 17:30:57 2012 -0500
+
+    more updates to the homepage styles
+
+14	0	app/assets/stylesheets/pages.scss
+2	2	app/views/pages/home.haml
+
+commit af9d37063833459026092a64d2527489f12d41aa
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 5 17:26:00 2012 -0500
+
+    footer almost complete
+
+5	1	app/assets/stylesheets/application.scss
+7	0	app/assets/stylesheets/layouts/body.scss
+37	0	app/assets/stylesheets/layouts/footer.scss
+17	1	app/assets/stylesheets/pages.scss
+4	0	app/assets/stylesheets/typography.scss
+11	8	app/views/layouts/_footer.haml
+2	2	app/views/pages/home.haml
+
+commit ae768f74ecb00eb66327128a709accb8e3f59528
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 5 16:44:44 2012 -0500
+
+    adding rough javascript animation for homepage
+
+-	-	app/assets/images/bg-layout-tile.jpg
+-	-	app/assets/images/feature-arrow.png
+34	0	app/assets/javascripts/application.js
+14	0	app/assets/stylesheets/layouts/body.scss
+25	0	app/assets/stylesheets/pages.scss
+58	17	app/views/pages/home.haml
+44	0	vendor/assets/javascripts/jquery.easing.min.js
+
+commit c5f2b90df393a3f6a912f93226c807f19b34abe2
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 5 15:28:28 2012 -0500
+
+    fixes for mobile view
+
+-	-	app/assets/images/sprite-people-70x55.png
+-	-	app/assets/images/sprite-sports-management-70x55.png
+-	-	app/assets/images/sprite-websites-70x55.png
+3	1	app/assets/stylesheets/components/slideshow.scss
+22	8	app/assets/stylesheets/layouts/topnav.scss
+34	0	app/assets/stylesheets/pages.scss
+13	7	app/views/pages/home.haml
+
+commit 63f5dd34842677ffa45f356e7d2aa84791e22a01
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Wed Dec 5 14:14:34 2012 -0500
+
+    responsive homepage styles are coming along
+
+-	-	app/assets/images/bg-layout-redstripe.png
+-	-	app/assets/images/bg-layout-twitter-stripe.png
+-	-	app/assets/images/features/.DS_Store
+-	-	app/assets/images/features/full/feature-1.jpg
+9	1	app/assets/stylesheets/application.scss
+50	0	app/assets/stylesheets/components/buttons.scss
+70	0	app/assets/stylesheets/components/slideshow.scss
+5	0	app/assets/stylesheets/ie7.css
+5	4	app/assets/stylesheets/layouts/topnav.scss
+24	0	app/assets/stylesheets/mixins/css3.scss
+24	0	app/assets/stylesheets/pages.scss
+3	0	app/views/layouts/_head.haml
+13	11	app/views/pages/home.haml
+
+commit 3b059baa730be3f3c8820e0420978b091bc6faa4
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 16:48:50 2012 -0500
+
+    tweaking header sizes
+
+6	1	app/assets/stylesheets/layouts/topnav.scss
+
+commit e0980ec03d7fe936e3a95a99880d23ce70a8024a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 16:46:37 2012 -0500
+
+    responsive nav menu is working
+
+4	0	README.rdoc
+-	-	app/assets/images/.DS_Store
+-	-	app/assets/images/bg-layout-logo.png
+-	-	app/assets/images/bg-layout-mobile-logo.png
+-	-	app/assets/images/bg-layout-mobile-topnav.png
+-	-	app/assets/images/bg-layout-topnav-divider.png
+-	-	app/assets/images/bg-layout-topnav.png
+-	-	app/assets/images/btn-facebook-login.png
+-	-	app/assets/images/rails.png
+-	-	app/assets/images/sprite-lightning-18x18.png
+-	-	app/assets/images/sprite-pencil-18x18.png
+0	13	app/assets/stylesheets/application.css
+21	0	app/assets/stylesheets/application.scss
+6	0	app/assets/stylesheets/layouts/body.scss
+132	0	app/assets/stylesheets/layouts/topnav.scss
+5	0	app/assets/stylesheets/mixins/reset.scss
+11	0	app/assets/stylesheets/mixins/responsive.scss
+0	3	app/assets/stylesheets/pages.css.scss
+3	0	app/assets/stylesheets/pages.scss
+10	0	app/views/layouts/_footer.haml
+10	0	app/views/layouts/_head.haml
+23	0	app/views/layouts/_topnav.haml
+11	0	app/views/layouts/application.haml
+0	14	app/views/layouts/application.html.erb
+54	0	app/views/pages/home.haml
+0	2	app/views/pages/home.html.erb
+
+commit ebef7bf9818ca362a92aac24f08f0e6f131b10e8
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 13:33:51 2012 -0500
+
+    basic project now ready for some styling
+
+0	2	test/fixtures/accounts.yml
+0	11	test/fixtures/contacts.yml
+0	11	test/fixtures/medical_infos.yml
+0	11	test/fixtures/people.yml
+2	0	test/functional/pages_controller_test.rb
+
+commit 9979aaf19e1d540c68157d897300506363bf11ac
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 13:21:21 2012 -0500
+
+    renameing users to accounts
+
+25	0	db/migrate/20121203204730_create_accounts.rb
+0	25	db/migrate/20121203204730_create_users.rb
+85	14	db/schema.rb
+
+commit 886c52c5b99edebde49768f784cea19f6d6f9d9a
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 13:19:42 2012 -0500
+
+    changing users to accounts
+
+0	3	app/models/user.rb
+0	2	test/fixtures/users.yml
+0	7	test/unit/user_test.rb
+
+commit 6b315a78254aae54315836ea0787cd8684f92ce8
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 13:19:14 2012 -0500
+
+    adding tables that are required for registration
+
+3	0	app/models/account.rb
+3	0	app/models/contact.rb
+3	0	app/models/medical_info.rb
+3	0	app/models/person.rb
+19	13	db/migrate/20121203204730_create_users.rb
+30	0	db/migrate/20121204181426_create_people.rb
+31	0	db/migrate/20121204181647_create_contacts.rb
+19	0	db/migrate/20121204181812_create_medical_infos.rb
+31	0	db/schema.rb
+2	0	test/fixtures/accounts.yml
+11	0	test/fixtures/contacts.yml
+11	0	test/fixtures/medical_infos.yml
+11	0	test/fixtures/people.yml
+7	0	test/unit/account_test.rb
+7	0	test/unit/contact_test.rb
+7	0	test/unit/medical_info_test.rb
+7	0	test/unit/person_test.rb
+
+commit eac313dfaed32286d09378167be1b099bc8f0bc5
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 10:36:33 2012 -0500
+
+    adding gitignore
+
+1	0	.gitignore
+
+commit e4eea63ff0f68b8895a402274d9e73d208640dde
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Tue Dec 4 10:35:38 2012 -0500
+
+    adding home route
+
+1	58	config/routes.rb
+
+commit a42f1d8e94f16e4f16ac240f87a99693db05f201
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 16:07:17 2012 -0500
+
+    getting database migration setup
+
+3	0	app/models/user.rb
+19	0	db/migrate/20121203204730_create_users.rb
+2	0	test/fixtures/users.yml
+7	0	test/unit/user_test.rb
+
+commit 1051c3e8387d883a908f45227e135254b0f17159
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 15:40:40 2012 -0500
+
+    updating database example for latin1 encoding
+
+5	1	README.rdoc
+3	0	config/database.example.yml
+
+commit 8b2c5c64fe85b450df873409e7078a70da4c7c94
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 15:37:14 2012 -0500
+
+    generating first controller
+
+2	0	.gitignore
+12	9	Gemfile
+13	12	Gemfile.lock
+3	0	app/assets/javascripts/pages.js.coffee
+3	0	app/assets/stylesheets/pages.css.scss
+4	0	app/controllers/pages_controller.rb
+2	0	app/helpers/pages_helper.rb
+2	0	app/views/pages/home.html.erb
+15	0	config/database.example.yml
+2	0	config/routes.rb
+9	0	test/functional/pages_controller_test.rb
+4	0	test/unit/helpers/pages_helper_test.rb
+
+commit c7623fc942970778d4734798cc98b591b841b81b
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 15:36:13 2012 -0500
+
+    removing database.yml file
+
+0	25	config/database.yml
+
+commit 94b8604a4dd162f4c093a195ebc0de0da5d2ab93
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 14:33:06 2012 -0500
+
+    removing placeholder index file
+
+0	241	public/index.html
+
+commit da33f288865176751de6ac8bb5be09f30f0e0ca6
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 14:32:21 2012 -0500
+
+    adding formatted form and bootstrap-sass
+
+2	0	Gemfile
+5	0	Gemfile.lock
+
+commit 3f35d5d52fc0f0c915febc6ae2add978e7c479ce
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 14:24:51 2012 -0500
+
+    adding omniauth
+
+2	0	Gemfile
+23	0	Gemfile.lock
+
+commit 5fa4ff869cd392f72309e8ac6457390194f584e7
+Author: Emerson Lackey <emerson.lackey@gmail.com>
+Date:   Mon Dec 3 14:22:06 2012 -0500
+
+    initial commit of the new RSportz
+
+5	0	.gitignore
+14	0	Gemfile
+131	0	Gemfile.lock
+3	0	README.rdoc
+7	0	Rakefile
+-	-	app/assets/images/rails.png
+15	0	app/assets/javascripts/application.js
+13	0	app/assets/stylesheets/application.css
+3	0	app/controllers/application_controller.rb
+2	0	app/helpers/application_helper.rb
+0	0	app/mailers/.gitkeep
+0	0	app/models/.gitkeep
+14	0	app/views/layouts/application.html.erb
+4	0	config.ru
+62	0	config/application.rb
+6	0	config/boot.rb
+25	0	config/database.yml
+5	0	config/environment.rb
+37	0	config/environments/development.rb
+67	0	config/environments/production.rb
+37	0	config/environments/test.rb
+7	0	config/initializers/backtrace_silencers.rb
+15	0	config/initializers/inflections.rb
+5	0	config/initializers/mime_types.rb
+7	0	config/initializers/secret_token.rb
+8	0	config/initializers/session_store.rb
+14	0	config/initializers/wrap_parameters.rb
+5	0	config/locales/en.yml
+58	0	config/routes.rb
+7	0	db/seeds.rb
+2	0	doc/README_FOR_APP
+0	0	lib/assets/.gitkeep
+0	0	lib/tasks/.gitkeep
+0	0	log/.gitkeep
+26	0	public/404.html
+26	0	public/422.html
+25	0	public/500.html
+0	0	public/favicon.ico
+241	0	public/index.html
+5	0	public/robots.txt
+6	0	script/rails
+0	0	test/fixtures/.gitkeep
+0	0	test/functional/.gitkeep
+0	0	test/integration/.gitkeep
+12	0	test/performance/browsing_test.rb
+13	0	test/test_helper.rb
+0	0	test/unit/.gitkeep
+0	0	vendor/assets/javascripts/.gitkeep
+0	0	vendor/assets/stylesheets/.gitkeep
+0	0	vendor/plugins/.gitkeep
