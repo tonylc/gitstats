@@ -27,6 +27,6 @@ class TestCommitCount < MiniTest::Unit::TestCase
   def test_to_json
     @cc.add_plus_lines(5)
     @cc.add_minus_lines(2)
-    assert_equal "{\"rb\":\"5,2\"}", @cc.to_json
+    assert_equal "[\"rb\",5,2]", @cc.to_json
   end
 end

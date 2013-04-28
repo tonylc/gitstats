@@ -16,6 +16,6 @@ class CommitCount
   end
 
   def as_json(options={})
-    { type => "#{@added_lines},#{@deleted_lines}" }
+    [type,@added_lines,@deleted_lines]
   end
 end
