@@ -1,8 +1,149 @@
+<% content_for :head do %>
+<style>
+  #svg-container {
+    margin-top: 2em;
+  }
+  path {
+    stroke-width: 2;
+    fill: none;
+  }
+  line {
+    stroke: black;
+  }
+  text {
+    font-family: Arial;
+    font-size: 9pt;
+  }
+
+</style>
+<% end %>
+
 <svg id="svg-container"></svg>
 
 <% content_for :script do %>
 <script src="http://d3js.org/d3.v2.min.js"></script>
 <script>
-  var rawStats = "<%= @commit_stats.to_json.html_safe %>";
+  var rawStats = '<%= @commit_stats.values.to_json.html_safe %>';
+  var chart = {
+    w: 800,
+    h: 400,
+    days: 30,
+    maxLines: 200,
+    colors: ['red', 'green', 'blue', 'black', 'grey']
+  }
+  <%# stats for all commits for a particular language on a given date %>
+  var Stat = function(date, added, deleted) {
+    this.date = date;
+    this.added = added;
+    this.deleted = deleted;
+    var self = this;
+    this.totalLines = function() {
+      return self.added + self.deleted;
+    };
+    this.addToPlusCount = function(count) {
+      self.added += count;
+    };
+    this.addToMinusCount = function(count) {
+      self.deleted += count;
+    };
+  }
+  <%# all commits for a given user for a given date %>
+  var Commit = function(type, statsArr) {
+    this.type = type;
+    this.statsArr = statsArr;
+    this.stats = $.map(new Array(chart.days), function(el, i) {
+      var d = new Date(2013,3,3);
+      d.setDate(d.getDate()-i);
+      return new Stat(d,0,0);
+    });
+    var self = this;
+    this.initializeStats = function() {
+      $.each(statsArr, function(i, el) {
+        var today = new Date(2013,3,3);
+        var date = new Date(el[0]);
+        var timeInMillis = today.getTime() - date.getTime();
+        var daysAgo = Math.ceil(timeInMillis / (1000 * 60 * 60 * 24));
+        self.stats[daysAgo - 1].addToPlusCount(el[1]);
+        self.stats[daysAgo - 1].addToMinusCount(el[2]);
+      });
+    }
+    this.initializeStats();
+  }
+  var stats = $.map(JSON.parse(rawStats), function(el, i) {
+    return new Commit(el[0], el[1]);
+  });
+
+  var svg = d3.select('svg')
+    .attr('width', chart.w)
+    .attr('height', chart.h);
+
+  var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7],
+  margin = 20,
+  y = d3.scale.linear().domain([0, chart.maxLines /*d3.max(data)*/]).range([0 + margin, chart.h - margin]),
+  x = d3.scale.linear().domain([0, chart.days /*data.length*/]).range([0 + margin, chart.w - margin])
+
+  var g = svg.append("svg:g")
+      .attr("transform", "translate(0, " + chart.h + ")");
+
+  <%# draw the line %>
+  $.each(stats, function(i, el) {
+    console.log('i',i,el.type,chart.colors[i]);
+    var line = d3.svg.line()
+        .x(function(d,i) { return x(i); })
+        .y(function(d) { return -1 * y(d.totalLines()); })
+    g.append("svg:path")
+      .attr("d", line(el.stats.reverse()))
+      .attr('stroke', function(d) { return chart.colors[i]; });
+  });
+
+  g.append("svg:line")
+    .attr("x1", x(0))
+    .attr("y1", -1 * y(0))
+    .attr("x2", x(chart.w))
+    .attr("y2", -1 * y(0));
+
+  g.append("svg:line")
+    .attr("x1", x(0))
+    .attr("y1", -1 * y(0))
+    .attr("x2", x(0))
+    .attr("y2", -1 * y(chart.maxLines));
+
+  g.selectAll(".xLabel")
+    .data(x.ticks(5))
+    .enter().append("svg:text")
+    .attr("class", "xLabel")
+    .text(String)
+    .attr("x", function(d) { return x(d) })
+    .attr("y", 0)
+    .attr("text-anchor", "middle");
+
+  g.selectAll(".yLabel")
+    .data(y.ticks(4))
+    .enter().append("svg:text")
+    .attr("class", "yLabel")
+    .text(String)
+    .attr("x", 0)
+    .attr("y", function(d) { return -1 * y(d) })
+    .attr("text-anchor", "right")
+    .attr("dy", 4);
+
+  g.selectAll(".xTicks")
+    .data(x.ticks(5))
+    .enter().append("svg:line")
+    .attr("class", "xTicks")
+    .attr("x1", function(d) { return x(d); })
+    .attr("y1", -1 * y(0))
+    .attr("x2", function(d) { return x(d); })
+    .attr("y2", -1 * y(-0.3));
+
+  g.selectAll(".yTicks")
+    .data(y.ticks(4))
+    .enter().append("svg:line")
+    .attr("class", "yTicks")
+    .attr("y1", function(d) { return -1 * y(d); })
+    .attr("x1", x(-0.3))
+    .attr("y2", function(d) { return -1 * y(d); })
+    .attr("x2", x(0));
+
 </script>
 <% end %>
