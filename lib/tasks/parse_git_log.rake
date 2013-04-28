@@ -78,14 +78,12 @@ namespace :git do
       end
 
       def to_json
-        {:rb_added => @rb_added,
-          :rb_deleted => @rb_deleted,
-          :html_added => @html_added,
-          :html_deleted => @html_deleted,
-          :css_added => @css_added,
-          :css_deleted => @css_deleted,
-          :js_added => @js_added,
-          :js_deleted => @js_deleted}.to_json
+        hash = {}
+        hash["rb"] = "#{@rb_added},#{@rb_deleted}" if (@rb_added > 0 || @rb_deleted > 0)
+        hash["html"] = "#{@html_added},#{@html_deleted}" if (@html_added > 0 || @html_deleted > 0)
+        hash["js"] = "#{@js_added},#{@js_deleted}" if (@js_added > 0 || @js_deleted > 0)
+        hash["css"] = "#{@css_added},#{@css_deleted}" if (@css_added > 0 || @css_deleted > 0)
+        hash.to_json
       end
     end
 
