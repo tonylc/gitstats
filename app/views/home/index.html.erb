@@ -1,0 +1,8 @@
+<svg id="svg-container"></svg>
+
+<% content_for :script do %>
+<script src="http://d3js.org/d3.v2.min.js"></script>
+<script>
+  var rawStats = "<%= @commit_stats.to_json.html_safe %>";
+</script>
+<% end %>
