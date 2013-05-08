@@ -25,7 +25,8 @@
 </div>
 
 <% content_for :script do %>
-<script src="http://d3js.org/d3.v2.min.js"></script>
+<%# <script src="http://d3js.org/d3.v2.min.js"></script> %>
+<script src="http://d3js.org/d3.v2.js"></script>
 <script>
   var rawStats = '<%= @commit_stats.values.to_json.html_safe %>';
   var rawDateStats = '<%= @commit_dates.as_json.to_json.html_safe %>';
@@ -92,6 +93,9 @@
     $.each(statsHash, function(langType, countStr) {
       self.languages.push(new CommitType(langType, countStr.split(",")[0], countStr.split(",")[1]));
     });
+    this.languageStr = $.map(this.languages, function(el, i) {
+      return el.langType + ": " + el.total;
+    }).join(" ");
   }
   var statsByDate = [];
   var minDate = getCopyOfDate(chart.maxDate);
@@ -136,8 +140,23 @@
         .y(function(d) { return -1 * y(d.totalLines()); })
     g.append("svg:path")
       .attr("d", line(el.stats.reverse()))
-      .attr('stroke', function(d) { return chart.colors[i]; })
-      .on("mouseover", function(d,i) { $('.stats').text(d.date); });
+      .attr('stroke', function(d) { return chart.colors[i]; });
+  });
+
+  <%# draw the commit lines %>
+  $.each(statsByDate, function(i, el) {
+    g.append("svg:line")
+      .attr("x1", x(el.date))
+      .attr("y1", -1 * y(0))
+      .attr("x2", x(el.date))
+      .attr("y2", -1 * y(chart.maxLines))
+      .on("mouseover", function() {
+        var d = new Date(el.date.getTime());
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth() + 1; //Months are zero based
+        var dateStr = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
+        $('.stats').text(dateStr + ": " + el.languageStr);
+      });
   });
 
   g.append("svg:line")
