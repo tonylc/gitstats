@@ -6,4 +6,8 @@ class CommitDate < ActiveRecord::Base
   validate :data, :presence => true
 
   attr_accessible :date, :data
+
+  def as_json(options={})
+    [date, JSON.parse(data)]
+  end
 end

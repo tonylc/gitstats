@@ -1,5 +1,8 @@
 <% content_for :head do %>
 <style>
+  .graph-container {
+    position: relative;
+  }
   #svg-container {
     margin-top: 2em;
   }
@@ -14,22 +17,28 @@
     font-family: Arial;
     font-size: 9pt;
   }
-
 </style>
 <% end %>
-
-<svg id="svg-container"></svg>
+<div class="graph-container">
+  <div class="stats"></div>
+  <svg id="svg-container"></svg>
+</div>
 
 <% content_for :script do %>
 <script src="http://d3js.org/d3.v2.min.js"></script>
 <script>
   var rawStats = '<%= @commit_stats.values.to_json.html_safe %>';
+  var rawDateStats = '<%= @commit_dates.as_json.to_json.html_safe %>';
   var chart = {
     w: 800,
     h: 400,
     days: 30,
     maxLines: 200,
+    maxDate: new Date(2013,3,3),
     colors: ['red', 'green', 'blue', 'black', 'grey']
+  }
+  function getCopyOfDate(date) {
+    return new Date(date.getTime());
   }
   <%# stats for all commits for a particular language on a given date %>
   var Stat = function(date, added, deleted) {
@@ -52,14 +61,14 @@
     this.type = type;
     this.statsArr = statsArr;
     this.stats = $.map(new Array(chart.days), function(el, i) {
-      var d = new Date(2013,3,3);
+      var d = getCopyOfDate(chart.maxDate);
       d.setDate(d.getDate()-i);
       return new Stat(d,0,0);
     });
     var self = this;
     this.initializeStats = function() {
       $.each(statsArr, function(i, el) {
-        var today = new Date(2013,3,3);
+        var today = getCopyOfDate(chart.maxDate);
         var date = new Date(el[0]);
         var timeInMillis = today.getTime() - date.getTime();
         var daysAgo = Math.ceil(timeInMillis / (1000 * 60 * 60 * 24));
@@ -69,6 +78,41 @@
     }
     this.initializeStats();
   }
+  var CommitType = function(langType, added, deleted) {
+    this.langType = langType;
+    this.added = parseInt(added);
+    this.deleted = parseInt(deleted);
+    this.total = parseInt(added) + parseInt(deleted);
+  }
+  var CommitStat = function(dateStr, statsHash) {
+    this.date = new Date(dateStr);
+    this.statsHash = statsHash;
+    this.languages = [];
+    var self = this;
+    $.each(statsHash, function(langType, countStr) {
+      self.languages.push(new CommitType(langType, countStr.split(",")[0], countStr.split(",")[1]));
+    });
+  }
+  var statsByDate = [];
+  var minDate = getCopyOfDate(chart.maxDate);
+  minDate.setDate(chart.maxDate.getDate()-30);
+  var currentDate = getCopyOfDate(chart.maxDate);
+
+  $.each(JSON.parse(rawDateStats), function(i, el) {
+    var date = new Date(el[0]),
+      statsHash = el[1];
+    while (currentDate > date) {
+      statsByDate.push(new CommitStat(currentDate, []));
+      currentDate.setDate(currentDate.getDate() - 1);
+    }
+    statsByDate.push(new CommitStat(date, statsHash));
+    <%# ensure that properly increment counters when we push dates with commits %>
+    currentDate.setDate(currentDate.getDate() - 1);
+  });
+  while (currentDate >= minDate) {
+    statsByDate.push(new CommitStat(currentDate, []));
+    currentDate.setDate(currentDate.getDate() - 1);
+  }
   var stats = $.map(JSON.parse(rawStats), function(el, i) {
     return new Commit(el[0], el[1]);
   });
@@ -77,10 +121,9 @@
     .attr('width', chart.w)
     .attr('height', chart.h);
 
-  var data = [3, 6, 2, 7, 5, 2, 1, 3, 8, 9, 2, 5, 7],
   margin = 20,
-  y = d3.scale.linear().domain([0, chart.maxLines /*d3.max(data)*/]).range([0 + margin, chart.h - margin]),
-  x = d3.scale.linear().domain([0, chart.days /*data.length*/]).range([0 + margin, chart.w - margin])
+  y = d3.scale.linear().domain([0, chart.maxLines]).range([0 + margin, chart.h - margin]),
+  x = d3.time.scale().domain([minDate, chart.maxDate]).range([0 + margin, chart.w - margin])
 
   var g = svg.append("svg:g")
       .attr("transform", "translate(0, " + chart.h + ")");
@@ -89,11 +132,12 @@
   $.each(stats, function(i, el) {
     console.log('i',i,el.type,chart.colors[i]);
     var line = d3.svg.line()
-        .x(function(d,i) { return x(i); })
+        .x(function(d,i) { return x(d.date); })
         .y(function(d) { return -1 * y(d.totalLines()); })
     g.append("svg:path")
       .attr("d", line(el.stats.reverse()))
-      .attr('stroke', function(d) { return chart.colors[i]; });
+      .attr('stroke', function(d) { return chart.colors[i]; })
+      .on("mouseover", function(d,i) { $('.stats').text(d.date); });
   });
 
   g.append("svg:line")
@@ -108,11 +152,13 @@
     .attr("x2", x(0))
     .attr("y2", -1 * y(chart.maxLines));
 
+  var format = d3.time.format("%m/%d");
+
   g.selectAll(".xLabel")
     .data(x.ticks(5))
     .enter().append("svg:text")
     .attr("class", "xLabel")
-    .text(String)
+    .text(function(d) { return format(d); })
     .attr("x", function(d) { return x(d) })
     .attr("y", 0)
     .attr("text-anchor", "middle");
