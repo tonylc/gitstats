@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(:version => 20130425075247) do
   end
 
   create_table "commit_dates", :force => true do |t|
-    t.integer "author_id", :null => false
-    t.date    "date",      :null => false
-    t.text    "data"
+    t.integer  "author_id", :null => false
+    t.datetime "date",      :null => false
+    t.text     "data"
   end
 
 end
