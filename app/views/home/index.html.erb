@@ -73,8 +73,8 @@
         var date = new Date(el[0]);
         var timeInMillis = today.getTime() - date.getTime();
         var daysAgo = Math.ceil(timeInMillis / (1000 * 60 * 60 * 24));
-        self.stats[daysAgo - 1].addToPlusCount(el[1]);
-        self.stats[daysAgo - 1].addToMinusCount(el[2]);
+        self.stats[daysAgo].addToPlusCount(el[1]);
+        self.stats[daysAgo].addToMinusCount(el[2]);
       });
     }
     this.initializeStats();
@@ -103,16 +103,17 @@
   var currentDate = getCopyOfDate(chart.maxDate);
 
   $.each(JSON.parse(rawDateStats), function(i, el) {
-    var date = new Date(el[0]),
-      statsHash = el[1];
+    var date = new Date(el[0]);
     while (currentDate > date) {
+      <%# add empty commits until we get to current date %>
       statsByDate.push(new CommitStat(currentDate, []));
       currentDate.setDate(currentDate.getDate() - 1);
     }
-    statsByDate.push(new CommitStat(date, statsHash));
-    <%# ensure that properly increment counters when we push dates with commits %>
+    statsByDate.push(new CommitStat(date, el[1]));
+    <%# ensure that we properly increment counters when we push dates with commits %>
     currentDate.setDate(currentDate.getDate() - 1);
   });
+  <%# ensure we fill data until we reach min date %>
   while (currentDate >= minDate) {
     statsByDate.push(new CommitStat(currentDate, []));
     currentDate.setDate(currentDate.getDate() - 1);
@@ -134,7 +135,7 @@
 
   <%# draw the line %>
   $.each(stats, function(i, el) {
-    console.log('i',i,el.type,chart.colors[i]);
+    console.log('i',i,el.type,el,chart.colors[i]);
     var line = d3.svg.line()
         .x(function(d,i) { return x(d.date); })
         .y(function(d) { return -1 * y(d.totalLines()); })
