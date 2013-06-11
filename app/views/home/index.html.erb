@@ -147,6 +147,8 @@
   <%# draw the commit lines %>
   $.each(statsByDate, function(i, el) {
     g.append("svg:line")
+      .attr("stroke-width", 7)
+      .attr("opacity", 0)
       .attr("x1", x(el.date))
       .attr("y1", -1 * y(0))
       .attr("x2", x(el.date))
