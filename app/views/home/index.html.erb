@@ -2,10 +2,12 @@
 <style>
   .graph-container {
     position: relative;
+    margin: 2em;
   }
-  #svg-container {
-    margin-top: 2em;
-    margin-left: 2em;
+  .stats {
+    position: absolute;
+    top: 1em;
+    left: 2em;
   }
   path {
     stroke-width: 2;
@@ -17,6 +19,21 @@
   text {
     font-family: Arial;
     font-size: 9pt;
+  }
+  .html {
+    color: red;
+  }
+  .rb {
+    color: green;
+  }
+  .css {
+    color: blue;
+  }
+  .js {
+    color: yellow;
+  }
+  .lang-type {
+    font-weight: bold;
   }
 </style>
 <% end %>
@@ -95,8 +112,23 @@
       self.languages.push(new CommitType(langType, countStr.split(",")[0], countStr.split(",")[1]));
     });
     this.languageStr = $.map(this.languages, function(el, i) {
-      return el.langType + ": " + el.total;
+      return '<span class="' + el.langType + ' lang-type">' + convertLanguageTypeToLanguageText(el.langType) + '</span>' + ": " + el.total;
     }).join(" ");
+
+    function convertLanguageTypeToLanguageText(langType) {
+      switch(langType) {
+        case "rb":
+          return "Ruby";
+        case "html":
+          return "HTML";
+        case "css":
+          return "CSS";
+        case "js":
+          return "Javascript";
+        default:
+          return "Unknown";
+      }
+    }
   }
   var statsByDate = [];
   var minDate = getCopyOfDate(chart.maxDate);
@@ -159,7 +191,7 @@
         var curr_date = d.getDate();
         var curr_month = d.getMonth() + 1; //Months are zero based
         var dateStr = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-        $('.stats').text(dateStr + ": " + el.languageStr);
+        $('.stats').html(dateStr + ": " + el.languageStr);
       });
   });
 
