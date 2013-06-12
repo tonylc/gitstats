@@ -5,6 +5,7 @@
   }
   #svg-container {
     margin-top: 2em;
+    margin-left: 2em;
   }
   path {
     stroke-width: 2;
@@ -36,7 +37,7 @@
     days: 30,
     maxLines: 200,
     maxDate: new Date(2013,3,3),
-    colors: ['red', 'green', 'blue', 'black', 'grey']
+    colors: ['red', 'green', 'blue', 'yellow', 'grey']
   }
   function getCopyOfDate(date) {
     return new Date(date.getTime());
@@ -133,7 +134,7 @@
   var g = svg.append("svg:g")
       .attr("transform", "translate(0, " + chart.h + ")");
 
-  <%# draw the line %>
+  <%# draw the colored line %>
   $.each(stats, function(i, el) {
     console.log('i',i,el.type,el,chart.colors[i]);
     var line = d3.svg.line()
@@ -162,16 +163,18 @@
       });
   });
 
+  <%# draw x-axis %>
   g.append("svg:line")
-    .attr("x1", x(0))
+    .attr("x1", x(minDate))
     .attr("y1", -1 * y(0))
-    .attr("x2", x(chart.w))
+    .attr("x2", x(chart.maxDate))
     .attr("y2", -1 * y(0));
 
+  <%# draw y-axis %>
   g.append("svg:line")
-    .attr("x1", x(0))
+    .attr("x1", x(minDate))
     .attr("y1", -1 * y(0))
-    .attr("x2", x(0))
+    .attr("x2", x(minDate))
     .attr("y2", -1 * y(chart.maxLines));
 
   var format = d3.time.format("%m/%d");
@@ -181,10 +184,12 @@
     .enter().append("svg:text")
     .attr("class", "xLabel")
     .text(function(d) { return format(d); })
-    .attr("x", function(d) { return x(d) })
+    .attr("x", function(d) { return x(d); })
     .attr("y", 0)
     .attr("text-anchor", "middle");
 
+  var oneDayLessThanMin = getCopyOfDate(chart.maxDate);
+  oneDayLessThanMin.setDate(chart.maxDate.getDate()-30);
   g.selectAll(".yLabel")
     .data(y.ticks(4))
     .enter().append("svg:text")
@@ -192,7 +197,6 @@
     .text(String)
     .attr("x", 0)
     .attr("y", function(d) { return -1 * y(d) })
-    .attr("text-anchor", "right")
     .attr("dy", 4);
 
   g.selectAll(".xTicks")
