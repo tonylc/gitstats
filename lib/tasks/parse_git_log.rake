@@ -113,7 +113,7 @@ namespace :git do
         if !regex
           raise "Date regex /Date:\s+(.+)/ doesn't match #{line}"
         end
-        date = Date.strptime(regex[1], "%a %b %e")
+        date = Date.strptime(regex[1], "%a %b %e %H:%M:%S %Y %z")
         author.add_date(date)
         author_hash[author.name] = author
         next
