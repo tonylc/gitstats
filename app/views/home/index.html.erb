@@ -23,18 +23,6 @@
     font-family: Arial;
     font-size: 9pt;
   }
-  .html {
-    color: red;
-  }
-  .rb {
-    color: green;
-  }
-  .css {
-    color: blue;
-  }
-  .js {
-    color: yellow;
-  }
   .lang-type {
     font-weight: bold;
   }
@@ -57,9 +45,9 @@
   var chart = {
     w: 800,
     h: 400,
-    days: 30,
+    days: <%= @num_days %>,
     maxLines: 200,
-    maxDate: new Date(2013,3,3),
+    maxDate: new Date('<%= (@last_date) %>'),
     colors: ['red', 'green', 'blue', 'yellow', 'grey']
   }
   function getCopyOfDate(date) {
@@ -93,9 +81,9 @@
     var self = this;
     this.initializeStats = function() {
       $.each(statsArr, function(i, el) {
-        var today = getCopyOfDate(chart.maxDate);
+        var lastDate = getCopyOfDate(chart.maxDate);
         var date = new Date(el[0]);
-        var timeInMillis = today.getTime() - date.getTime();
+        var timeInMillis = lastDate.getTime() - date.getTime();
         var daysAgo = Math.ceil(timeInMillis / (1000 * 60 * 60 * 24));
         self.stats[daysAgo].addToPlusCount(el[1]);
         self.stats[daysAgo].addToMinusCount(el[2]);
@@ -137,28 +125,19 @@
     }
   }
   var statsByDate = [];
-  var minDate = getCopyOfDate(chart.maxDate);
-  minDate.setDate(chart.maxDate.getDate()-30);
+  var minDate = new Date('<%= (@first_date).strftime("%Y-%m-%d") %>');
   var currentDate = getCopyOfDate(chart.maxDate);
 
   $.each(JSON.parse(rawDateStats), function(i, el) {
     var date = new Date(el[0]);
-    while (currentDate > date) {
-      <%# add empty commits until we get to current date %>
-      statsByDate.push(new CommitStat(currentDate, []));
-      currentDate.setDate(currentDate.getDate() - 1);
-    }
     statsByDate.push(new CommitStat(date, el[1]));
-    <%# ensure that we properly increment counters when we push dates with commits %>
-    currentDate.setDate(currentDate.getDate() - 1);
   });
-  <%# ensure we fill data until we reach min date %>
-  while (currentDate >= minDate) {
-    statsByDate.push(new CommitStat(currentDate, []));
-    currentDate.setDate(currentDate.getDate() - 1);
-  }
   var stats = $.map(JSON.parse(rawStats), function(el, i) {
-    return new Commit(el[0], el[1]);
+    var langType = el[0];
+    var style = document.createElement('style');
+    style.innerHTML = '.' + langType + ' { color: ' + chart.colors[i] + '; }';
+    document.getElementsByTagName('head')[0].appendChild(style);
+    return new Commit(langType, el[1]);
   });
 
   var svg = d3.select('svg')
@@ -167,16 +146,16 @@
 
   margin = 10,
   y = d3.scale.linear().domain([0, chart.maxLines]).range([0 + margin, chart.h - margin]),
-  x = d3.time.scale().domain([minDate, chart.maxDate]).range([0 + margin, chart.w - margin])
+  x = d3.time.scale().domain([minDate, chart.maxDate]).range([0 + margin, chart.w - margin]);
 
   var g = svg.append("svg:g")
-      .attr("transform", "translate(0, " + (chart.h + margin) + ")");
+      .attr("transform", "translate(0, " + (chart.h - margin) + ")");
 
   <%# draw the colored line %>
   $.each(stats, function(i, el) {
     console.log('i',i,el.type,el,chart.colors[i]);
     var line = d3.svg.line()
-        .x(function(d,i) { return x(d.date); })
+        .x(function(d) { return x(d.date); })
         .y(function(d) { return -1 * y(d.totalLines()); })
     g.append("svg:path")
       .attr("d", line(el.stats.reverse()))
@@ -206,7 +185,7 @@
 
   <%# draw x-axis %>
   g.append("line")
-    .attr('class', 'axis')
+    .attr('class', 'x axis')
     .attr("x1", x(minDate))
     .attr("y1", -1 * y(0))
     .attr("x2", x(chart.maxDate))
@@ -214,7 +193,7 @@
 
   <%# draw y-axis %>
   g.append("line")
-    .attr('class', 'axis')
+    .attr('class', 'y axis')
     .attr("x1", x(minDate))
     .attr("y1", -1 * y(0))
     .attr("x2", x(minDate))
@@ -225,14 +204,12 @@
     .scale(x)
     .orient("bottom")
     .tickFormat(d3.time.format("%m/%d/%Y"))
-    .ticks(5);
+    .ticks(d3.time.days, 10);
   svg.append("g")
     .attr("class", "x-axis")
     .attr("transform", "translate(0," + (chart.h) + ")")
     .call(xAxis);
 
-  var oneDayLessThanMin = getCopyOfDate(chart.maxDate);
-  oneDayLessThanMin.setDate(chart.maxDate.getDate()-30);
   g.selectAll(".yLabel")
     .data(y.ticks(10))
     .enter().append("svg:text")
@@ -246,13 +223,13 @@
   <%# draw the commit lines %>
   $.each(statsByDate, function(i, el) {
     g.append("line")
-      .attr("stroke-width", 7)
+      .attr("stroke-width", 3)
       .attr("opacity", 0)
       .attr("x1", x(el.date))
       .attr("y1", -1 * y(0))
       .attr("x2", x(el.date))
       .attr("y2", -1 * y(chart.maxLines))
-      .on("mouseover", function() {
+      .on("mouseover", function(e) {
         var d = new Date(el.date.getTime());
         var curr_date = d.getDate();
         var curr_month = d.getMonth() + 1; //Months are zero based
