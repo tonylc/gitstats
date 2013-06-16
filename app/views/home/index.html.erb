@@ -46,7 +46,7 @@
     w: 800,
     h: 400,
     days: <%= @num_days %>,
-    maxLines: 200,
+    maxLines: 0,
     maxDate: new Date('<%= (@last_date) %>'),
     colors: ['red', 'green', 'blue', 'yellow', 'grey']
   }
@@ -87,6 +87,10 @@
         var daysAgo = Math.ceil(timeInMillis / (1000 * 60 * 60 * 24));
         self.stats[daysAgo].addToPlusCount(el[1]);
         self.stats[daysAgo].addToMinusCount(el[2]);
+        // determine most lines in a day and add 10% to buffer
+        if (self.stats[daysAgo].totalLines() > chart.maxLines) {
+          chart.maxLines = Math.ceil(self.stats[daysAgo].totalLines() * 1.1);
+        }
       });
     }
     this.initializeStats();
@@ -144,7 +148,7 @@
     .attr('width', chart.w)
     .attr('height', chart.h);
 
-  margin = 10,
+  var margin = 10,
   y = d3.scale.linear().domain([0, chart.maxLines]).range([0 + margin, chart.h - margin]),
   x = d3.time.scale().domain([minDate, chart.maxDate]).range([0 + margin, chart.w - margin]);
 
