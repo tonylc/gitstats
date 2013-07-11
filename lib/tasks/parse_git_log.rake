@@ -37,52 +37,39 @@ namespace :git do
     end
 
     class Commit
-      attr_accessor :rb_added, :rb_deleted,
-        :html_added, :html_deleted,
-        :css_added, :css_deleted,
-        :js_added, :js_deleted
       #.rb|.scss|.coffee|.haml|.js|.css|.js.erb|.html.erb|.html
 
       def initialize
-        @rb_added = 0
-        @rb_deleted = 0
-        @html_added = 0
-        @html_deleted = 0
-        @css_added = 0
-        @css_deleted = 0
-        @js_added = 0
-        @js_deleted = 0
-      end
-
-      def add_file(file_type, lines_added, lines_deleted)
-        case file_type.to_sym
-          when :".rb"
-            @rb_added += lines_added
-            @rb_deleted += lines_deleted
-          when :".html", :".html.erb", :".haml"
-            @html_added += lines_added
-            @html_deleted += lines_deleted
-          when :".css", :".css.erb", :".scss"
-            @css_added += lines_added
-            @css_deleted += lines_deleted
-          when :".js", :".js.erb", :".coffee"
-            @js_added += lines_added
-            @js_deleted += lines_deleted
-          else
-            raise "Invalid file type #{file_type}"
+        Gitstats::Application.config.languages.keys.each do |lang|
+          self.instance_variable_set(("@" + lang + "_added").to_sym, 0)
+          self.instance_variable_set(("@" + lang + "_deleted").to_sym, 0)
         end
       end
 
+      def add_file(file_type, lines_added, lines_deleted)
+        languages = Gitstats::Application.config.languages.select {|k,v| v.include?(file_type)}
+        raise "Invalid file type #{file_type}" if languages.empty?
+        # => {"jb" => [".js", ".js.erb", ".coffee"]}
+        lang = languages.keys.first
+        cur_added = self.instance_variable_get(("@" + lang + "_added").to_sym)
+        cur_deleted = self.instance_variable_get(("@" + lang + "_deleted").to_sym)
+        self.instance_variable_set(("@" + lang + "_added").to_sym, cur_added + lines_added)
+        self.instance_variable_set(("@" + lang + "_deleted").to_sym, cur_deleted + lines_deleted)
+      end
+
       def to_str
-        "rb - #{rb_added}:#{rb_deleted}\nhtml - #{html_added}:#{html_deleted}\njs - #{js_added}:#{js_deleted}\ncss - #{css_added}:#{css_deleted}\n"
+        Gitstats::Application.config.languages.keys.map do |lang|
+          "#{lang}:#{self.instance_variable_get(("@" + lang + "_added").to_sym)}|#{self.instance_variable_get(("@" + lang + "_deleted").to_sym)}"
+        end.join(" ")
       end
 
       def to_json
         hash = {}
-        hash["rb"] = "#{@rb_added},#{@rb_deleted}" if (@rb_added > 0 || @rb_deleted > 0)
-        hash["html"] = "#{@html_added},#{@html_deleted}" if (@html_added > 0 || @html_deleted > 0)
-        hash["js"] = "#{@js_added},#{@js_deleted}" if (@js_added > 0 || @js_deleted > 0)
-        hash["css"] = "#{@css_added},#{@css_deleted}" if (@css_added > 0 || @css_deleted > 0)
+        Gitstats::Application.config.languages.keys.each do |lang|
+          added = self.instance_variable_get(("@" + lang + "_added").to_sym)
+          deleted = self.instance_variable_get(("@" + lang + "_deleted").to_sym)
+          hash[lang] = "#{added},#{deleted}" if (added > 0 || deleted > 0)
+        end
         hash.to_json
       end
     end
@@ -118,9 +105,9 @@ namespace :git do
         author_hash[author.name] = author
         next
       elsif line =~ /^\d+.+/ # store line count
-        regex = line.match(/(\d+)\s+(\d+)\s+.+(\.rb|\.scss|\.coffee|\.haml|\.js|\.css|\.css.erb|\.js.erb|\.html.erb|\.html)$/)
+        regex = line.match(/(\d+)\s+(\d+)\s+.+(#{Gitstats::Application.config.languages.values.flatten.flatten.map {|a| a.sub(".", "\\.")}.join("|")})$/)
         if !regex
-          p "Line count regex /(\d+)\s+(\d+)\s+(.+)$/ doesn't match #{line}"
+          p "Line count regex /(\d+)\s+(\d+)\s+.+(#{Gitstats::Application.config.languages.values.flatten.flatten.map {|a| a.sub(".", "\\.")}.join("|")})$/ doesn't match #{line}"
           next
         end
         author.add_commits(date, regex[1], regex[2], regex[3])

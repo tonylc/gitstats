@@ -1,0 +1,16 @@
+rb:
+  - .rb
+js:
+  - .js
+  - .js.erb
+  - .coffee
+css:
+  - .css
+  - .css.erb
+  - .scss
+html:
+  - .html
+  - .html.erb
+  - .haml
+java:
+  - .java
