@@ -4,9 +4,11 @@ class HomeController < ApplicationController
     @author = Author.where(Author.arel_table[:email].matches("%#{author_handle}@%")).first
     @commit_stats = {}
     @commit_dates = @author.commit_dates.order("date asc")
+    @languages = []
     @author.commit_dates.group_by(&:date).each do |date, commit_dates|
       commit_dates.each do |commit_date|
         JSON.parse(commit_date.data).each do |language, add_delete_count|
+          @languages << language
           if @commit_stats[language]
             cs = @commit_stats[language]
           else
@@ -17,6 +19,7 @@ class HomeController < ApplicationController
         end
       end
     end
+    @languages.uniq!
     @first_date = @commit_dates.first.date
     @last_date = @commit_dates.last.date
     @num_days = (@last_date - @first_date).to_i / (86400) + 1

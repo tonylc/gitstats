@@ -1,3 +1,5 @@
+<% graph_width = 800 %>
+
 <% content_for :head do %>
 <style>
   .graph-container {
@@ -11,6 +13,12 @@
     position: absolute;
     top: 2em;
     left: 3em;
+  }
+  .controls {
+    position: absolute;
+    left: <%= graph_width %>px;
+    top: 2em;
+    list-style: none;
   }
   path {
     stroke-width: 2;
@@ -33,6 +41,11 @@
 <% end %>
 <div class="graph-container">
   <div class="stats"></div>
+  <ul class="controls">
+    <% @languages.each do |lang| %>
+      <li><label><input class="lang-input" checked='checked' data-lang-type="<%= lang %>" type="checkbox" /><%= lang %></label>
+    <% end %>
+  </div>
   <svg id="svg-container"></svg>
 </div>
 
@@ -43,7 +56,7 @@
   var rawStats = '<%= @commit_stats.values.to_json.html_safe %>';
   var rawDateStats = '<%= @commit_dates.as_json.to_json.html_safe %>';
   var chart = {
-    w: 800,
+    w: <%= graph_width %>,
     h: 400,
     days: <%= @num_days %>,
     maxLines: 0,
@@ -183,6 +196,7 @@
         .x(function(d) { return x(d.date); })
         .y(function(d) { return -1 * y(d.totalLines()); })
     var path = g.append("svg:path")
+      .attr('class', 'line-' + el.type)
       .attr("d", line(el.stats.reverse()))
       .attr('stroke', function(d) { return chart.colors[i]; });
     var totalLength = path.node().getTotalLength();
@@ -247,6 +261,11 @@
         var dateStr = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
         $('.stats').html(dateStr + ": " + el.languageStr);
       });
+  });
+
+  $('.lang-input').on('click', function() {
+    console.log('in here?', $(this).data('lang-type'))
+    $('path.line-' + $(this).data('lang-type')).toggle();
   });
 
 </script>
