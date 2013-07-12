@@ -16,8 +16,11 @@
   }
   .controls {
     position: absolute;
-    left: <%= graph_width %>px;
+    left: <%= graph_width + 50 %>px;
     top: 2em;
+  }
+  .controls ul {
+    padding-left: 0;
     list-style: none;
   }
   path {
@@ -41,10 +44,17 @@
 <% end %>
 <div class="graph-container">
   <div class="stats"></div>
-  <ul class="controls">
-    <% @languages.each do |lang| %>
-      <li><label><input class="lang-input" checked='checked' data-lang-type="<%= lang %>" type="checkbox" /><%= lang %></label>
-    <% end %>
+  <div class='controls'>
+    <select class='author-selector'>
+      <% @author_handles.each do |handle| %>
+        <option data-handle='<%= handle %>' <%= 'selected' if handle == params[:u] %>><%= handle %></option>
+      <% end %>
+    </select>
+    <ul>
+      <% @languages.each do |lang| %>
+        <li><label><input class="lang-input" checked='checked' data-lang-type="<%= lang %>" type="checkbox" /><%= lang %></label>
+      <% end %>
+    </ul>
   </div>
   <svg id="svg-container"></svg>
 </div>
@@ -142,7 +152,7 @@
     }
   }
   var statsByDate = [];
-  var minDate = new Date('<%= (@first_date).strftime("%Y-%m-%d") %>');
+  var minDate = new Date('<%= (@first_date).try(:strftime, "%Y-%m-%d") %>');
   var currentDate = getCopyOfDate(chart.maxDate);
 
   $.each(JSON.parse(rawDateStats), function(i, el) {
@@ -264,8 +274,11 @@
   });
 
   $('.lang-input').on('click', function() {
-    console.log('in here?', $(this).data('lang-type'))
     $('path.line-' + $(this).data('lang-type')).toggle();
+  });
+
+  $('.author-selector').on('change', function() {
+    window.location.href = '<%= root_path %>' + '?u=' + $(this).val();
   });
 
 </script>

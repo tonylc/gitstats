@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     author_handle = params[:u] || 'tonylc'
+    @author_handles = Author.pluck(:email).map {|email| email.split("@").first }
     @author = Author.where(Author.arel_table[:email].matches("%#{author_handle}@%")).first
     @commit_stats = {}
     @commit_dates = @author.commit_dates.order("date asc")
@@ -20,8 +21,8 @@ class HomeController < ApplicationController
       end
     end
     @languages.uniq!
-    @first_date = @commit_dates.first.date
-    @last_date = @commit_dates.last.date
-    @num_days = (@last_date - @first_date).to_i / (86400) + 1
+    @first_date = @commit_dates.first.try(:date)
+    @last_date = @commit_dates.last.try(:date)
+    @num_days = (@last_date - @first_date).to_i / (86400) + 1 if @first_date && @last_date
   end
 end

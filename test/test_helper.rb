@@ -7,6 +7,9 @@ require "minitest/rails"
 # to the test group in the Gemfile and uncomment the following:
 # require "minitest/rails/capybara"
 
+# load factory_girl definitions
+FactoryGirl.find_definitions
+
 # awesome colorful output
 require "minitest/pride"
 
@@ -14,5 +17,12 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # [['rb', 3, 4], ['html', 1, 3]] => "{\"rb\":\"3,4\",\"html\":\"1,3\"}"
+  def create_commit_date_with_lang(author, date, lang_counts)
+    data = {}
+    lang_counts.map do |lang_count|
+      data[lang_count[0]] = "#{lang_count[1]},#{lang_count[2]}"
+    end
+    FactoryGirl.create(:commit_date, :author => author, :date => date, :data => data.to_json)
+  end
 end
