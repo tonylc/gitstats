@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TestCommitStats < MiniTest::Unit::TestCase
+class CommitStatsTest < MiniTest::Unit::TestCase
   def setup
     @ls = CommitStats.new("rb")
   end
