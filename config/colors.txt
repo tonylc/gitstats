@@ -1,0 +1,65 @@
+http://www.tinygorilla.com/Easter_eggs/PallateHex.html
+
+Pastel Red
+#F7977A
+246-150-121
+
+Pastel Red Orange
+#F9AD81
+249-173-129
+
+Pastel Yellow Orange
+#FDC68A
+253-198-137
+
+Pastel Yellow
+#FFF79A
+255-247-153
+
+Pastel Pea Green
+#C4DF9B
+196-223-155
+
+Pastel Yellow Green
+#A2D39C
+163-211-156
+
+Pastel Green
+#82CA9D
+130-202-156
+
+Pastel Green Cyan
+#7BCDC8
+122-204-200
+
+Pastel Cyan
+#6ECFF6
+109-207-246
+
+Pastel Cyan Blue
+#7EA7D8
+125-167-217
+
+Pastel Blue
+#8493CA
+131-147-202
+
+Pastel Blue Violet
+#8882BE
+135-129-189
+
+Pastel Violet
+#A187BE
+161-134-190
+
+Pastel Violet Magenta
+#BC8DBF
+189-140-191
+
+Pastel Magenta
+#F49AC2
+244-154-193
+
+Pastel Magenta Red
+#F6989D
+245-152-157
