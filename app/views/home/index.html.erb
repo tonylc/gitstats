@@ -267,24 +267,7 @@
     .attr("y", function(d) { return -1 * y(d) })
     .attr("dy", 4);
 
-  <%# draw the commit lines %>
-  $.each(statsByDate, function(i, el) {
-    g.append("line")
-      .attr("stroke-width", 7)
-      .attr("opacity", 0)
-      .attr("x1", x(el.date))
-      .attr("y1", -1 * y(0))
-      .attr("x2", x(el.date))
-      .attr("y2", -1 * y(chart.maxLines))
-      .on("mouseover", function(e) {
-        var d = new Date(el.date.getTime());
-        var curr_date = d.getDate();
-        var curr_month = d.getMonth() + 1; //Months are zero based
-        var dateStr = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-        $('.stats').html(dateStr + ": " + el.languageStr);
-      });
-  });
-
+  <%# draw transparent overlay to track mouse movements %>
   svg.append("rect")
       .attr("class", "overlay")
       .attr("width", chart.w)
