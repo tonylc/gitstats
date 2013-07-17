@@ -84,17 +84,16 @@
     this.date = date;
     this.added = added;
     this.deleted = deleted;
-    var self = this;
-    this.totalLines = function() {
-      return self.added + self.deleted;
-    };
-    this.addToPlusCount = function(count) {
-      self.added += count;
-    };
-    this.addToMinusCount = function(count) {
-      self.deleted += count;
-    };
   }
+  Stat.prototype.totalLines = function() {
+    return this.added + this.deleted;
+  }
+  Stat.prototype.addToPlusCount = function(count) {
+    this.added += count;
+  };
+  Stat.prototype.addToMinusCount = function(count) {
+    this.deleted += count;
+  };
   <%# all commits for a given user for a given date %>
   var Commit = function(type, statsArr) {
     this.type = type;
@@ -121,13 +120,13 @@
     }
     this.initializeStats();
   }
-  var CommitType = function(langType, added, deleted) {
+  function CommitType(langType, added, deleted) {
     this.langType = langType;
     this.added = parseInt(added);
     this.deleted = parseInt(deleted);
     this.total = parseInt(added) + parseInt(deleted);
   }
-  var CommitStat = function(dateStr, statsHash) {
+  function CommitStat(dateStr, statsHash) {
     this.date = new Date(dateStr);
     this.statsHash = statsHash;
     this.languages = [];
