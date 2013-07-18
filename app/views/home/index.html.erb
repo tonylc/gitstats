@@ -71,19 +71,41 @@
 <script>
   var rawStats = '<%= @commit_stats.values.to_json.html_safe %>';
   var rawDateStats = '<%= @commit_dates.as_json.to_json.html_safe %>';
-  var chart = {
-    w: <%= graph_width %>,
-    h: 400,
-    days: <%= @num_days %>,
-    maxLines: 0,
-    maxDate: new Date('<%= (@last_date) %>'),
-    colors: ['#f7977a', '#fff79a', '#c4df9b', '#7ea7d8', '#a187be']
-  }
   function getCopyOfDate(date) {
     return new Date(date.getTime());
   }
+  function Chart() {
+    this.w = <%= graph_width %>;
+    this.h = 400;
+    this.days = <%= @num_days %>;
+    this.maxDate = new Date('<%= (@last_date) %>');
+    <%# hardcoded for now %>
+    this.colors = ['#f7977a', '#fff79a', '#c4df9b', '#7ea7d8', '#a187be'];
+    this.lineStats = null;
+    this.languageToCommit = {};
+  }
+  <%# determines the max number of lines from visible languages %>
+  Chart.prototype.maxLines = function() {
+    return Math.max.apply(this, $.map(this.lineStats, function(el, i) {
+      return el.visible ? el.maxLines : 0;
+    }));
+  }
+  <%# parse raw json and initializes line objects %>
+  Chart.prototype.parseRawStats = function(rawStats) {
+    var style = document.createElement('style');
+    var self = this;
+    this.lineStats = $.map(JSON.parse(rawStats), function(el, i) {
+      var langType = el[0];
+      style.innerHTML += '.' + langType + ' { color: ' + self.colors[i] + '; }.' + langType + ' circle { fill: ' + self.colors[i] + '; }';
+      var commit = new LanguageCommits(langType, el[1]);
+      self.languageToCommit[langType] = commit;
+      return commit;
+    });
+    <%# adds custom styles %>
+    document.getElementsByTagName('head')[0].appendChild(style);
+  }
   <%# stats for all commits for a particular language on a given date %>
-  var Stat = function(date, added, deleted) {
+  function Stat(date, added, deleted) {
     this.date = date;
     this.added = added;
     this.deleted = deleted;
@@ -97,8 +119,8 @@
   Stat.prototype.addToMinusCount = function(count) {
     this.deleted += count;
   };
-  <%# all commits for a given user for a given date %>
-  var Commit = function(type, statsArr) {
+  <%# all commits for a given user for a specified language %>
+  var LanguageCommits = function(type, statsArr) {
     this.type = type;
     this.statsArr = statsArr;
     this.stats = $.map(new Array(chart.days), function(el, i) {
@@ -106,6 +128,8 @@
       d.setDate(d.getDate()-i);
       return new Stat(d,0,0);
     });
+    this.maxLines = 0;
+    this.visible = true;
     var self = this;
     this.initializeStats = function() {
       $.each(statsArr, function(i, el) {
@@ -116,8 +140,8 @@
         self.stats[daysAgo].addToPlusCount(el[1]);
         self.stats[daysAgo].addToMinusCount(el[2]);
         // determine most lines in a day and add 10% to buffer
-        if (self.stats[daysAgo].totalLines() > chart.maxLines) {
-          chart.maxLines = Math.ceil(self.stats[daysAgo].totalLines() * 1.1);
+        if (self.stats[daysAgo].totalLines() > self.maxLines) {
+          self.maxLines = Math.ceil(self.stats[daysAgo].totalLines() * 1.1);
         }
       });
     }
@@ -129,17 +153,23 @@
     this.deleted = parseInt(deleted);
     this.total = parseInt(added) + parseInt(deleted);
   }
+  <%# all commits for a given user for a given date %>
   function CommitStat(dateStr, statsHash) {
     this.date = new Date(dateStr);
     this.statsHash = statsHash;
-    this.languages = [];
+    this.commitTypes = [];
     var self = this;
     $.each(statsHash, function(langType, countStr) {
-      self.languages.push(new CommitType(langType, countStr.split(",")[0], countStr.split(",")[1]));
+      self.commitTypes.push(new CommitType(langType, countStr.split(",")[0], countStr.split(",")[1]));
     });
-    this.languageStr = $.map(this.languages, function(el, i) {
-      return '<span class="' + el.langType + ' lang-type">' + convertLanguageTypeToLanguageText(el.langType) + '</span>' + ": " + el.total;
-    }).join(" ");
+    this.languageStr = function() {
+      return $.map(this.commitTypes, function(el, i) {
+        if (!chart.languageToCommit[el.langType].visible) {
+          return '';
+        }
+        return '<span class="' + el.langType + ' lang-type">' + convertLanguageTypeToLanguageText(el.langType) + '</span>' + ": " + el.total;
+      }).join(" ");
+    }
 
     function convertLanguageTypeToLanguageText(langType) {
       switch(langType) {
@@ -156,6 +186,9 @@
       }
     }
   }
+
+  var chart = new Chart();
+  chart.parseRawStats(rawStats);
   var statsByDate = [];
   var minDate = new Date('<%= (@first_date).try(:strftime, "%Y-%m-%d") %>');
   var currentDate = getCopyOfDate(chart.maxDate);
@@ -164,20 +197,13 @@
     var date = new Date(el[0]);
     statsByDate.push(new CommitStat(date, el[1]));
   });
-  var style = document.createElement('style');
-  var stats = $.map(JSON.parse(rawStats), function(el, i) {
-    var langType = el[0];
-    style.innerHTML += '.' + langType + ' { color: ' + chart.colors[i] + '; }.' + langType + ' circle { fill: ' + chart.colors[i] + '; }';
-    return new Commit(langType, el[1]);
-  });
-  document.getElementsByTagName('head')[0].appendChild(style);
 
   var svg = d3.select('svg')
     .attr('width', chart.w)
     .attr('height', chart.h);
 
   var margin = 10,
-  y = d3.scale.linear().domain([0, chart.maxLines]).range([0 + margin, chart.h - margin]),
+  y = d3.scale.linear().domain([0, chart.maxLines()]).range([0 + margin, chart.h - margin]),
   x = d3.time.scale().domain([minDate, chart.maxDate]).range([0 + margin, chart.w - margin]);
 
   var g = svg.append("svg:g")
@@ -191,7 +217,7 @@
     .attr("x1", x)
     .attr("x2", x)
     .attr("y1", -1 * y(0))
-    .attr("y2", -1 * y(chart.maxLines))
+    .attr("y2", -1 * y(chart.maxLines()))
     .style("stroke", "#ccc");
 
   g.selectAll("line.y")
@@ -206,7 +232,7 @@
 
   <%# draw the colored line %>
   var focuses = [];
-  $.each(stats, function(i, el) {
+  $.each(chart.lineStats, function(i, el) {
     console.log('i',i,el.type,el,chart.colors[i]);
     var line = d3.svg.line()
         .x(function(d) { return x(d.date); })
@@ -224,9 +250,9 @@
         .attr("stroke-dashoffset", 0);
     var focus = svg.append("g")
       .attr("class", "focus " + el.type)
+      .style("display", "none")
         .append("circle")
         .attr("r", 4.5);
-    // .style("display", "none");
     focuses.push(focus);
   });
 
@@ -244,7 +270,7 @@
     .attr("x1", x(minDate))
     .attr("y1", -1 * y(0))
     .attr("x2", x(minDate))
-    .attr("y2", -1 * y(chart.maxLines));
+    .attr("y2", -1 * y(chart.maxLines()));
 
   <%# draw labels %>
   var xAxis = d3.svg.axis()
@@ -281,7 +307,7 @@
   function mousemove() {
     var x0 = x.invert(d3.mouse(this)[0]);
 
-    $.each(stats, function(ignored, el) {
+    $.each(chart.lineStats, function(ignored, el) {
       var i = bisectDate(el.stats, x0, 1);
       if (i >= el.stats.length) {
         return;
@@ -306,7 +332,7 @@
           var curr_date = d.getDate();
           var curr_month = d.getMonth() + 1; //Months are zero based
           var dateStr = d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate();
-          $('.stats-box').html(dateStr + ": " + el.languageStr);
+          $('.stats-box').html(dateStr + ": " + el.languageStr());
         })(d.date);
       }
     });
@@ -316,6 +342,7 @@
     var languageType = $(this).data('lang-type');
     $('path.line-' + languageType).toggle();
     $('.focus.' + languageType + ' circle').toggle();
+    chart.languageToCommit[languageType].visible = !chart.languageToCommit[languageType].visible
   });
 
   $('.author-selector').on('change', function() {
