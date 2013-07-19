@@ -75,11 +75,19 @@
   function Chart() {
     this.w = <%= graph_width %>;
     this.h = 400;
+    this.margin = 10;
+    this.innerW = this.w - this.margin;
+    this.innerH = this.h - this.margin;
     this.days = <%= @num_days %>;
+    this.minDate = new Date('<%= (@first_date).try(:strftime, "%Y-%m-%d") %>');
     this.maxDate = new Date('<%= (@last_date) %>');
     <%# hardcoded for now %>
     this.colors = ['#f7977a', '#fff79a', '#c4df9b', '#7ea7d8', '#a187be'];
-    this.lineStats = null;
+    // array of LineCommits, to be filled by parseRawStats
+    this.lineStats = [];
+    // array of commits by date, to be filled by parseRawCommitsByDate
+    this.commitsByDate = [];
+    // hash of language => LineCommits
     this.languageToCommit = {};
   }
   <%# determines the max number of lines from visible languages %>
@@ -88,43 +96,43 @@
       return el.visible ? el.maxLines : 0;
     }));
   }
-  <%# parse raw json and initializes line objects %>
   Chart.prototype.parseRawStats = function(rawStats) {
     var style = document.createElement('style');
     var self = this;
-    this.lineStats = $.map(JSON.parse(rawStats), function(el, i) {
+    $.each(JSON.parse(rawStats), function(i, el) {
       var langType = el[0];
       style.innerHTML += '.' + langType + ' { color: ' + self.colors[i] + '; }.' + langType + ' circle { fill: ' + self.colors[i] + '; }';
       var commit = new LanguageCommits(langType, el[1]);
-      commit.initializeStats(chart.days, chart.maxDate);
+      commit.initializeStats(self.days, self.maxDate);
       self.languageToCommit[langType] = commit;
-      return commit;
+      self.lineStats.push(commit);
     });
     <%# adds custom styles %>
     document.getElementsByTagName('head')[0].appendChild(style);
+    return this;
+  }
+  Chart.prototype.parseRawCommitsByDate = function(rawDateStats) {
+    var self = this;
+    $.each(JSON.parse(rawDateStats), function(i, el) {
+      var date = new Date(el[0]);
+      self.commitsByDate.push(new CommitByDate(date, el[1]));
+    });
+    return this;
   }
 
   var chart = new Chart();
-  chart.parseRawStats(rawStats);
-  var statsByDate = [];
-  var minDate = new Date('<%= (@first_date).try(:strftime, "%Y-%m-%d") %>');
-  var currentDate = gs.getCopyOfDate(chart.maxDate);
-
-  $.each(JSON.parse(rawDateStats), function(i, el) {
-    var date = new Date(el[0]);
-    statsByDate.push(new CommitByDate(date, el[1]));
-  });
+  chart.parseRawStats(rawStats)
+    .parseRawCommitsByDate(rawDateStats);
 
   var svg = d3.select('svg')
     .attr('width', chart.w)
     .attr('height', chart.h);
 
-  var margin = 10,
-  y = d3.scale.linear().domain([0, chart.maxLines()]).range([0 + margin, chart.h - margin]),
-  x = d3.time.scale().domain([minDate, chart.maxDate]).range([0 + margin, chart.w - margin]);
+  var y = d3.scale.linear().domain([0, chart.maxLines()]).range([0 + chart.margin, chart.innerH]),
+  x = d3.time.scale().domain([chart.minDate, chart.maxDate]).range([0 + chart.margin, chart.innerW]);
 
   var g = svg.append("svg:g")
-      .attr("transform", "translate(0, " + (chart.h - margin) + ")");
+    .attr("transform", "translate(0, " + chart.innerH + ")");
 
   <%# draw grid %>
   g.selectAll("line.x")
@@ -141,7 +149,7 @@
     .data(y.ticks(10))
     .enter()
     .append("line")
-    .attr("x1", x(minDate))
+    .attr("x1", x(chart.minDate))
     .attr("x2", x(chart.maxDate))
     .attr("y1", function(d) { return -1 * y(d); })
     .attr("y2", function(d) { return -1 * y(d); })
@@ -176,7 +184,7 @@
   <%# draw x-axis %>
   g.append("line")
     .attr('class', 'x axis')
-    .attr("x1", x(minDate))
+    .attr("x1", x(chart.minDate))
     .attr("y1", -1 * y(0))
     .attr("x2", x(chart.maxDate))
     .attr("y2", -1 * y(0));
@@ -184,9 +192,9 @@
   <%# draw y-axis %>
   g.append("line")
     .attr('class', 'y axis')
-    .attr("x1", x(minDate))
+    .attr("x1", x(chart.minDate))
     .attr("y1", -1 * y(0))
-    .attr("x2", x(minDate))
+    .attr("x2", x(chart.minDate))
     .attr("y2", -1 * y(chart.maxLines()));
 
   <%# draw labels %>
@@ -232,13 +240,13 @@
       var d0 = el.stats[i - 1],
         d1 = el.stats[i],
         d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-      focuses[ignored].attr("transform", "translate(" + x(d.date) + "," + (chart.h - margin - y(d.totalLines())) + ")");
+      focuses[ignored].attr("transform", "translate(" + x(d.date) + "," + (chart.innerH - y(d.totalLines())) + ")");
       if (ignored == 0) {
         (function(selectedDate) {
           var el;
-          for (var i = 0; i < statsByDate.length; i++) {
-            if (statsByDate[i].date.getTime() == selectedDate.getTime()) {
-              el = statsByDate[i];
+          for (var i = 0; i < chart.commitsByDate.length; i++) {
+            if (chart.commitsByDate[i].date.getTime() == selectedDate.getTime()) {
+              el = chart.commitsByDate[i];
               break;
             }
           }
