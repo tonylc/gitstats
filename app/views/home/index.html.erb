@@ -1,4 +1,5 @@
 <% graph_width = 800 %>
+<% @page_js = 'commit_stats' %>
 
 <% content_for :head do %>
 <style>
@@ -71,9 +72,6 @@
 <script>
   var rawStats = '<%= @commit_stats.values.to_json.html_safe %>';
   var rawDateStats = '<%= @commit_dates.as_json.to_json.html_safe %>';
-  function getCopyOfDate(date) {
-    return new Date(date.getTime());
-  }
   function Chart() {
     this.w = <%= graph_width %>;
     this.h = 400;
@@ -98,104 +96,23 @@
       var langType = el[0];
       style.innerHTML += '.' + langType + ' { color: ' + self.colors[i] + '; }.' + langType + ' circle { fill: ' + self.colors[i] + '; }';
       var commit = new LanguageCommits(langType, el[1]);
+      commit.initializeStats(chart.days, chart.maxDate);
       self.languageToCommit[langType] = commit;
       return commit;
     });
     <%# adds custom styles %>
     document.getElementsByTagName('head')[0].appendChild(style);
   }
-  <%# stats for all commits for a particular language on a given date %>
-  function Stat(date, added, deleted) {
-    this.date = date;
-    this.added = added;
-    this.deleted = deleted;
-  }
-  Stat.prototype.totalLines = function() {
-    return this.added + this.deleted;
-  }
-  Stat.prototype.addToPlusCount = function(count) {
-    this.added += count;
-  };
-  Stat.prototype.addToMinusCount = function(count) {
-    this.deleted += count;
-  };
-  <%# all commits for a given user for a specified language %>
-  var LanguageCommits = function(type, statsArr) {
-    this.type = type;
-    this.statsArr = statsArr;
-    this.stats = $.map(new Array(chart.days), function(el, i) {
-      var d = getCopyOfDate(chart.maxDate);
-      d.setDate(d.getDate()-i);
-      return new Stat(d,0,0);
-    });
-    this.maxLines = 0;
-    this.visible = true;
-    var self = this;
-    this.initializeStats = function() {
-      $.each(statsArr, function(i, el) {
-        var lastDate = getCopyOfDate(chart.maxDate);
-        var date = new Date(el[0]);
-        var timeInMillis = lastDate.getTime() - date.getTime();
-        var daysAgo = Math.floor(timeInMillis / (1000 * 60 * 60 * 24));
-        self.stats[daysAgo].addToPlusCount(el[1]);
-        self.stats[daysAgo].addToMinusCount(el[2]);
-        // determine most lines in a day and add 10% to buffer
-        if (self.stats[daysAgo].totalLines() > self.maxLines) {
-          self.maxLines = Math.ceil(self.stats[daysAgo].totalLines() * 1.1);
-        }
-      });
-    }
-    this.initializeStats();
-  }
-  function CommitType(langType, added, deleted) {
-    this.langType = langType;
-    this.added = parseInt(added);
-    this.deleted = parseInt(deleted);
-    this.total = parseInt(added) + parseInt(deleted);
-  }
-  <%# all commits for a given user for a given date %>
-  function CommitStat(dateStr, statsHash) {
-    this.date = new Date(dateStr);
-    this.statsHash = statsHash;
-    this.commitTypes = [];
-    var self = this;
-    $.each(statsHash, function(langType, countStr) {
-      self.commitTypes.push(new CommitType(langType, countStr.split(",")[0], countStr.split(",")[1]));
-    });
-    this.languageStr = function() {
-      return $.map(this.commitTypes, function(el, i) {
-        if (!chart.languageToCommit[el.langType].visible) {
-          return '';
-        }
-        return '<span class="' + el.langType + ' lang-type">' + convertLanguageTypeToLanguageText(el.langType) + '</span>' + ": " + el.total;
-      }).join(" ");
-    }
-
-    function convertLanguageTypeToLanguageText(langType) {
-      switch(langType) {
-        case "rb":
-          return "Ruby";
-        case "html":
-          return "HTML";
-        case "css":
-          return "CSS";
-        case "js":
-          return "Javascript";
-        default:
-          return "Unknown";
-      }
-    }
-  }
 
   var chart = new Chart();
   chart.parseRawStats(rawStats);
   var statsByDate = [];
   var minDate = new Date('<%= (@first_date).try(:strftime, "%Y-%m-%d") %>');
-  var currentDate = getCopyOfDate(chart.maxDate);
+  var currentDate = gs.getCopyOfDate(chart.maxDate);
 
   $.each(JSON.parse(rawDateStats), function(i, el) {
     var date = new Date(el[0]);
-    statsByDate.push(new CommitStat(date, el[1]));
+    statsByDate.push(new CommitByDate(date, el[1]));
   });
 
   var svg = d3.select('svg')

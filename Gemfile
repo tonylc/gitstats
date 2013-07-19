@@ -16,6 +16,10 @@ group :test do
   gem 'minitest-rails', '0.9.2'
 end
 
+group :development, :test do
+  gem 'jasmine', '1.3.2'
+end
+
 group :production do
   gem 'pg'
 end
