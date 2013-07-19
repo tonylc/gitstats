@@ -27,3 +27,21 @@ describe("Stat", function() {
     expect(stat.totalLines()).toBe(14);
   });
 });
+
+describe("CommitByDate", function() {
+  var commitByDate;
+
+  beforeEach(function() {
+    commitByDate = new CommitByDate(new Date(2013,1,1), {"css": "16,0", "html": "334,241", "js": "18,0", "rb": "415,0"});
+  });
+
+  describe("#convertLanguageTypeToLanguageText", function() {
+    it("should convert recognized language types", function() {
+      expect(commitByDate.convertLanguageTypeToLanguageText("rb")).toBe("Ruby");
+      expect(commitByDate.convertLanguageTypeToLanguageText("html")).toBe("HTML");
+      expect(commitByDate.convertLanguageTypeToLanguageText("css")).toBe("CSS");
+      expect(commitByDate.convertLanguageTypeToLanguageText("js")).toBe("Javascript");
+      expect(commitByDate.convertLanguageTypeToLanguageText("dunno")).toBe("Unknown");
+    });
+  });
+});
