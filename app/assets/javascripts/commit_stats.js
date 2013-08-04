@@ -45,6 +45,7 @@ LanguageCommits.prototype.initializeStats = function(numDays, lastDate) {
       self.maxLines = Math.ceil(self.stats[daysAgo].totalLines() * 1.1);
     }
   });
+  this.stats.reverse();
 }
 
 function CommitType(langType, added, deleted) {
