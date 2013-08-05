@@ -19,7 +19,7 @@ class HomeControllerTest < ActionController::TestCase
   def test_user_with_data
     author1 = FactoryGirl.create(:author)
     author2 = FactoryGirl.create(:author)
-    create_commit_date_with_lang(author2, DateTime.new(2013,1,1), [['rb',1,1],['html',2,3]])
+    create_commit_date_with_lang(author2, DateTime.new(2013, 1, 1), [['rb', 1, 1],['html', 2, 3]])
 
     get :index, :u => author2.email.split('@')[0]
 
@@ -27,8 +27,23 @@ class HomeControllerTest < ActionController::TestCase
     assert_equal author2, assigns[:author]
     assert_equal [author1.email.split('@')[0], author2.email.split('@')[0]], assigns[:author_handles]
     assert_equal ["rb", "html"], assigns[:languages]
-    assert_equal DateTime.new(2013,1,1), assigns[:first_date]
-    assert_equal DateTime.new(2013,1,1), assigns[:last_date]
+    assert_equal DateTime.new(2013, 1, 1), assigns[:first_date]
+    assert_equal DateTime.new(2013, 1, 1), assigns[:last_date]
     assert_equal 1, assigns[:num_days]
+  end
+
+  def test_user_with_data_with_3_days_in_between
+    author = FactoryGirl.create(:author)
+    create_commit_date_with_lang(author, Time.utc(2013, 2, 19, 8), [['rb', 1, 1]])
+    create_commit_date_with_lang(author, Time.utc(2013, 3, 1), [['rb', 1, 1]])
+    create_commit_date_with_lang(author, Time.utc(2013, 4, 2, 7), [['rb', 1, 1]])
+
+    get :index, :u => author.email.split('@')[0]
+
+    assert_template :index
+    assert_equal author, assigns[:author]
+    assert_equal DateTime.new(2013, 2, 19, 8), assigns[:first_date]
+    assert_equal DateTime.new(2013, 4, 2, 7), assigns[:last_date]
+    assert_equal 43, assigns[:num_days]
   end
 end

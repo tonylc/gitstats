@@ -79,8 +79,8 @@
     this.innerW = this.w - this.margin;
     this.innerH = this.h - this.margin;
     this.days = <%= @num_days %>;
-    this.minDate = new Date('<%= (@first_date).try(:strftime, "%Y-%m-%d") %>');
-    this.maxDate = new Date('<%= (@last_date) %>');
+    this.minDate = new Date('<%= @first_date %>');
+    this.maxDate = new Date('<%= @last_date %>');
     <%# hardcoded for now %>
     this.colors = ['#f7977a', '#fff79a', '#c4df9b', '#7ea7d8', '#a187be'];
     // array of LineCommits, to be filled by parseRawStats

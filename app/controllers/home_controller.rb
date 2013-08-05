@@ -23,6 +23,6 @@ class HomeController < ApplicationController
     @languages.uniq!
     @first_date = @commit_dates.first.try(:date)
     @last_date = @commit_dates.last.try(:date)
-    @num_days = (@last_date - @first_date).to_i / (86400) + 1 if @first_date && @last_date
+    @num_days = ((@last_date - @first_date) / 86400).ceil + 1 if @first_date && @last_date
   end
 end

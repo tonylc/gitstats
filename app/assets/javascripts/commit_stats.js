@@ -37,7 +37,7 @@ LanguageCommits.prototype.initializeStats = function(numDays, lastDate) {
     var lastDate = gs.getCopyOfDate(chart.maxDate);
     var date = new Date(el[0]);
     var timeInMillis = lastDate.getTime() - date.getTime();
-    var daysAgo = Math.floor(timeInMillis / (1000 * 60 * 60 * 24));
+    var daysAgo = Math.ceil(timeInMillis / (1000 * 60 * 60 * 24));
     self.stats[daysAgo].addToPlusCount(el[1]);
     self.stats[daysAgo].addToMinusCount(el[2]);
     // determine most lines in a day and add 10% to buffer
