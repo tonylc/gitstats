@@ -1,79 +1,11 @@
 require 'date'
 require 'json'
+Dir["#{Rails.root}/lib/git_parser/*.rb"].each {|file| require file }
+
+# parses git log --numstat
 
 namespace :git do
   task :parse => :environment do
-    def debug(line)
-      return if true
-      p "********* #{line}"
-    end
-
-    class AuthorStruct
-      attr_accessor :name, :email, :date_commits
-
-      def initialize(name, email)
-        @name = name
-        @email = email
-        @date_commits = {}
-      end
-
-      def add_date(date)
-        date_str = date.strftime("%Y%m%d")
-        if @date_commits[date_str]
-          return
-        end
-        @date_commits[date_str] = Commit.new
-      end
-
-      def add_commits(date, added, deleted, file_type)
-        date_str = date.strftime("%Y%m%d")
-        commit = @date_commits[date_str]
-        commit.add_file(file_type, added.to_i, deleted.to_i)
-        if @name == "Tony"
-          debug("#{added}:#{deleted} - #{file_type}")
-        end
-        @date_commits[date_str] = commit
-      end
-    end
-
-    class Commit
-      #.rb|.scss|.coffee|.haml|.js|.css|.js.erb|.html.erb|.html
-
-      def initialize
-        Gitstats::Application.config.languages.keys.each do |lang|
-          self.instance_variable_set(("@" + lang + "_added").to_sym, 0)
-          self.instance_variable_set(("@" + lang + "_deleted").to_sym, 0)
-        end
-      end
-
-      def add_file(file_type, lines_added, lines_deleted)
-        languages = Gitstats::Application.config.languages.select {|k,v| v.include?(file_type)}
-        raise "Invalid file type #{file_type}" if languages.empty?
-        # => {"jb" => [".js", ".js.erb", ".coffee"]}
-        lang = languages.keys.first
-        cur_added = self.instance_variable_get(("@" + lang + "_added").to_sym)
-        cur_deleted = self.instance_variable_get(("@" + lang + "_deleted").to_sym)
-        self.instance_variable_set(("@" + lang + "_added").to_sym, cur_added + lines_added)
-        self.instance_variable_set(("@" + lang + "_deleted").to_sym, cur_deleted + lines_deleted)
-      end
-
-      def to_str
-        Gitstats::Application.config.languages.keys.map do |lang|
-          "#{lang}:#{self.instance_variable_get(("@" + lang + "_added").to_sym)}|#{self.instance_variable_get(("@" + lang + "_deleted").to_sym)}"
-        end.join(" ")
-      end
-
-      def to_json
-        hash = {}
-        Gitstats::Application.config.languages.keys.each do |lang|
-          added = self.instance_variable_get(("@" + lang + "_added").to_sym)
-          deleted = self.instance_variable_get(("@" + lang + "_deleted").to_sym)
-          hash[lang] = "#{added},#{deleted}" if (added > 0 || deleted > 0)
-        end
-        hash.to_json
-      end
-    end
-
     gitlog = `cat sample_git.txt`#`git log --numstat`
 
     author_hash = {}
@@ -86,7 +18,7 @@ namespace :git do
         if !regex
           raise "Author regex /Author\:\s*([^<]*)<([^>]*)>/ doesn't match #{line}"
         end
-        author = AuthorStruct.new(regex[1].strip, regex[2])
+        author = GitParser::Author.new(regex[1].strip, regex[2])
         # store author if they don't already exist
         if author_hash[author.name]
           # get the last stored author

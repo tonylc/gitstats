@@ -12,6 +12,8 @@ FactoryGirl.find_definitions
 
 # awesome colorful output
 require "minitest/pride"
+# load all lib/git_parser files for testing
+Dir["#{Rails.root}/lib/git_parser/*.rb"].each {|file| require file }
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
