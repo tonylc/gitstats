@@ -9,10 +9,12 @@ module GitParser
       end
     end
 
-    def add_file(file_type, lines_added, lines_deleted)
+    def add_file(file_path, lines_added, lines_deleted)
+      file_type = file_path.match(/#{list_of_supported_file_types}$/)[0]
+      # should always exist at this point, can consider throwing an exception or logging the file out later
       languages = Gitstats::Application.config.languages.select {|k,v| v.include?(file_type)}
       raise "Invalid file type #{file_type}" if languages.empty?
-      # => {"jb" => [".js", ".js.erb", ".coffee"]}
+      # => {"js" => [".js", ".js.erb", ".coffee"]}
       lang = languages.keys.first
       cur_added = self.instance_variable_get(("@" + lang + "_added").to_sym)
       cur_deleted = self.instance_variable_get(("@" + lang + "_deleted").to_sym)

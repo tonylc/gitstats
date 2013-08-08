@@ -37,9 +37,9 @@ namespace :git do
         author_hash[author.name] = author
         next
       elsif line =~ /^\d+.+/ # store line count
-        regex = line.match(/(\d+)\s+(\d+)\s+.+(#{Gitstats::Application.config.languages.values.flatten.flatten.map {|a| a.sub(".", "\\.")}.join("|")})$/)
+        regex = line.match(/(\d+)\s+(\d+)\s+(.+(#{list_of_supported_file_types}))$/)
         if !regex
-          p "Line count regex /(\d+)\s+(\d+)\s+.+(#{Gitstats::Application.config.languages.values.flatten.flatten.map {|a| a.sub(".", "\\.")}.join("|")})$/ doesn't match #{line}"
+          p "Line count regex /(\d+)\s+(\d+)\s+(.+(#{list_of_supported_file_types}))$/ doesn't match #{line}"
           next
         end
         author.add_commits(date, regex[1], regex[2], regex[3])

@@ -13,9 +13,9 @@ class GitParser::AuthorTest < MiniTest::Unit::TestCase
 
   def test_add_commit_on_same_date_aggregates
     @author.add_date(Date.new(2013,1,1))
-    @author.add_commits(Date.new(2013,1,1), 1, 1, ".rb")
-    @author.add_commits(Date.new(2013,1,1), 2, 3, ".rb")
-    @author.add_commits(Date.new(2013,1,1), 30, 20, ".js")
+    @author.add_commits(Date.new(2013,1,1), 1, 1, "config/initializer.rb")
+    @author.add_commits(Date.new(2013,1,1), 2, 3, "app/models/author.rb")
+    @author.add_commits(Date.new(2013,1,1), 30, 20, "app/assets/javascripts/checkout.js")
 
     assert_equal [{"20130101" => "rb:3|4 js:30|20 css:0|0 html:0|0 java:0|0"}], @author.date_commits.map {|k,v| {k => v.to_str}}
   end
@@ -24,9 +24,9 @@ class GitParser::AuthorTest < MiniTest::Unit::TestCase
     @author.add_date(Date.new(2013,1,1))
     @author.add_date(Date.new(2013,1,2))
 
-    @author.add_commits(Date.new(2013,1,1), 1, 1, ".rb")
-    @author.add_commits(Date.new(2013,1,2), 2, 3, ".rb")
-    @author.add_commits(Date.new(2013,1,1), 30, 20, ".js")
+    @author.add_commits(Date.new(2013,1,1), 1, 1, "config/initializer.rb")
+    @author.add_commits(Date.new(2013,1,2), 2, 3, "app/models/author.rb")
+    @author.add_commits(Date.new(2013,1,1), 30, 20, "app/assets/javascripts/checkout.js")
 
     assert_equal [
         {"20130101" => "rb:1|1 js:30|20 css:0|0 html:0|0 java:0|0"},
