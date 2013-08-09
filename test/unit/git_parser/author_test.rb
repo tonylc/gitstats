@@ -8,7 +8,7 @@ class GitParser::AuthorTest < MiniTest::Unit::TestCase
   def test_add_to_commit_for_author
     assert @author.date_commits.empty?
     @author.add_date(Date.new(2013,1,1))
-    assert_instance_of GitParser::Commit, @author.date_commits["20130101"]
+    assert_instance_of GitParser::CommitDate, @author.date_commits["20130101"]
   end
 
   def test_add_to_commit_on_same_date_aggregates

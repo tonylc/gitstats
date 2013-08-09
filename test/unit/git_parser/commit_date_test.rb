@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class GitParser::CommitTest < MiniTest::Unit::TestCase
+class GitParser::CommitDateTest < MiniTest::Unit::TestCase
   def setup
-    @commit = GitParser::Commit.new
+    @commit = GitParser::CommitDate.new
   end
 
   def test_add_same_file_types_to_commit_will_sum

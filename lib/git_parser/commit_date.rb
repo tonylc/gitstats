@@ -1,5 +1,5 @@
 module GitParser
-  class Commit
+  class CommitDate
     #.rb|.scss|.coffee|.haml|.js|.css|.js.erb|.html.erb|.html
     attr_accessor :src_lines, :test_lines
 

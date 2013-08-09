@@ -12,7 +12,7 @@ module GitParser
     def add_date(datetime)
       date_str = datetime.strftime("%Y%m%d")
       if !@date_commits[date_str]
-        @date_commits[date_str] = GitParser::Commit.new
+        @date_commits[date_str] = GitParser::CommitDate.new
       end
       # impossible to have more than one commit for the same author at the exact same time right?
       @commit_ratios[datetime.to_s] = GitParser::CommitRatio.new(datetime)
