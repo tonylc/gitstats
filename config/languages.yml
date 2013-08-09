@@ -1,16 +1,26 @@
-rb:
-  - .rb
-js:
-  - .js
-  - .js.erb
-  - .coffee
-css:
-  - .css
-  - .css.erb
-  - .scss
-html:
-  - .html
-  - .html.erb
-  - .haml
-java:
-  - .java
+src:
+  rb:
+    - .rb
+  js:
+    - .js
+    - .js.erb
+    - .coffee
+  css:
+    - .css
+    - .css.erb
+    - .scss
+  html:
+    - .html
+    - .html.erb
+    - .haml
+  java:
+    - .java
+test:
+  rb:
+    - _test.rb
+    - _spec.rb
+  js:
+    - _test.js
+    - _spec.js
+  java:
+    - _test.java

@@ -32,17 +32,17 @@ namespace :git do
         if !regex
           raise "Date regex /Date:\s+(.+)/ doesn't match #{line}"
         end
-        date = Date.strptime(regex[1], "%a %b %e %H:%M:%S %Y %z")
+        date = DateTime.strptime(regex[1], "%a %b %e %H:%M:%S %Y %z")
         author.add_date(date)
         author_hash[author.name] = author
         next
       elsif line =~ /^\d+.+/ # store line count
-        regex = line.match(/(\d+)\s+(\d+)\s+(.+(#{list_of_supported_file_types}))$/)
+        regex = line.match(/(\d+)\s+(\d+)\s+(.+(#{list_of_supported_file_types_regex}))$/)
         if !regex
-          p "Line count regex /(\d+)\s+(\d+)\s+(.+(#{list_of_supported_file_types}))$/ doesn't match #{line}"
+          p "Line count regex /(\d+)\s+(\d+)\s+(.+(#{list_of_supported_file_types_regex}))$/ doesn't match #{line}"
           next
         end
-        author.add_commits(date, regex[1], regex[2], regex[3])
+        author.add_to_commit(date, regex[1].to_i, regex[2].to_i, regex[3])
         author_hash[author.name] = author
         next
       end
@@ -55,6 +55,10 @@ namespace :git do
       author.date_commits.each do |date_str, v|
         debug("#{v.to_str}")
         a.commit_dates << CommitDate.new(:date => Date.parse(date_str), :data => v.to_json)
+      end
+      author.commit_ratios.each do |date_str, v|
+        debug(v.to_s)
+        a.commit_ratios << CommitRatio.new(:date => v.datetime, :src_lines => v.src_lines, :test_lines => v.test_lines)
       end
       a.save!
     end
