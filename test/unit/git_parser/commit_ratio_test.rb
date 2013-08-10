@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GitParser::CommitRatio < MiniTest::Unit::TestCase
+class GitParser::CommitRatioTest < MiniTest::Unit::TestCase
 
   def setup
     @commit_ratio = GitParser::CommitRatio.new(DateTime.new(2013,1,1))
