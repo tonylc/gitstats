@@ -10,7 +10,7 @@ module GitParser
     end
 
     def add_line_count(file_path, line_count)
-      if file_path.match(/#{Gitstats::Application.config.tests.map {|a| a.sub(".", "\\.")}.join("|")}$/)
+      if file_path.match(/#{Gitstats::Application.config.tests.map {|a| a.gsub(".", "\\.")}.join("|")}$/)
         @test_lines += line_count
       else
         @src_lines += line_count

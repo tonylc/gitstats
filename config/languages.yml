@@ -19,8 +19,11 @@ test:
   rb:
     - _test.rb
     - _spec.rb
+    - ^spec/
+    - ^test/
   js:
     - _test.js
     - _spec.js
   java:
     - _test.java
+    - ^javatests/
