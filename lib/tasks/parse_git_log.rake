@@ -58,6 +58,7 @@ namespace :git do
       end
       author.commit_ratios.each do |date_str, v|
         debug(v.to_s)
+        next if v.empty_commit?
         a.commit_ratios << CommitRatio.new(:date => v.datetime, :src_lines => v.src_lines, :test_lines => v.test_lines)
       end
       a.save!

@@ -24,4 +24,13 @@ class GitParser::CommitRatioTest < MiniTest::Unit::TestCase
     @commit_ratio.src_lines = 132
     @commit_ratio.test_lines = 33
   end
+
+  def test_is_empty_commit_when_lines_are_zero
+    assert GitParser::CommitRatio.new(DateTime.new(2013,1,1)).empty_commit?
+  end
+
+  def test_is_not_empty_commit_when_lines_present
+    @commit_ratio.add_line_count("app/models/author.rb", 15)
+    assert !@commit_ratio.empty_commit?
+  end
 end

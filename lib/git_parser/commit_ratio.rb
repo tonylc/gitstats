@@ -16,5 +16,9 @@ module GitParser
         @src_lines += line_count
       end
     end
+
+    def empty_commit?
+      @src_lines == 0 && @test_lines == 0
+    end
   end
 end
