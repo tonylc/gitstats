@@ -6,4 +6,8 @@ describe("gs.getCopyOfDate", function() {
     expect(date2).not.toBe(date1);
     expect(date2.getTime()).toBe(date1.getTime());
   });
+
+  it("should format date", function() {
+    expect(gs.formatDate(new Date(2013,1,1))).toBe("2013/2/1");
+  });
 });
