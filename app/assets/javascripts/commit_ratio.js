@@ -13,7 +13,7 @@ CommitRatio.prototype.getRatio = function() {
 }
 
 CommitRatio.prototype.radius = function() {
-  return this.srcLines + this.testLines;
+  return Math.sqrt(this.srcLines + this.testLines);
 }
 
 function Author(id, name, color) {

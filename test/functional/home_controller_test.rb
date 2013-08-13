@@ -46,4 +46,17 @@ class HomeControllerTest < ActionController::TestCase
     assert_equal DateTime.new(2013, 4, 2, 7), assigns[:last_date]
     assert_equal 43, assigns[:num_days]
   end
+
+  def test_get_all_commit_ratios
+    cr1 = FactoryGirl.create(:commit_ratio, :date => DateTime.new(2013,2,1))
+    cr2 = FactoryGirl.create(:commit_ratio, :date => DateTime.new(2013,1,1))
+
+    get :ratio
+
+    assert_template :ratio
+    assert_equal DateTime.new(2013,1,1), assigns[:first_date]
+    assert_equal DateTime.new(2013,2,1), assigns[:last_date]
+    # jan has 31 days + 1
+    assert_equal 32, assigns[:num_days]
+  end
 end

@@ -8,7 +8,7 @@
     margin: 2em;;
   }
   #svg-container {
-    padding: 2em;
+    padding: 3em;
   }
   #svg-container .overlay {
     opacity: 0;
@@ -65,9 +65,6 @@
   function Chart() {
     this.w = <%= graph_width %>;
     this.h = 400;
-    this.margin = 10;
-    this.innerW = this.w - this.margin;
-    this.innerH = this.h - this.margin;
     this.days = <%= @num_days %>;
     var tempMinDate = new Date('<%= @first_date %>'),
     	tempMaxDate = new Date('<%= @last_date %>');
@@ -117,12 +114,12 @@
     .attr('width', chart.w)
     .attr('height', chart.h);
 
-  var yScale = d3.scale.linear().domain([chart.minRange, chart.maxRange]).range([0 + chart.margin, chart.innerH]),
-  	xScale = d3.time.scale().domain([chart.minDate, chart.maxDate]).range([0 + chart.margin, chart.innerW]);
+  var yScale = d3.scale.linear().domain([chart.minRange, chart.maxRange]).range([0, chart.h]),
+  	xScale = d3.time.scale().domain([chart.minDate, chart.maxDate]).range([0, chart.w]);
 
   var g = svg.append("svg:g")
     .attr('class', 'graph')
-    .attr("transform", "translate(0, " + chart.innerH + ")");
+    .attr("transform", "translate(0, " + chart.h + ")");
 
   <%# draw grid %>
   g.selectAll(".grid-x")
@@ -157,7 +154,7 @@
   		.attr('cy', function(d) { return yScale(1 - d.getRatio()); })
   		.attr('r', function(d) { return d.radius(); })
   		.on('mousemove', function(d) {
-  			$('.stats-box').html('src: ' + d.srcLines + ' test:' + d.testLines);
+  			$('.stats-box').html(gs.formatDate(d.date) + ' src: ' + d.srcLines + ' test:' + d.testLines);
   		});
 
   <%# draw x-axis %>
@@ -192,9 +189,9 @@
     .enter()
     	.append("svg:text")
     	.attr("class", "yLabel")
-    	.text(function(d) { return d >= 0 ? d : ""; })
+    	.text(function(d) { return d >= 0 ? d * 100 + '%' : ""; })
     	.attr('text-anchor', 'end')
-    	.attr("x", 0)
+    	.attr("x", -1)
     	.attr("y", function(d) { return -1 * yScale(d) })
     	.attr("dy", 4);
 </script>
