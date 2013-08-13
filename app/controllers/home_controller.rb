@@ -25,4 +25,13 @@ class HomeController < ApplicationController
     @last_date = @commit_dates.last.try(:date)
     @num_days = ((@last_date - @first_date) / 86400).ceil + 1 if @first_date && @last_date
   end
+
+  def ratio
+    @authors = Author.all
+    # TODO(tonylc) order by date desc, limit by 1000?
+    @commit_ratios = Author.first.commit_ratios
+    @first_date = @commit_ratios.first.try(:date)
+    @last_date = @commit_ratios.last.try(:date)
+    @num_days = ((@last_date - @first_date) / 86400).ceil + 1 if @first_date && @last_date
+  end
 end

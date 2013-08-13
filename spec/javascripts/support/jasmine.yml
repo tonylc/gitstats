@@ -12,6 +12,7 @@
 #
 src_files:
   - assets/application.js
+  - assets/commit_ratio.js
   - assets/commit_stats.js
 
 # stylesheets

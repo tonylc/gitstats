@@ -1,0 +1,201 @@
+<% graph_width = 800 %>
+<% @page_js = 'commit_ratio' %>
+
+<% content_for :head do %>
+<style>
+  .graph-container {
+    position: relative;
+    margin: 2em;;
+  }
+  #svg-container {
+    padding: 2em;
+  }
+  #svg-container .overlay {
+    opacity: 0;
+  }
+  .stats-box {
+    position: absolute;
+    top: 2em;
+    left: 3em;
+    background-color: #777;
+    border-radius: 3px;
+    padding: 0 0.25em;
+  }
+  .controls {
+    position: absolute;
+    left: <%= graph_width + 50 %>px;
+    top: 2em;
+  }
+  .controls ul {
+    padding-left: 0;
+    list-style: none;
+  }
+  path {
+    stroke-width: 2;
+    fill: none;
+  }
+  line {
+    stroke: black;
+  }
+  text {
+    font-family: Arial;
+    font-size: 9pt;
+  }
+  .lang-type {
+    font-weight: bold;
+  }
+  .axis {
+    stroke: #000;
+  }
+</style>
+<% end %>
+<div class="graph-container">
+  <div class="stats-box"></div>
+  <div class='controls'>
+  </div>
+  <svg id="svg-container"></svg>
+</div>
+
+<% content_for :script do %>
+<%# <script src="http://d3js.org/d3.v2.min.js"></script> %>
+<script src="http://d3js.org/d3.v2.js"></script>
+<script>
+  var rawCommitRatios = '<%= @commit_ratios.to_json(:only => [:author_id, :date, :src_lines, :test_lines]).html_safe %>';
+  var rawAuthors = '<%= @authors.to_json(:only => [:id, :name]).html_safe %>';
+  function Chart() {
+    this.w = <%= graph_width %>;
+    this.h = 400;
+    this.margin = 10;
+    this.innerW = this.w - this.margin;
+    this.innerH = this.h - this.margin;
+    this.days = <%= @num_days %>;
+    var tempMinDate = new Date('<%= @first_date %>'),
+    	tempMaxDate = new Date('<%= @last_date %>');
+    this.minDate = new Date(tempMinDate.getFullYear(), tempMinDate.getMonth(), tempMinDate.getDate());
+    this.maxDate = new Date(tempMaxDate.getFullYear(), tempMaxDate.getMonth(), tempMaxDate.getDate() + 1);
+    this.minRange = -0.2;
+    this.maxRange = 1.2;
+    <%# hardcoded for now %>
+    this.colors = ['#f7977a', '#fff79a', '#c4df9b', '#7ea7d8', '#a187be'];
+    // array of CommitRatios, to be filled by parseRawStats
+    this.commitRatios = [];
+    // array of authors
+    this.authors = {};
+  }
+
+  Chart.prototype.parseAuthors = function(rawAuthors) {
+  	var self = this;
+  	$.each(JSON.parse(rawAuthors), function(i, el) {
+  		var a = new Author(el["id"], el["name"], chart.colors[i]);
+  		self.authors[a.id] = a;
+  	});
+  	return this;
+  }
+
+  Chart.prototype.parseRawStats = function(rawStats) {
+    var self = this;
+    $.each(JSON.parse(rawCommitRatios), function(i, el) {
+      self.commitRatios.push(new CommitRatio(el["author_id"], new Date(el["date"]), el["src_lines"], el["test_lines"]));
+    });
+    return this;
+  }
+
+  Chart.prototype.initializeDates = function(numDays, lastDate) {
+	  var self = this;
+	  this.stats = $.map(new Array(numDays), function(el, i) {
+	    var d = gs.getCopyOfDate(lastDate);
+	    d.setDate(d.getDate()-i);
+	    return new Stat(d,0,0);
+	  });
+  }
+
+  var chart = new Chart();
+  chart.parseRawStats(rawCommitRatios)
+  	.parseAuthors(rawAuthors);
+
+  var svg = d3.select('svg')
+    .attr('width', chart.w)
+    .attr('height', chart.h);
+
+  var yScale = d3.scale.linear().domain([chart.minRange, chart.maxRange]).range([0 + chart.margin, chart.innerH]),
+  	xScale = d3.time.scale().domain([chart.minDate, chart.maxDate]).range([0 + chart.margin, chart.innerW]);
+
+  var g = svg.append("svg:g")
+    .attr('class', 'graph')
+    .attr("transform", "translate(0, " + chart.innerH + ")");
+
+  <%# draw grid %>
+  g.selectAll(".grid-x")
+    .data(xScale.ticks(10))
+    .enter()
+    .append("line")
+      .attr('class', 'grid-x')
+      .attr("x1", xScale)
+      .attr("x2", xScale)
+      .attr("y1", -1 * yScale(chart.minRange))
+      .attr("y2", -1 * yScale(chart.maxRange))
+      .style("stroke", "#ccc");
+
+  g.selectAll(".grid-y")
+    .data(yScale.ticks(10))
+    .enter()
+    .append("line")
+      .attr('class', 'grid-y')
+      .attr("x1", xScale(chart.minDate))
+      .attr("x2", xScale(chart.maxDate))
+      .attr("y1", function(d) { return -1 * yScale(d); })
+      .attr("y2", function(d) { return -1 * yScale(d); })
+      .style("stroke", "#ccc");
+
+  <%# draw commits %>
+  var circle = svg.selectAll("commitCircle")
+  	.data(chart.commitRatios)
+		.enter()
+			.append("circle")
+  		.attr('fill', function(d) { return chart.authors[d.authorId].color; })
+  		.attr('cx', function(d) { return xScale(d.date); })
+  		.attr('cy', function(d) { return yScale(1 - d.getRatio()); })
+  		.attr('r', function(d) { return d.radius(); })
+  		.on('mousemove', function(d) {
+  			$('.stats-box').html('src: ' + d.srcLines + ' test:' + d.testLines);
+  		});
+
+  <%# draw x-axis %>
+  g.append("line")
+    .attr('class', 'x axis')
+    .attr("x1", xScale(chart.minDate))
+    .attr("y1", -1 * yScale(chart.minRange))
+    .attr("x2", xScale(chart.maxDate))
+    .attr("y2", -1 * yScale(chart.minRange));
+
+  <%# draw y-axis %>
+  g.append("line")
+    .attr('class', 'y axis')
+    .attr("x1", xScale(chart.minDate))
+    .attr("y1", -1 * yScale(chart.minRange))
+    .attr("x2", xScale(chart.minDate))
+    .attr("y2", -1 * yScale(chart.maxRange));
+
+  <%# draw labels %>
+  var xAxis = d3.svg.axis()
+    .scale(xScale)
+    .orient("bottom")
+    .tickFormat(d3.time.format("%m/%d/%Y"))
+    .ticks(d3.time.days, 10);
+  svg.append("g")
+    .attr("class", "x-axis")
+    .attr("transform", "translate(0," + (chart.h) + ")")
+    .call(xAxis);
+
+  g.selectAll(".yLabel")
+    .data(yScale.ticks(10))
+    .enter()
+    	.append("svg:text")
+    	.attr("class", "yLabel")
+    	.text(function(d) { return d >= 0 ? d : ""; })
+    	.attr('text-anchor', 'end')
+    	.attr("x", 0)
+    	.attr("y", function(d) { return -1 * yScale(d) })
+    	.attr("dy", 4);
+</script>
+<% end %>

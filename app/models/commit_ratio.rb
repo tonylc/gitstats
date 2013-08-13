@@ -1,4 +1,6 @@
 class CommitRatio < ActiveRecord::Base
+  default_scope order('date ASC')
+
   belongs_to :author
 
   validate :author_id, :presence => true
