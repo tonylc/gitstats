@@ -7,5 +7,12 @@ var gs = gs || {
     var m = d.getMonth() + 1; // Months are zero based
     var y = d.getFullYear();
     return (y + "/" + m + "/" + day);
+  },
+  determineTimeInterval: function(numDays) {
+    if (numDays < 30) {
+      return d3.time.days;
+    } else {
+      return d3.time.months;
+    }
   }
 };

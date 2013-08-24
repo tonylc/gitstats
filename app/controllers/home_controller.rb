@@ -27,9 +27,16 @@ class HomeController < ApplicationController
   end
 
   def ratio
-    @authors = Author.all
-    # TODO(tonylc) order by date desc, limit by 1000?
-    @commit_ratios = CommitRatio.all
+    author_handle = params[:u]
+    if author_handle.present?
+      @authors = [Author.find_by_handle(author_handle)]
+      # TODO(tonylc) order by date desc, limit by 1000?
+      @commit_ratios = CommitRatio.where(:author_id => @authors.first.id)
+    else
+      @authors = Author.all
+      # TODO(tonylc) order by date desc, limit by 1000?
+      @commit_ratios = CommitRatio.all
+    end
     @first_date = @commit_ratios.first.try(:date)
     @last_date = @commit_ratios.last.try(:date)
     @num_days = ((@last_date - @first_date) / 86400).ceil + 1 if @first_date && @last_date

@@ -233,7 +233,7 @@
       .scale(xScale)
       .orient("bottom")
       .tickFormat(d3.time.format("%m/%d/%Y"))
-      .ticks(d3.time.days, 10);
+      .ticks(gs.determineTimeInterval(chart.days));
     svg.append("g")
       .attr("class", "x-axis")
       .attr("transform", "translate(0," + (chart.h) + ")")

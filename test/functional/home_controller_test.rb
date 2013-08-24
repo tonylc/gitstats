@@ -58,5 +58,25 @@ class HomeControllerTest < ActionController::TestCase
     assert_equal DateTime.new(2013,2,1), assigns[:last_date]
     # jan has 31 days + 1
     assert_equal 32, assigns[:num_days]
+    assert_equal [cr2, cr1], assigns[:commit_ratios]
+    # all authors
+    assert_equal [cr1.author, cr2.author], assigns[:authors]
+  end
+
+  def test_get_ratios_for_user
+    cr1 = FactoryGirl.create(:commit_ratio, :date => DateTime.new(2013,2,1))
+    cr2 = FactoryGirl.create(:commit_ratio, :date => DateTime.new(2013,1,1))
+
+    handle = cr1.author.email.split('@')[0]
+
+    get :ratio, :u => handle
+
+    assert_equal DateTime.new(2013,2,1), assigns[:first_date]
+    assert_equal DateTime.new(2013,2,1), assigns[:last_date]
+    # jan has 31 days + 1
+    assert_equal 1, assigns[:num_days]
+    assert_equal [cr1], assigns[:commit_ratios]
+    # all authors
+    assert_equal [cr1.author], assigns[:authors]
   end
 end
